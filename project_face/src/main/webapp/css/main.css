@@ -1,0 +1,14 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+body {
+    background-color: #9986b3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "pretendard", sans-serif;
+	font-style: normal;
+}
