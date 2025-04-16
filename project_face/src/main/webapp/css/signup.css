@@ -22,17 +22,26 @@ body {
     height: 650px;
     text-align: center;
 }
+.feedback {
+    font-size: 0.8rem;
+    color: red;
+    text-align:left;
+    margin-bottom: 10px;
+    height:20px
+}
+.feedback.success {
+    color: green;
+}
 .join{
 	color: rebeccapurple;
     font-size: 30px;
     font-weight: 500;
 }
 input {
-	margin-bottom: 30px;
+	/* margin-bottom: 30px; */
 } 
 .input-group{
 	margin-top: 20px;
-    margin-bottom: 55px;
 }
 input[type="text"]{
     width: 100%;
@@ -42,17 +51,8 @@ input[type="text"]{
     border-radius: 5px;
     font-size: 15px;
 }
-.feedback {
-	font-size: 13px;
-	text-align: left;
-	color: red;
-	margin-bottom: 6px;
-}
 .success {
 	color: green;
-}
-#number-feedback, #numberCheck-feedback, #name-feedback, #nick-feedback{
-	display: none;
 }
 .birth{
 	margin-bottom: 20px;

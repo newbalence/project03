@@ -21,7 +21,7 @@
 					<button class="btn" onclick="location.href='loginOk.jsp'">전화번호로 로그인</button>
 				</div>
 				<div class="actions">
-					<span>아직 아이디가 없으신가요?</span>
+					<span>아직 계정이 없으신가요?</span>
 					<span onclick="location.href='signup.jsp'" style="cursor:pointer;">회원가입하기</span>
 				</div>
 			</div>
