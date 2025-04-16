@@ -4,15 +4,15 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		</head>
-	<body>
-		<div class="main_content">
-			<div>
-				<button class="Btn">마이페이지</button>
-				<button class="Btn">로그인</button>
-				<button class="Btn">장바구니</button>
-			</div>
+		<title>메인화면</title>
+		<link rel="stylesheet" href="./css/main.css"></link>
+	</head>
+	<body style="background: url(./img/main.jpg) no-repeat center top fixed;" >
+		<%@ include file="header.jsp" %>
+		<div class="Main">
+			<div class="hand">HandCrafted</div>
+			<div class="make">Burgers & Fries</div>
 		</div>
+		<a class="Menu" onclick="location.href='menu.jsp'">메뉴보기</a>
 	</body>
 </html>

@@ -2,13 +2,31 @@
 *{
 	box-sizing: border-box;
 }
-body {
-    background-color: #9986b3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: "pretendard", sans-serif;
-	font-style: normal;
+.hand{
+	position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+}
+.make{
+	position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 60px;
+    font-weight: 600;
+}
+.Menu{
+	position: absolute;
+    top: 80%;
+    left: 72%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 35px;
+    font-weight: 600;
+    cursor: pointer;
 }
