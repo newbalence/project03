@@ -1,0 +1,35 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+body {
+    background-color: #9986b3;
+}
+.side{
+	width: 15%;
+	background-color: #c4bee2;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 110px;
+}
+.side_list{
+	text-align: center;
+}
+.sideMenu{
+	margin-top: 30px;
+	display: flex;
+    justify-content: space-around;
+}
+.sidePhoto{
+	width: 340px;
+	height: 270px
+}
+.name{
+	font-weight: 500;
+    color: white;
+    font-size: 30px;
+ }

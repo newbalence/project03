@@ -19,6 +19,7 @@
 }
 .icon{
 	margin-top: -10px;
+	cursor: pointer;
 }
 .kind{
 	width: 30%;
@@ -35,7 +36,6 @@
     color: white;
     padding: 10px;
     border: none;
-    height: 55px;
     cursor: pointer;
     border-radius: 5px;
     font-weight: 600;

@@ -4,93 +4,38 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>메뉴화면</title>
+		<title>MENU</title>
 		<link rel="stylesheet" href="./css/menu.css"></link>
-		</head>
+	</head>
 	<body>
 		<%@ include file="header.jsp" %>
-		<div class="main_content">
-			<div class="burger">burger</div>
-			<!-- <div class="recommend">
-				<h2 class="goods">추천상품</h2>
-			</div> -->
-			<div class="listrow">
-				<h2 class="goods">추천상품</h2>
-			</div>
-			<div class="listrow">
-				<div class="listbox">
-					<div class="list"><img src="./img/gibon.jpg" class="photo">
-						<a class="name">클래식 버거</a>
-					</div>
-					<div class="list"><img src="./img/bulgogi.jpg" class="photo">
-						<a class="name">불고기 버거</a>
-					</div>
-					<div class="list"><img src="./img/cheese.jpg" class="photo">
-						<a class="name">치즈 버거</a>
-					</div>
-				</div>
-				<div class="listbox">
-					<div class="list"><img src="./img/chiken.jpg" class="photo">
-						<a class="name">치킨 버거</a>
-					</div>
-					<div class="list"><img src="./img/bacon.jpg" class="photo">
-						<a class="name">베이컨 버거</a>
-					</div>
-					<div class="list"><img src="./img/shrimp.jpg" class="photo">
-						<a class="name">새우버거</a>
-					</div>
-				</div>
-			</div>
-			<div class="listrow">
-				<h2 class="goods">일반상품</h2>
-			</div>
-			<div class="listrow">
-				<div class="listbox">
-					<div class="list"><img src="./img/gibon.jpg" class="photo">
-						<a class="name">클래식 버거</a>
-					</div>
-					<div class="list"><img src="./img/bulgogi.jpg" class="photo">
-						<a class="name">불고기 버거</a>
-					</div>
-					<div class="list"><img src="./img/cheese.jpg" class="photo">
-						<a class="name">치즈 버거</a>
-					</div>
-				</div>
-				<div class="listbox">
-					<div class="list"><img src="./img/chiken.jpg" class="photo">
-						<a class="name">치킨 버거</a>
-					</div>
-					<div class="list"><img src="./img/bacon.jpg" class="photo">
-						<a class="name">베이컨 버거</a>
-					</div>
-					<div class="list"><img src="./img/shrimp.jpg" class="photo">
-						<a class="name">새우버거</a>
-					</div>
-				</div>
-			</div>
-			<div class="listrow">
-				<h2 class="goods">Kids</h2>
-			</div>
-			<div class="kids">
-				<div class="kidsPhoto"><img src="./img/kid.PNG" class="photo"></div>
-				<div class="kidsPhoto"><img src="./img/kids.PNG" class="photo"></div>
-			</div>
-			<!-- <div class="listrow">
-				<h2 class="goods">최근본 상품</h2>
-				<div class="list"><img src="./img/gibon.jpg" class="photo">
-					<a class="name">클래식 버거</a>
-				</div>
-				<div class="list"><img src="./img/bulgogi.jpg" class="photo">
-					<a class="name">불고기 버거</a>
-				</div>
-				<div class="list"><img src="./img/chiken.jpg" class="photo">
-					<a class="name">치킨 버거</a>
-				</div>
-			</div> -->
-			<a>&lt;&lt;</a>
-			<a>&lt;</a>
-			<a>&gt;</a>
-			<a>&gt;&gt;</a>
+		<div class="menu">
+			<img src="./img/menu.jpg" style="width:100%">
+			<a class="Menu">M E N U</a>
 		</div>
-	</body>
+		<div class="intro">
+			<p><i><del>내 일 먹 을 걸 생 각 하 는 놈 은</del></i>
+			<br>
+			 <i><del><big>오 늘 만 먹 는 놈 에 게 죽 는 다.<big></big></del></i></p>
+		</div>
+		<div class="menuRow">
+			<div class="menu_list"><img src="./img/burger.jpg" class="menuPhoto">
+				<a class="name">BUTGERS</a>
+			</div>
+			<div class="menu_list"><img src="./img/side.jpg" class="menuPhoto">
+				<a class="name">SIDE</a>
+			</div>
+			<div class="menu_list"><img src="./img/drink.jpg" class="menuPhoto">
+				<a class="name">DRINK</a>
+			</div>
+		</div>
+		<div class="menuRow">
+			<div class="menu_list"><img src="./img/dessert.PNG" class="menuPhoto">
+				<a class="name">DESSERT</a>
+			</div>
+			<div class="menu_list"><img src="./img/etc.jpg" class="menuPhoto">
+				<a class="name">ETC</a>
+			</div>
+		</div>
+		</body>
 </html>

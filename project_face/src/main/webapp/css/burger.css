@@ -1,0 +1,60 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+body {
+    background-color: #9986b3;
+}
+.burger{
+	width: 15%;
+	background-color: #c4bee2;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 110px;
+}
+/* .recommend{
+	width: 15%;
+	justify-self: anchor-center;
+	background-color: #c4bee2;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+} */
+.goods{
+	font-size: 17px;
+    font-weight: 600;
+    color: white;
+    background-color: #c4bee2;
+    padding: 10px;
+    border-radius: 25px;
+    width: 15%;
+    justify-self: anchor-center;
+}
+.listrow{
+	margin-top: 30px;
+	text-align: center;
+}
+.listbox{
+	display: flex;
+    justify-content: space-around;
+}
+.list{
+	display: grid;
+}
+.name{
+	font-weight: 500;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+.kids{
+	display: flex;
+ 	justify-content: center;
+}
+.kidsPhoto{
+	margin-right: 110px;
+}

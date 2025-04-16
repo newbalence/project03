@@ -11,7 +11,7 @@
 		<div class="header">
 		<div class="tab">
 			<div class="icon">
-				<img src="./img/hamburger.jpg" style="width: 20%">
+				<a onclick="location.href='main.jsp'"><img src="./img/hamburger.jpg" style="width: 20%"></a>
 			</div>
 		<div class="kind">
 			<a onclick="location.href='burger.jsp'">burger</a>
@@ -21,9 +21,9 @@
 			<a onclick="location.href='etc.jsp'">etc</a>				
 		</div>
 		<div class="Btn">
-			<button class="btn">마이페이지</button>
-			<button class="btn">로그인</button>
-			<button class="btn">장바구니</button>
+			<a onclick="location.href='mypage.jsp'" class="btn">마이페이지</a>
+			<a onclick="location.href='login.jsp'" class="btn">로그인</a>
+			<a onclick="location.href='shop.jsp'" class="btn">장바구니</a>
 		</div>
 		</div>
 		</div>

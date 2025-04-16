@@ -2,59 +2,38 @@
 *{
 	box-sizing: border-box;
 }
-body {
-    background-color: #9986b3;
+.menu{
+	position: relative;
 }
-.burger{
-	width: 15%;
-	background-color: #c4bee2;
+.Menu {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
-    padding: 10px;
-    border-radius: 25px;
-    text-align: center;
-    font-size: 17px;
+    font-size: 35px;
     font-weight: 600;
-    margin-top: 110px;
-}
-/* .recommend{
-	width: 15%;
-	justify-self: anchor-center;
-	background-color: #c4bee2;
-    padding: 10px;
-    border-radius: 25px;
-    text-align: center;
-} */
-.goods{
-	font-size: 17px;
-    font-weight: 600;
-    color: white;
-    background-color: #c4bee2;
-    padding: 10px;
-    border-radius: 25px;
-    width: 15%;
-    justify-self: anchor-center;
-}
-.listrow{
-	margin-top: 30px;
+}   
+.intro{
 	text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
 }
-.listbox{
-	display: flex;
+.menuRow{
+	margin-top: 30px;
+    display: flex;
     justify-content: space-around;
 }
-.list{
-	display: grid;
+.menu_list{
+	text-align: center;
+    display: grid;
+}
+.menuPhoto{
+	width: 183px;
+    height: 235px;
 }
 .name{
-	font-weight: 500;
-    color: white;
-    font-size: 30px;
-    text-align: center;
-}
-.kids{
-	display: flex;
- 	justify-content: center;
-}
-.kidsPhoto{
-	margin-right: 110px;
+	font-size: 25px;
+    font-weight: 500;
 }

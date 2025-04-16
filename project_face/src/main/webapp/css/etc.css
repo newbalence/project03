@@ -1,0 +1,36 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+body {
+    background-color: #9986b3;
+}
+.etc{
+	width: 15%;
+	background-color: #c4bee2;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 110px;
+}
+.etctMenu{
+	margin-top: 30px;
+	display: flex;
+	justify-content: space-around;
+}
+.etc_list{
+	display: grid;
+}
+.etcPhoto{
+	width: 270px;
+    height: 370px;
+}
+.name{
+	font-weight: 500;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
