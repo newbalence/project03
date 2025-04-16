@@ -134,6 +134,10 @@ function createPeerConnection() {
         sdpSemantics: 'unified-plan'
     };
 
+    if (document.getElementById('use-stun').checked) {
+        config.iceServers = [{ urls: ['stun:stun.l.google.com:19302'] }];
+    }
+
     pc = new RTCPeerConnection(config);
 
     // register some listeners to help debugging
@@ -186,6 +190,7 @@ function enumerateInputDevices() {
         );
     }).catch((e) => {
         alert(e);
+        console.log(e)
     });
 }
 
@@ -221,7 +226,7 @@ function negotiate() {
             offer.sdp = sdpFilterCodec('video', codec, offer.sdp);
         }
 
-//         /* document.getElementById('offer-sdp').textContent = offer.sdp; */
+        /* document.getElementById('offer-sdp').textContent = offer.sdp; */
         return fetch('http://localhost:8888/offer', {
             body: JSON.stringify({
                 sdp: offer.sdp,
@@ -240,6 +245,7 @@ function negotiate() {
         return pc.setRemoteDescription(answer);
     }).catch((e) => {
         alert(e);
+        console.log(e)
     });
 }
 
@@ -248,8 +254,42 @@ function start() {
 
     pc = createPeerConnection();
 
-    var parameters = JSON.parse(document.getElementById('datachannel-parameters').value);
-	dc = pc.createDataChannel('chat', parameters);
+    var time_start = null;
+
+    const current_stamp = () => {
+        if (time_start === null) {
+            time_start = new Date().getTime();
+            return 0;
+        } else {
+            return new Date().getTime() - time_start;
+        }
+    };
+
+    if (document.getElementById('use-datachannel').checked) {
+        var parameters = JSON.parse(document.getElementById('datachannel-parameters').value);
+
+        dc = pc.createDataChannel('chat', parameters);
+        dc.addEventListener('close', () => {
+            clearInterval(dcInterval);
+            /* dataChannelLog.textContent += '- close\n';dataChannelLog */
+        });
+        dc.addEventListener('open', () => {
+            /* dataChannelLog.textContent += '- open\n'; */
+            dcInterval = setInterval(() => {
+                var message = 'ping ' + current_stamp();
+                /* dataChannelLog.textContent += '> ' + message + '\n'; */
+                dc.send(message);
+            }, 1000);
+        });
+        dc.addEventListener('message', (evt) => {
+            /* dataChannelLog.textContent += '< ' + evt.data + '\n'; */
+
+            if (evt.data.substring(0, 4) === 'pong') {
+                var elapsed_ms = current_stamp() - parseInt(evt.data.substring(5), 10);
+                /* dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n'; */
+            }
+        });
+    }
 
     // Build media constraints.
 
@@ -334,7 +374,6 @@ function stop() {
     setTimeout(() => {
         pc.close();
     }, 500);
-    
     document.getElementById('start').style.display = 'inline-block';
 }
 
@@ -394,8 +433,9 @@ function sdpFilterCodec(kind, codec, realSdp) {
 
     return sdp;
 }
+
 function escapeRegExp(string) {
-	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 
 enumerateInputDevices();
