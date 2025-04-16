@@ -22,6 +22,10 @@ body {
     height: 650px;
     text-align: center;
 }
+.videoon{
+	width: 100%;
+	height: 100%;
+}
 .join{
 	color: rebeccapurple;
     font-size: 30px;
@@ -33,7 +37,7 @@ body {
 } 
 .facePhoto{
 	height: 230px;
-    padding: 95px;
+    /* padding: 95px; */
     border: 1px solid #663399;
     border-radius: 5px;
     margin-top: 50px;
@@ -43,7 +47,7 @@ body {
 	font-weight: 500;
     color: mediumvioletred;
     margin-top: 20px;
-    margin-bottom: 75px;
+    margin-bottom: 50px;
 }
 .btn {
     background-color: #c4bee2;

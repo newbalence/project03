@@ -29,26 +29,50 @@ String birth = year + "." + month + "." + day;
 		<meta charset="UTF-8">
 		<title>안면인식</title>
 		<link rel="stylesheet" href="./css/join_face.css"></link>
+		<script src="./js/jquery-3.7.1.js"></script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="join" id="join">회 원 가 입</div>
-			<form action="signupOk.jsp" method="post" onsubmit="return userFormCheck()">
-			<input type="hidden" value="<%= name %>" name="name">
-			<input type="hidden" value="<%= phone %>" name="phone">
-			<input type="hidden" value="<%= nick %>" name="nick">
-			<input type="hidden" value="<%= birth %>" name="birth">
+			<form action="signupOk.jsp" method="post" onsubmit="return signupCheck()">
+			<input id="name" type="hidden" value="<%= name %>" name="name">
+			<input id="phone" type="hidden" value="<%= phone %>" name="phone">
+			<input id="nick" type="hidden" value="<%= nick %>" name="nick">
+			<input id="birth" type="hidden" value="<%= birth %>" name="birth">
 			<input type="hidden" value="" name="face" id="face">
 				<div class="face">
-					<div class="facePhoto"><video id="video"></video></div>
+					<div class="facePhoto"><video id="video" class="videoon"></video></div>
 					<div class="faceCheck">얼굴 식별이 확인 되었습니다.</div>
-					<button class="btn">다시 촬영하기</button>
-					<button class="btn" onclick="location.href='signupOk.jsp'">가입하기</button>
+					<button type="button" class="btn" onclick="location.href='signup.jsp?name=<%= name %>&phone=<%= phone %>&nick=<%= nick %>&year=<%= year %>&month=<%= month %>&day=<%= day %>'">정보 다시 입력하기</button>
+					<button class="btn" onclick="return faceReCheck()">다시 촬영하기</button>
+					<button class="btn">가입하기</button>
 				</div>
 			</form>
 		</div>
 	</body>
 	<script>
+		function faceReCheck(){
+			alert("다시 촬영하기")
+			return false;
+		}
+		
+		function signupCheck(){
+			let name = $("#name").val()
+			let phone = $("#phone").val()
+			let nick = $("#nick").val()
+			let birth = $("#birth").val()
+			
+			let message = "";
+			message += "이름 : " + name;
+			message += "\n전화번호 : " + phone;
+			message += "\n닉네임 : " + nick;
+			message += "\n생년월일 : " + birth;
+			message += "\n위 정보가 맞습니까?";
+			
+			result = confirm(message)
+			return result;
+		}
+		
 		//자바스크립트로 영상 띄우기
 		//영상을 파이썬 웹소켓 서버로 전달
 		//파이썬에서 얼굴 벡터 받으면 웹소켓 서버 연결 종료
@@ -56,7 +80,7 @@ String birth = year + "." + month + "." + day;
 		//알림 텍스트 바꿔주고
 		//가입하기 누르면
 		
-		/* var constraints = { audio: true, video: { width: 1280, height: 720 } };
+		var constraints = { audio: true, video: { width: 1280, height: 720 } };
 
 		navigator.mediaDevices.getUserMedia(constraints)
 		    .then(function(stream) {
@@ -74,15 +98,7 @@ String birth = year + "." + month + "." + day;
 		    })
 		    .catch(function(err) {
 		        console.log(err.name + ": " + err.message);
-		    }); */
+		    });
 		   
-		   
-		    fetch("http://example.com/movies.json").then(function(data){
-		    	console.log(data)
-		    })
-		    console.log("hi")
-		    
-		    await fetch("http://example.com/movies.json")
-		    console.log("hello")
 	</script>
 </html>
