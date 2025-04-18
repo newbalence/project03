@@ -14,7 +14,7 @@
 		</div>
 		<div class="product">
 			<div class="productDetail">
-				<img src="./img/gibon.jpg" class="photo">
+				<img src="./img/burger/gibon.png" class="photo">
 			</div>
 			<div class="select">
 				<div class="productName">

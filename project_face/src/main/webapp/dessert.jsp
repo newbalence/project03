@@ -14,29 +14,29 @@
 			<div class="dessertMenu">
 				<div class="dessert_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/churros.PNG" class="dessertPhoto"><br>Choco Churros</a>
+						<img src="./img/dessert/churros.png" class="dessertPhoto"><br>Choco Churros</a>
 				</div>
 				<div class="dessert_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/softice.PNG" class="dessertPhoto"><br>Soft Ice Cream</a>
+						<img src="./img/dessert/softice.png" class="dessertPhoto"><br>Soft Ice Cream</a>
 				</div>
 				<div class="dessert_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/Ccake.jpg" class="dessertPhoto"><br>Cheese Cake</a>
+						<img src="./img/dessert/Ccake.png" class="dessertPhoto"><br>Cheese Cake</a>
 				</div>
 			</div>
 			<div class="dessertMenu">
 				<div class="dessert_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/Scake.jpg" class="dessertPhoto"><br>STR cake</a>
+						<img src="./img/dessert/Scake.png" class="dessertPhoto"><br>STR cake</a>
 				</div>
 				<div class="dessert_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/Tcake.jpg" class="dessertPhoto"><br>Tiramisu</a>
+						<img src="./img/dessert/Tcake.png" class="dessertPhoto"><br>Tiramisu</a>
 				</div>
 				<div class="dessert_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/Ocake.jpg" class="dessertPhoto"><br>Orange Cake</a>
+						<img src="./img/dessert/Ocake.png" class="dessertPhoto"><br>Orange Cake</a>
 				</div>
 			</div>
 		</div>

@@ -14,37 +14,37 @@
 			<div class="sideMenu">
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/french.jpg" class="sidePhoto"><br>French Fries</a>
+						<img src="./img/side/french.png" class="sidePhoto"><br>French Fries</a>
 				</div>
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/cheeseFrench.jpg" class="sidePhoto"><br>cheeseFrench Fries</a>
+						<img src="./img/side/cheeseFrench.png" class="sidePhoto"><br>cheeseFrench Fries</a>
 				</div>
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/secret sauce.PNG" class="sidePhoto"><br>secret French Fries</a>
+						<img src="./img/side/secret_sauce.png" class="sidePhoto"><br>secret French Fries</a>
 				</div>
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/hashbrown.jpg" class="sidePhoto"><br>Hash Brown</a>
+						<img src="./img/side/hashbrown.png" class="sidePhoto"><br>Hash Brown</a>
 				</div>
 			</div>
 			<div class="sideMenu">
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/Coleslaw.PNG" class="sidePhoto"><br>Coleslaw</a>
+						<img src="./img/side/Coleslaw.png" class="sidePhoto"><br>Coleslaw</a>
 				</div>
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/wrap.jpg" class="sidePhoto"><br>Chicken Snack Wrap</a>
+						<img src="./img/side/wrap.png" class="sidePhoto"><br>Chicken Snack Wrap</a>
 				</div>
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/neget.PNG" class="sidePhoto"><br>McNuggets</a>
+						<img src="./img/side/neget.png" class="sidePhoto"><br>McNuggets</a>
 				</div>
 				<div class="side_list">
 					<a onclick="location.href='details.jsp'" class="name">
-						<img src="./img/stic.PNG" class="sidePhoto"><br>Cheese Sticks</a>
+						<img src="./img/side/stic.png" class="sidePhoto"><br>Cheese Sticks</a>
 				</div>
 			</div>
 		</div>

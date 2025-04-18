@@ -46,3 +46,31 @@ body {
     justify-self: right;
     margin-top: 15px;
 }
+.option{
+	height: 45px;
+    border-radius: 10px;
+    border-style: none;
+    width: 80%;
+}
+.add{
+	justify-self: center;
+}
+.add_{
+	text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 135px;
+    border: none;
+    background-color: #D3EAEB;
+}
+.food{
+	width: 20%;
+}
+.add_food{
+	margin-bottom: 20px;
+    display: flex;
+    margin-top: 15px;
+}
+.add_pay{
+	display: flex;
+}
