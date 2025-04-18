@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 body {
-    background-color: #9986b3;
+    background-color: #D3EAEB;
 }
 .shop{
 	width: 25%;
@@ -17,7 +17,7 @@ body {
     margin-top: 150px;
     justify-self: anchor-center;
 }
-table { border: 3px solid #c4bee2;
+table { border: 3px solid #fff;
 		justify-self: center;
     	margin-top: 100px;
     	width: 95%;

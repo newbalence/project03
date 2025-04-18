@@ -20,14 +20,37 @@
     font-size: 20px;
     line-height: 24px;
 }
+.listrow{
+	display: flow;
+}
+.list{
+	justify-self: right;
+	margin-top: -42%;
+} 
+.goods{
+	justify-self: center;
+}
+.viewList{
+	display: grid;
+    justify-items: center;
+}
+.list_name{
+	font-size: 20px;
+}
+.burgerP {
+    width: 30%;
+}
 .menuRow{
-	margin-top: 30px;
-    display: flex;
+	display: flex;
     justify-content: space-around;
 }
 .menu_list{
 	text-align: center;
     display: grid;
+}
+.listrow{
+	display: grid;
+    justify-content: end;
 }
 .menuPhoto{
 	width: 183px;
@@ -36,4 +59,5 @@
 .name{
 	font-size: 25px;
     font-weight: 500;
+    cursor: pointer;
 }

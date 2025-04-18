@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 body {
-    background-color: #9986b3;
+    background-color: #D3EAEB;
 }
 .burger{
 	width: 15%;
@@ -42,14 +42,12 @@ body {
 	display: flex;
     justify-content: space-around;
 }
-.list{
-	display: grid;
-}
 .name{
 	font-weight: 500;
     color: white;
     font-size: 30px;
     text-align: center;
+    cursor: pointer;
 }
 .kids{
 	display: flex;

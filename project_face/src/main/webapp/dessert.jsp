@@ -12,25 +12,31 @@
 		<div class="main_content">
 			<div class="dessert">dessert</div>
 			<div class="dessertMenu">
-				<div class="dessert_list"><img src="./img/churros.PNG" class="dessertPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Choco Churros</a>
+				<div class="dessert_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/churros.PNG" class="dessertPhoto"><br>Choco Churros</a>
 				</div>
-				<div class="dessert_list"><img src="./img/softice.PNG" class="dessertPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Soft Ice Cream</a>
+				<div class="dessert_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/softice.PNG" class="dessertPhoto"><br>Soft Ice Cream</a>
 				</div>
-				<div class="dessert_list"><img src="./img/Ccake.jpg" class="dessertPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Cheese Cake</a>
+				<div class="dessert_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/Ccake.jpg" class="dessertPhoto"><br>Cheese Cake</a>
 				</div>
 			</div>
 			<div class="dessertMenu">
-				<div class="dessert_list"><img src="./img/Scake.jpg" class="dessertPhoto">
-					<a onclick="location.href='details.jsp'" class="name">STR cake</a>
+				<div class="dessert_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/Scake.jpg" class="dessertPhoto"><br>STR cake</a>
 				</div>
-				<div class="dessert_list"><img src="./img/Tcake.jpg" class="dessertPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Tiramisu</a>
+				<div class="dessert_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/Tcake.jpg" class="dessertPhoto"><br>Tiramisu</a>
 				</div>
-				<div class="dessert_list"><img src="./img/Ocake.jpg" class="dessertPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Orange Cake</a>
+				<div class="dessert_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/Ocake.jpg" class="dessertPhoto"><br>Orange Cake</a>
 				</div>
 			</div>
 		</div>

@@ -12,25 +12,31 @@
 		<div class="main_content">
 			<div class="etc">etc</div>
 			<div class="etctMenu">
-				<div class="etc_list"><img src="./img/berryshake.jpg" class="etcPhoto">
-					<a onclick="location.href='details.jsp'" class="name">STR Shake</a>
+				<div class="etc_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/berryshake.jpg" class="etcPhoto"><br>STR Shake</a>
 				</div>
-				<div class="etc_list"><img src="./img/choco shake.jpg" class="etcPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Choco Shake</a>
+				<div class="etc_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/choco shake.jpg" class="etcPhoto"><br>Choco Shake</a>
 				</div>
-				<div class="etc_list"><img src="./img/coffee shake.PNG" class="etcPhoto">
-					<a onclick="location.href='details.jsp'" class="name">Coffee Shake</a>
+				<div class="etc_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/coffee shake.PNG" class="etcPhoto"><br>Coffee Shake</a>
 				</div>
 			</div>
 			<div class="etctMenu">
-				<div class="etc_list"><img src="./img/coffee.jpg" class="etcPhoto">
-					<a onclick="location.href='details.jsp'" class="name">(Hot/Ice)Americano</a>
+				<div class="etc_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/coffee.jpg" class="etcPhoto"><br>(Hot/Ice)Americano</a>
 				</div>
-				<div class="etc_list"><img src="./img/late.jpg" class="etcPhoto">
-					<a onclick="location.href='details.jsp'" class="name">(Hot/Ice)Cafe Late</a>
+				<div class="etc_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/late.jpg" class="etcPhoto"><br>(Hot/Ice)Cafe Late</a>
 				</div>
-				<div class="etc_list"><img src="./img/milktea.jpg" class="etcPhoto">
-					<a onclick="location.href='details.jsp'" class="name">(Hot/Ice)Milk Tea</a>
+				<div class="etc_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/milktea.jpg" class="etcPhoto"><br>(Hot/Ice)Milk Tea</a>
 				</div>
 			</div>
 			</div>

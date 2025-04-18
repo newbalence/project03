@@ -3,5 +3,97 @@
 	box-sizing: border-box;
 }
 body {
-    background-color: #9986b3;
+    background-color: #D3EAEB;
+}
+.product{
+	display: flex;
+	justify-content: space-around;
+	margin-top: 85px;
+	width: 70%;
+	margin-left: 15%;
+}
+.detail{
+	width: 15%;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 110px;
+    justify-self: center;
+}
+.select{
+	width: 300px;
+}
+.productDetail{
+	width: 20%;
+    height: 335px;
+}
+.productName{
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 25px;
+    font-size: 17px;
+    font-weight: 600;
+    justify-self: center;
+    height: 75px;
+}
+.price{
+	float: right;
+}
+.selectCell{
+	display: grid;
+    height: 150px;
+    margin-top:30px;
+    margin-bottom: 30px;
+    text-align-last: center;
+}
+.selectBar{
+	border: none;
+	border-radius: 10px;
+	appearance: none;
+	background-color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.totalPay{
+	width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+}
+.buy{
+	width: 15%;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 110px;
+    justify-self: center;
+    cursor: pointer;
+}
+.decide{
+	display: flex;
+	justify-content: center;
+    margin-top: 10px;
+}
+.decision{
+	width: 8%;
+    background-color: #fff;
+   	padding: 10px;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 2px;
 }

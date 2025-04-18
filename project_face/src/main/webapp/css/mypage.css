@@ -1,0 +1,50 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+body {
+    background-color: #D3EAEB;
+}
+.mypage{
+	margin-top: 160px;
+}
+.photo_face{
+	display: flex;
+	align-items: center;
+}
+.facePhoto{
+	height: 200px;
+    background-color: #c4bee2;
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px;
+    margin-left: 110px;
+   margin-right: 115px;
+}
+.facerow{
+	display: grid;
+}
+.info{
+	margin-top: 80px;
+    margin-left: 110px;
+}
+.infoMember{
+	font-weight: 600;
+}
+.Info{
+	color: darkgrey;
+	font-size: 20px;
+	
+}
+.memberInfo{
+	margin-top: 30px;
+}
+.infoTwo{
+	margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}
+.infoTwo a:hover {
+  text-decoration: underline;
+}

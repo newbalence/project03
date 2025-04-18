@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 body {
-    background-color: #9986b3;
+    background-color: #D3EAEB;
 }
 .dessert{
 	width: 15%;
@@ -27,10 +27,10 @@ body {
 }
 .dessert_list{
 	text-align: center;
-    display: grid;
 }
 .name{
 	font-weight: 500;
     color: white;
     font-size: 30px;
+    cursor: pointer;
 }

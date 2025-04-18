@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 body {
-    background-color: #9986b3;
+    background-color: #D3EAEB;
 }
 .drink{
 	width: 15%;
@@ -36,4 +36,5 @@ body {
     color: white;
     font-size: 30px;
     display: inline-block;
+    cursor: pointer;
 }

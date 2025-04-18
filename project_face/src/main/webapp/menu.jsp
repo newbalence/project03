@@ -18,24 +18,47 @@
 			<br>
 			 <i><del><big>오 늘 만 먹 는 놈 에 게 죽 는 다.<big></big></del></i></p>
 		</div>
-		<div class="menuRow">
-			<div class="menu_list"><img src="./img/burger.jpg" class="menuPhoto">
-				<a class="name">BUTGERS</a>
+		<div class="">
+			<div class="menuRow">
+				<div class="menu_list">
+					<a onclick="location.href='burger.jsp'" class="name">
+						<img src="./img/burger.jpg" class="menuPhoto"><br>BUTGERS</a>
+				</div>
+				<div class="menu_list">
+					<a onclick="location.href='side.jsp'" class="name">
+						<img src="./img/side.jpg" class="menuPhoto"><br>SIDE</a>
+				</div>
+				<div class="menu_list">
+					<a onclick="location.href='drink.jsp'" class="name">
+						<img src="./img/drink.jpg" class="menuPhoto"><br>DRINK</a>
+				</div>
 			</div>
-			<div class="menu_list"><img src="./img/side.jpg" class="menuPhoto">
-				<a class="name">SIDE</a>
+			<div class="menuRow">
+				<div class="menu_list">
+					<a onclick="location.href='dessert.jsp'" class="name">
+						<img src="./img/dessert.PNG" class="menuPhoto"><br>DESSERT</a>
+				</div>
+				<div class="menu_list">
+					<a onclick="location.href='etc.jsp'" class="name">
+						<img src="./img/etc.jpg" class="menuPhoto"><br>ETC</a>
+				</div>
 			</div>
-			<div class="menu_list"><img src="./img/drink.jpg" class="menuPhoto">
-				<a class="name">DRINK</a>
-			</div>
-		</div>
-		<div class="menuRow">
-			<div class="menu_list"><img src="./img/dessert.PNG" class="menuPhoto">
-				<a class="name">DESSERT</a>
-			</div>
-			<div class="menu_list"><img src="./img/etc.jpg" class="menuPhoto">
-				<a class="name">ETC</a>
-			</div>
+			<!-- <div class="list"> 로그인 했을 때 나타냈음 하는?!
+				<div>
+					<h2 class="goods">최근 본 상품</h2>
+				</div>
+				<div class="viewlist">
+					<div class="viewList"><img src="./img/gibon.jpg" class="burgerP">
+						<a class="list_name">클래식 버거</a>
+					</div>
+					<div class="viewList"><img src="./img/bulgogi.jpg" class="burgerP">
+						<a class="list_name">불고기 버거</a>
+					</div>
+					<div class="viewList"><img src="./img/chiken.jpg" class="burgerP">
+						<a class="list_name">치킨 버거</a>
+					</div>
+				</div>
+			</div> -->
 		</div>
 		</body>
 </html>

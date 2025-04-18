@@ -12,31 +12,39 @@
 		<div class="main_content">
 			<div class="side">side</div>
 			<div class="sideMenu">
-				<div class="side_list"><img src="./img/french.jpg" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">French Fries</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/french.jpg" class="sidePhoto"><br>French Fries</a>
 				</div>
-				<div class="side_list"><img src="./img/cheeseFrench.jpg" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">cheeseFrench Fries</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/cheeseFrench.jpg" class="sidePhoto"><br>cheeseFrench Fries</a>
 				</div>
-				<div class="side_list"><img src="./img/secret sauce.PNG" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">secret French Fries</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/secret sauce.PNG" class="sidePhoto"><br>secret French Fries</a>
 				</div>
-				<div class="side_list"><img src="./img/hashbrown.jpg" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">Hash Brown</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/hashbrown.jpg" class="sidePhoto"><br>Hash Brown</a>
 				</div>
 			</div>
 			<div class="sideMenu">
-				<div class="side_list"><img src="./img/Coleslaw.PNG" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">Coleslaw</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/Coleslaw.PNG" class="sidePhoto"><br>Coleslaw</a>
 				</div>
-				<div class="side_list"><img src="./img/wrap.jpg" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">Chicken Snack Wrap</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/wrap.jpg" class="sidePhoto"><br>Chicken Snack Wrap</a>
 				</div>
-				<div class="side_list"><img src="./img/neget.PNG" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">McNuggets</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/neget.PNG" class="sidePhoto"><br>McNuggets</a>
 				</div>
-				<div class="side_list"><img src="./img/stic.PNG" class="sidePhoto">
-					<a onclick="location.href='details.jsp'" class="name">Cheese Sticks</a>
+				<div class="side_list">
+					<a onclick="location.href='details.jsp'" class="name">
+						<img src="./img/stic.PNG" class="sidePhoto"><br>Cheese Sticks</a>
 				</div>
 			</div>
 		</div>

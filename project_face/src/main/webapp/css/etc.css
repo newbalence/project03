@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 body {
-    background-color: #9986b3;
+    background-color: #D3EAEB;
 }
 .etc{
 	width: 15%;
@@ -21,9 +21,6 @@ body {
 	display: flex;
 	justify-content: space-around;
 }
-.etc_list{
-	display: grid;
-}
 .etcPhoto{
 	width: 270px;
     height: 370px;
@@ -33,4 +30,5 @@ body {
     color: white;
     font-size: 30px;
     text-align: center;
+    cursor: pointer;
 }

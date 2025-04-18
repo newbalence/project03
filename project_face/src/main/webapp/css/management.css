@@ -1,0 +1,48 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+body {
+    background-color: #D3EAEB;
+}
+.manage{
+	text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 135px;
+}
+.productDetail{
+	margin-top: 80px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.select{
+	width: 20%;
+}
+.selectCell{
+	display: grid;
+}
+.productName{
+	margin-top: 50px;
+    margin-bottom: 80px;
+    font-weight: 500;
+}
+.price{
+	float: right;
+}
+.selectBar{
+	border: none;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    cursor: pointer;
+    height: 40px;
+    text-align: center;
+}
+.smilephoto{
+	width: 35px;
+    justify-self: right;
+    margin-top: 15px;
+}
