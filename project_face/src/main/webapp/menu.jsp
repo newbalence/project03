@@ -22,7 +22,7 @@
 			<div class="menuRow">
 				<div class="menu_list">
 					<a onclick="location.href='burger.jsp'" class="name">
-						<img src="./img/burger.jpg" class="menuPhoto"><br>BUTGERS</a>
+						<img src="./img/burger.jpg" class="menuPhoto"><br>BURGERS</a>
 				</div>
 				<div class="menu_list">
 					<a onclick="location.href='side.jsp'" class="name">
