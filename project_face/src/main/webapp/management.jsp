@@ -13,7 +13,7 @@
 		<div class="manage">관리자 메뉴</div>
 			<form active="addOk.jsp" method="post">
 			<div class="productDetail">
-				<img src="./img/gibon.jpg" class="photo">
+				<img src="./img/burger/gibon.png" class="photo">
 				<div class="select">
 					<div class="selectCell">
 						<select class="selectBar" name="add">

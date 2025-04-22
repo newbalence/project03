@@ -69,5 +69,37 @@
 		<div class="decision"><a onclick="location.href='shop.jsp'">장바구니</a></div>
 		<div class="decision"><a >취 소 </a></div>
 	</div>
-		</body>
+	<div>
+		<div class="reviewCell">
+			<a class="review">상품평</a>
+		</div>
+		<div class="ReviewCell">
+			<button class="btn-best"><a>베스트순</a></button>
+			<div class="btn-bar">|</div>
+			<button class="btn-best"><a>최신순</a></button>
+		</div>
+		<div class="review-list">
+			<div class="review-info">
+				<div class="info-profile">
+					<img src="./img/profile.jpg" class="profile-photo">
+					<div class="user-info">
+						<a class="userName">지브리 대유행</a>
+					<div class="star-container">
+						<div class="star-gray">
+							<div class="star-yellow" style="width: 30%;"></div>
+						</div>
+						<div class="starCheck"><!-- <img src="./img/five-star.png" class="star-photo"> --></div>
+						<div class="product-data">2025.04.16</div>
+					</div>
+					</div>
+				</div>
+				<div class="review-writeCell">
+					<a onclick="location.href='reviewOk.jsp'" class="name"></a>
+					<input type="text" class="review-write">
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	</body>
 </html>

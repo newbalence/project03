@@ -21,8 +21,8 @@
 						<input type="text" name="phone" class="numCheck" placeholder="전화번호를 입력하세요">
 				</div>
 				<div class="log">
-					<button type="button" class="btn cameraon" id="cameraon" onclick="return changeCam(this)">카메라 켜기</button>
-					<button type="button" class="btn cameraoff" id="cameraoff" onclick="return changeCam(this)">카메라 끄기</button>
+					<button type="button" class="btn cameraon" id="cameraon" name="cameraon"onclick="return changeCam(this)">카메라 켜기</button>
+					<button type="button" class="btn cameraoff" id="cameraoff" name="cameraoff"onclick="return changeCam(this)">카메라 끄기</button>
 					<!-- <button type="button" class="btn" id="photo">로그인</button> -->
 					<button class="btn">로그인</button>
 				</div>

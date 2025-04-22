@@ -6,7 +6,7 @@
 		<meta charset="UTF-8">
 		<title>burger menu</title>
 		<link rel="stylesheet" href="./css/burger.css"></link>
-		</head>
+	</head>
 	<body>
 		<%@ include file="header.jsp" %>
 		<div class="main_content">

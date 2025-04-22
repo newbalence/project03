@@ -4,6 +4,7 @@
 }
 body {
     background-color: #D3EAEB;
+    font-family: 'SDSamliphopangche_Outline';
 }
 .burger{
 	width: 15%;
@@ -48,6 +49,10 @@ body {
     font-size: 30px;
     text-align: center;
     cursor: pointer;
+    font-family: '행복고흥L';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/행복고흥L.woff') format('woff');
+    font-weight: normal;
+    font-style: normal
 }
 .kids{
 	display: flex;
