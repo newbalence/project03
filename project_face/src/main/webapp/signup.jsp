@@ -111,6 +111,40 @@ if(day == null || day.isEmpty() || day.equals("일")){
 		</div>
 	</body>
 	<script>
+	
+	/* //전화번호 중복
+	let numRegex = /^\d{3}-\d{4}-\d{4}$/;
+   	let numCheckFlag = false;
+   	$("#phone").keyup(function(e){
+		let num = e.target.value;
+		let numFeedback = $("#number-feedback");
+		numFeedback.css("display", "block").text("전화번호는 -를 포함하여 작성하여주세요.").removeClass("success");
+		numCheckFlag = false;
+		
+		if(!numRegex.test(num)) {
+			return false;
+		}
+		
+		$.ajax({
+			url : "phoneCheck.jsp",
+			type : "post",
+			data : {
+				num : num
+			},
+			success : function(result){
+				if(result.trim()=="0"){
+					numCheckFlag = true;
+					numFeedback.css("display", "block").addClass("success").text("사용 가능한 전화번호입니다.");
+				}else{
+					numCheckFlag = false;
+					numFeedback.css("display", "block").removeClass("success").text("사용 불가능한 전화번호입니다.");
+				}
+			},
+			error : function(){
+				console.log("오류발생");
+			}
+		});
+   	}); */
 		
 		function formCheck(){
 			let names = $("#name");

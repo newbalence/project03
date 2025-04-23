@@ -11,7 +11,10 @@
 		<div class="header">
 		<div class="tab">
 			<div class="icon">
-				<a onclick="location.href='main.jsp'"><img src="./img/hamburger.jpg" style="width: 20%"></a>
+				<a onclick="location.href='main.jsp'"><img src="./img/hamburger.jpg" style="width: 20%" class="burgerIcon"></a>
+				<div class="yummy">
+				<a onclick="location.href='main.jsp'"> Yummy Yummy</a>
+				</div>
 			</div>
 		<div class="kind">
 			<a onclick="location.href='burger.jsp'">burger</a>

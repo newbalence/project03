@@ -14,4 +14,34 @@ public class sideVO {
 	private String sidePay;
 
 
+	public int getSideNum() {
+		return sideNum;
+	}
+
+
+	public void setSideNum(int sideNum) {
+		this.sideNum = sideNum;
+	}
+
+
+	public String getSideName() {
+		return sideName;
+	}
+
+
+	public void setSideName(String sideName) {
+		this.sideName = sideName;
+	}
+
+
+	public String getSidePay() {
+		return sidePay;
+	}
+
+
+	public void setSidePay(String sidePay) {
+		this.sidePay = sidePay;
+	}
+
+
 }

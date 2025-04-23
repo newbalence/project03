@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>제품상세보기</title>
 		<link rel="stylesheet" href="./css/details.css"></link>
+		<script src="./js/jquery-3.7.1.js"></script>
 		</head>
 	<body>
 		<%@ include file="header.jsp" %>
@@ -84,13 +85,20 @@
 					<img src="./img/profile.jpg" class="profile-photo">
 					<div class="user-info">
 						<a class="userName">지브리 대유행</a>
-					<div class="star-container">
+						<div class="starRev">
+							<span class="starR on">★</span>
+							<span class="starR">★</span>
+							<span class="starR">★</span>
+							<span class="starR">★</span>
+							<span class="starR">★</span>	
+						</div>
+					<!-- <div class="star-container">
 						<div class="star-gray">
 							<div class="star-yellow" style="width: 30%;"></div>
 						</div>
-						<div class="starCheck"><!-- <img src="./img/five-star.png" class="star-photo"> --></div>
+						<div class="starCheck"><img src="./img/five-star.png" class="star-photo"></div>
 						<div class="product-data">2025.04.16</div>
-					</div>
+					</div> -->
 					</div>
 				</div>
 				<div class="review-writeCell">
@@ -100,6 +108,13 @@
 			</div>
 		</div>
 	</div>
-	
+	<script>
+		//별점 주기
+		$('.starRev span').click(function(){
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+			return false;
+		})		
+	</script>
 	</body>
 </html>

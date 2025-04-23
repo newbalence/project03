@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: '행복고흥L';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/행복고흥L.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 *{
 	box-sizing: border-box;
 }
@@ -30,7 +36,7 @@ body {
 }
 .name{
 	font-weight: 500;
-    color: white;
-    font-size: 30px;
+    font-size: 65px;
     cursor: pointer;
+    font-family: '행복고흥L';
  }

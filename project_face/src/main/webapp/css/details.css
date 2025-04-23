@@ -144,6 +144,9 @@ body {
     margin-right: 10px;
     color: #9a9a9a;
 }
+.btn-best a:hover{
+	text-decoration: underline;
+}
 .review-info{
 	display: flex;
 }
@@ -160,20 +163,13 @@ body {
 }
 .user-info{
 	margin-left: 20px;
+	text-align: center;
 }
 .profile-photo{
 	width: 45px;
     height: 45px;
 }
-.star-photo{
-	width: 80px;
-}
-.star-container{
-	display: flex;
-}
-.starCheck{
-	margin-right: 10px;
-}
+
 .review-writeCell{
 	margin-top: 35px;
     align-items: center;
@@ -189,6 +185,36 @@ input{
 .enterphoto{
 	width: 30px;
 }
+/* 각 별들의 기본 설정 */
+.starR{
+  display: inline-block;
+  width: 25px;
+  color: transparent;
+  font-size: 1.8em;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* 별 이모지에 마우스 오버 시 */
+.starR:hover {
+  text-shadow: 0 0 0 #ccc;
+}
+
+/* 별 이모지를 클릭 후 class="on"이 되었을 경우 */
+.starR.on{
+  text-shadow: 0 0 0 #ffbc00;
+}
+
+
+/* .star-photo{
+	width: 80px;
+}
+.star-container{
+	display: flex;
+}
+.starCheck{
+	margin-right: 10px;
+}
 .star-gray{
 	display: inline-block;
     width: 89px;
@@ -199,4 +225,5 @@ input{
 .star-yellow{
 	width: 0px;
 	height: 100%;
-    background: url(../img/star.png) 0 -246px no-repeat;}
+    background: url(../img/star.png) 0 -246px no-repeat;
+} */

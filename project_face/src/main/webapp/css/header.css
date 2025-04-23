@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: '행복고흥L';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/행복고흥L.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 *{
 	box-sizing: border-box;
 }
@@ -21,7 +27,18 @@ body{
     margin: 30px 30px 0px 30px;
 }
 .icon{
-	margin-top: -10px;
+	margin-top: -20px;
+	display: flex;
+    align-items: center;
+}
+.yummy{
+	font-size: 55px;
+    margin-left: -255px;
+    font-family: '행복고흥L';
+    margin-top: 15px;
+    cursor: pointer;
+}
+.burgerIcon{
 	cursor: pointer;
 }
 .kind{
