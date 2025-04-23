@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from deepface import DeepFace# 이미지 저장 경로
+import pgvector
+import psycopg2
 
 
 capture = cv2.VideoCapture(0)
