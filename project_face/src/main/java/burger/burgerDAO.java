@@ -1,6 +1,10 @@
 package burger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import db.DBManager;
+import side.sideVO;
 
 public class burgerDAO extends DBManager {
 
@@ -21,6 +25,31 @@ public class burgerDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "";
+		String sql = "update burger set ";
+		sql += "burgerNmae='"+vo.getBurgerName()+"', '"+vo.getBurgerPay()+"' ";
+		sql += "where burgerNum = " + vo.getBurgerNum();
+		executeUpdate(sql);
+		
+		DBDisConnect();
 	}
+	
+	//버거종류 목록
+		public List<burgerVO> getAllburger(){
+			driverLoad();
+			DBConnect();
+			
+			String sql = "";
+			executeQuery(sql);
+			
+			List<burgerVO> list = new ArrayList<burgerVO>();
+			
+			while(next()) {
+				burgerVO vo = new burgerVO();
+				vo.setBurgerName(getString("burgerName"));
+				vo.setBurgerPay(getString("burgerPay"));
+				list.add(vo);
+			}
+			DBDisConnect();
+			return list;
+		}
 }

@@ -50,7 +50,7 @@ public class userDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql ="select count(*) as cnt from user where phonr = '"+phone+"';";
+		String sql ="select count(*) as cnt from user where phone = '"+phone+"';";
 		executeQuery(sql);
 		
 		if(next()) {

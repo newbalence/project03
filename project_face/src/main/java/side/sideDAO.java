@@ -1,5 +1,8 @@
 package side;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import db.DBManager;
 
 public class sideDAO extends DBManager {
@@ -28,5 +31,25 @@ public class sideDAO extends DBManager {
 		executeUpdate(sql);
 		
 		DBDisConnect();
+	}
+	
+	//사이드종류 목록
+	public List<sideVO> getAllside(){
+		driverLoad();
+		DBConnect();
+		
+		String sql = "";
+		executeQuery(sql);
+		
+		List<sideVO> list = new ArrayList<sideVO>();
+		
+		while(next()) {
+			sideVO vo = new sideVO();
+			vo.setSideName(getString("sideName"));
+			vo.setSidePay(getString("sidePay"));
+			list.add(vo);
+		}
+		DBDisConnect();
+		return list;
 	}
 }
