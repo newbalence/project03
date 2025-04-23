@@ -8,7 +8,6 @@ import user.userVO;
 
 public class userDAO extends DBManager {
 	
-<<<<<<< HEAD
 	//회원가입
 	public void join(userVO vo) {
 		driverLoad();
@@ -60,7 +59,7 @@ public class userDAO extends DBManager {
 			return cnt;
 		}else {
 			DBDisConnect();
-			return 1;
+			return 0;
 		}
 	}
 	
@@ -85,6 +84,5 @@ public class userDAO extends DBManager {
 		DBDisConnect();
 		return list;
 	}
-=======
->>>>>>> branch 'main' of https://github.com/newbalence/project03.git
+	
 }
