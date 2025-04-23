@@ -1,7 +1,7 @@
 package dessert;
 
 public class dessertVO {
-	
+	 
 	/* 디저트번호 */ 
 	private int dessertNum;
 

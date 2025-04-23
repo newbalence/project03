@@ -6,7 +6,7 @@ public class drinkVO {
 	private int drinkNum;
 
 
-	/* 음료이름 */ 
+	/* 음료이름 */  
 	private String drinkName;
 
 
