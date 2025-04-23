@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def faceCheck(face):
     #이미지 불러와 얼굴 영역만 잘라서 2 사진 비교하기
     # 첫 번째 이미지 불러오기
-    img1_path = './img0.png'
+    img1_path = './project_face/python/face/img0.png'
     img1 = cv2.imread(img1_path)
     # print(img1)
     # print("=" * 50)
@@ -28,7 +28,7 @@ def faceCheck(face):
                                model_name='ArcFace')
     print("=" * 50)  
     # 벡터값 확인
-    print(embedding)
+    print(len(embedding))
     #가장 성능이 좋은 모델 detector_backend='retinaface', model_name='ArcFace'
     #성능이 좋으면서 속도가 느리지 않은 모델 detector_backend='dlib', model_name='Facenet'
     # print(result)
@@ -66,10 +66,10 @@ capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_frontalface_alt2.xml")
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_eye_tree_eyeglasses.xml")
-nose_cascade = cv2.CascadeClassifier("./project03/data/haarcascade_mcs_nose.xml")
-mouth_cascade = cv2.CascadeClassifier("./project03/data/haarcascade_mcs_mouth.xml")
+nose_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_nose.xml")
+mouth_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_mouth.xml")
 
-count = 0
+count = 1
 
 while cv2.waitKey(33) < 0:
     try:
@@ -93,27 +93,32 @@ while cv2.waitKey(33) < 0:
         for (ex, ey, ew, eh) in eyes:
             cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
         
-        nose = nose_cascade.detectMultiScale(roi_gray, 1.1, 5)
-        for (nx, ny, nw, nh) in nose:
-            cv2.rectangle(roi_color, (nx, ny), (nx + nw, ny + nh), (0, 0, 255), 2)
+            nose = nose_cascade.detectMultiScale(roi_gray, 1.1, 5)
+            for (nx, ny, nw, nh) in nose:
+                cv2.rectangle(roi_color, (nx, ny), (nx + nw, ny + nh), (0, 0, 255), 2)
 
-        mouth = mouth_cascade.detectMultiScale(roi_gray, 1.8, 15)
-        for (mx, my, mw, mh) in mouth:
-            cv2.rectangle(roi_color, (mx, my), (mx + mw, my + mh), (127, 127, 127), 2)
-        
-        if len(faces) == 1:
-            print("얼굴인식")
-            if len(eyes) == 2:
-                print("눈 인식")
-                if len(nose) == 1:
-                    print("코 인식")
-                    if len(mouth) == 1:
-                        print("입 인식")
-                        faceName = f"./project03/face/img{count}.png"
-                        cv2.imwrite(faceName, frame)
-                        capture.release()
-                        cv2.destroyAllWindows()
-                        faceCheck(faceName)
+                mouth = mouth_cascade.detectMultiScale(roi_gray, 1.8, 15)
+                for (mx, my, mw, mh) in mouth:
+                    cv2.rectangle(roi_color, (mx, my), (mx + mw, my + mh), (127, 127, 127), 2)
+                
+                    if len(faces) == 1:
+                        print(faces)
+                        print("얼굴인식")
+                        if len(eyes) == 2:
+                            print(eyes)
+                            print("눈 인식")
+                            if len(nose) == 1:
+                                print(nose)
+                                print("코 인식")
+                                if len(mouth) == 1:
+                                    print(mouth)
+                                    print("입 인식")
+                                    faceName = f"./project_face/python/face/img{count}.png"
+                                    cv2.imwrite(faceName, frame)
+                                    faceCheck(faceName)
+                                    capture.release()
+                                    cv2.destroyAllWindows()
+                                    
 
     cv2.imshow('frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
