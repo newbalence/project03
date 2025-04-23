@@ -59,7 +59,7 @@ public class userDAO extends DBManager {
 			return cnt;
 		}else {
 			DBDisConnect();
-			return 1;
+			return 0;
 		}
 	}
 	
