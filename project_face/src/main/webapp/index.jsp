@@ -106,7 +106,7 @@
     <video id="video" autoplay="true" playsinline="true"></video>
 </div>
 
-<h2>Data channel</h2>
+<!-- <h2>Data channel</h2>
 <pre id="data-channel" style="height: 200px;"></pre>
 
 <h2>SDP</h2>
@@ -115,7 +115,7 @@
 <pre id="offer-sdp"></pre>
 
 <h3>Answer</h3>
-<pre id="answer-sdp"></pre>
+<pre id="answer-sdp"></pre> -->
 <script>
 //get DOM elements
 var dataChannelLog = document.getElementById('data-channel'),
@@ -134,9 +134,9 @@ function createPeerConnection() {
         sdpSemantics: 'unified-plan'
     };
 
-    if (document.getElementById('use-stun').checked) {
+    /* if (document.getElementById('use-stun').checked) {
         config.iceServers = [{ urls: ['stun:stun.l.google.com:19302'] }];
-    }
+    } */
 
     pc = new RTCPeerConnection(config);
 
@@ -158,10 +158,11 @@ function createPeerConnection() {
 
     // connect audio / video
     pc.addEventListener('track', (evt) => {
-        if (evt.track.kind == 'video')
+    	console.log(pc)
+        /* if (evt.track.kind == 'video')
             document.getElementById('video').srcObject = evt.streams[0];
         else
-            document.getElementById('audio').srcObject = evt.streams[0];
+            document.getElementById('audio').srcObject = evt.streams[0]; */
     });
 
     return pc;
@@ -195,6 +196,23 @@ function enumerateInputDevices() {
 }
 
 function negotiate() {
+	
+	/* a = pc.pc.createOffer().then((function(offer){
+		return pc.setLocalDescription(offer);
+	}).then(function(){
+		b = new Pomise(function(resuolve){
+			if (pc.iceGatheringState === 'complete') {
+                resolve();
+            }else{
+            	
+            }
+		})
+		return b;
+	}).then(function(){
+		var offer = pc.localDescription;
+		var codec;
+	}) */
+	
     return pc.createOffer().then((offer) => {
         return pc.setLocalDescription(offer);
     }).then(() => {
@@ -215,6 +233,8 @@ function negotiate() {
     }).then(() => {
         var offer = pc.localDescription;
         var codec;
+        
+        console.log(offer)
 
         codec = document.getElementById('audio-codec').value;
         if (codec !== 'default') {
@@ -231,7 +251,7 @@ function negotiate() {
             body: JSON.stringify({
                 sdp: offer.sdp,
                 type: offer.type,
-                video_transform: document.getElementById('video-transform').value
+                video_transform: document.getElementById('video-transform').value,
             }),
             headers: {
                 'Content-Type': 'application/json'
@@ -241,6 +261,7 @@ function negotiate() {
     }).then((response) => {
         return response.json();
     }).then((answer) => {
+    	console.log(answer)
         /* document.getElementById('answer-sdp').textContent = answer.sdp; */
         return pc.setRemoteDescription(answer);
     }).catch((e) => {
@@ -334,6 +355,7 @@ function start() {
             document.getElementById('media').style.display = 'block';
         }
         navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        	document.getElementById('video').srcObject = stream;
             stream.getTracks().forEach((track) => {
                 pc.addTrack(track, stream);
             });
