@@ -38,13 +38,14 @@ public class burgerDAO extends DBManager {
 			driverLoad();
 			DBConnect();
 			
-			String sql = "";
+			String sql = "select * from burger";
 			executeQuery(sql);
 			
 			List<burgerVO> list = new ArrayList<burgerVO>();
 			
 			while(next()) {
 				burgerVO vo = new burgerVO();
+				vo.setBurgerNum(getInt("bugerNum"));
 				vo.setBurgerName(getString("burgerName"));
 				vo.setBurgerPay(getString("burgerPay"));
 				list.add(vo);

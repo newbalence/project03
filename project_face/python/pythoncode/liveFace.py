@@ -1,6 +1,7 @@
 import cv2
 from deepface import DeepFace
 import matplotlib.pyplot as plt
+import numpy as np
 
 def faceCheck(face):
     #이미지 불러와 얼굴 영역만 잘라서 2 사진 비교하기
@@ -28,7 +29,7 @@ def faceCheck(face):
                                model_name='ArcFace')
     print("=" * 50)  
     # 벡터값 확인
-    print(len(embedding))
+    print(embedding)
     #가장 성능이 좋은 모델 detector_backend='retinaface', model_name='ArcFace'
     #성능이 좋으면서 속도가 느리지 않은 모델 detector_backend='dlib', model_name='Facenet'
     # print(result)
@@ -70,7 +71,7 @@ nose_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs
 mouth_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_mouth.xml")
 
 count = 1
-
+flag = False
 while cv2.waitKey(33) < 0:
     try:
         ret, frame = capture.read()
@@ -113,12 +114,20 @@ while cv2.waitKey(33) < 0:
                                 if len(mouth) == 1:
                                     print(mouth)
                                     print("입 인식")
-                                    faceName = f"./project_face/python/face/img{count}.png"
-                                    cv2.imwrite(faceName, frame)
-                                    faceCheck(faceName)
-                                    capture.release()
-                                    cv2.destroyAllWindows()
-                                    
+                                    embedding = DeepFace.represent(img_path=frame, detector_backend='retinaface', model_name='ArcFace')
+                                    face = np.array(embedding[0]["embedding"]).tolist()
+
+                                    if len(face) != 0:
+                                        flag = not flag
+                                        capture.release()
+                                        cv2.destroyAllWindows()
+                                        print(face)
+                                        break
+                                    else:
+                                        continue
+            if flag:
+                print("프로그램 종료")
+                break
 
     cv2.imshow('frame', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):

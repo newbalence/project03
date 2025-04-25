@@ -3,7 +3,7 @@ import cv2
 face_cascade = cv2.CascadeClassifier('./project03/data/haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('./project03/data/haarcascade_eye.xml')
 
-cap = cv2.VideoCapture('./project03/data/img.gif')
+cap = cv2.imread('./project03/data/img.gif')
 while(cap.isOpened()):
     ret, frame = cap.read()
     if not ret:

@@ -2,10 +2,11 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from deepface import DeepFace# 이미지 저장 경로
-import pgvector
-import psycopg2
+import sys
+sys.path.append(r'C:\Users\MYCMO\git\project_face\project_face\python\db')
+from pgvector_use import UseDatabases
 
-
+pgv = UseDatabases()
 capture = cv2.VideoCapture(0)
 capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
@@ -14,7 +15,7 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_frontalf
 eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_eye_tree_eyeglasses.xml")
 nose_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_nose.xml")
 mouth_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_mouth.xml")
-
+phone = input("전화번호를 입력하시오 : ")
 
 flag = False
 while cv2.waitKey(33) < 0:
@@ -67,10 +68,12 @@ while cv2.waitKey(33) < 0:
                                         flag = not flag
                                         capture.release()
                                         cv2.destroyAllWindows()
+                                        pgv.insertUse(phone = phone, embedding = str(face))
                                         print(face)
                                         break
                                     else:
                                         continue
+
             if flag:
                 print("프로그램 종료")
                 break

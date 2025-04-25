@@ -22,7 +22,7 @@ public class userDAO extends DBManager {
 	}
 	
 	//로그인 흠,, 안면인식은?!
-	public void login(userVO uvo) {
+	public userVO login(userVO uvo) {
 		driverLoad();
 		DBConnect();
 		
@@ -30,7 +30,19 @@ public class userDAO extends DBManager {
 		sql += "phone='"+uvo.getPhone()+"' and user_type != 2 ";
 		executeQuery(sql);
 		
+		
+		if(next()) {
+			userVO vo = new userVO();
+			vo.setName(getString("nick"));
+			vo.setBirth(getString("birth"));
+			vo.setUserType(getInt("userType"));
+			
+			DBDisConnect();
+			return vo;
+		}
+		
 		DBDisConnect();
+		return null;
 	}
 	
 	//회원수정 안면인식은?!
