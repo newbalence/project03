@@ -18,4 +18,46 @@ public class receiptVO {
 	private String receiptPay;
 
 
+	public int getReceiptNum() {
+		return receiptNum;
+	}
+
+
+	public void setReceiptNum(int receiptNum) {
+		this.receiptNum = receiptNum;
+	}
+
+
+	public int getMiddleOrder() {
+		return middleOrder;
+	}
+
+
+	public void setMiddleOrder(int middleOrder) {
+		this.middleOrder = middleOrder;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public String getReceiptPay() {
+		return receiptPay;
+	}
+
+
+	public void setReceiptPay(String receiptPay) {
+		this.receiptPay = receiptPay;
+	}
+	
+	
+
+
 }

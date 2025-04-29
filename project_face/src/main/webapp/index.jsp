@@ -70,9 +70,9 @@
     </select>
     <select id="video-transform">
         <option value="none" selected>No transform</option>
-        <option value="edges">Edge detection</option>
+        <option value="login">login</option>
         <option value="cartoon">Cartoon effect</option>
-        <option value="rotate">Rotate</option>
+        <option value="signup">signup</option>
     </select>
     <select id="video-codec">
         <option value="default" selected>Default codecs</option>
@@ -106,20 +106,9 @@
     <video id="video" autoplay="true" playsinline="true"></video>
 </div>
 
-<!-- <h2>Data channel</h2>
-<pre id="data-channel" style="height: 200px;"></pre>
-
-<h2>SDP</h2>
-
-<h3>Offer</h3>
-<pre id="offer-sdp"></pre>
-
-<h3>Answer</h3>
-<pre id="answer-sdp"></pre> -->
 <script>
 //get DOM elements
-var dataChannelLog = document.getElementById('data-channel'),
-    iceConnectionLog = document.getElementById('ice-connection-state'),
+var iceConnectionLog = document.getElementById('ice-connection-state'),
     iceGatheringLog = document.getElementById('ice-gathering-state'),
     signalingLog = document.getElementById('signaling-state');
 
@@ -134,9 +123,9 @@ function createPeerConnection() {
         sdpSemantics: 'unified-plan'
     };
 
-    /* if (document.getElementById('use-stun').checked) {
-        config.iceServers = [{ urls: ['stun:stun.l.google.com:19302'] }];
-    } */
+    if (document.getElementById('use-stun').checked) {
+		config.iceServers = [{ urls: ['stun:stun.l.google.com:19302'] }];
+    }
 
     pc = new RTCPeerConnection(config);
 
@@ -158,11 +147,10 @@ function createPeerConnection() {
 
     // connect audio / video
     pc.addEventListener('track', (evt) => {
-    	console.log(pc)
-        /* if (evt.track.kind == 'video')
+        if (evt.track.kind == 'video')
             document.getElementById('video').srcObject = evt.streams[0];
         else
-            document.getElementById('audio').srcObject = evt.streams[0]; */
+            document.getElementById('audio').srcObject = evt.streams[0];
     });
 
     return pc;
@@ -190,28 +178,11 @@ function enumerateInputDevices() {
             devices.filter((device) => device.kind == 'videoinput')
         );
     }).catch((e) => {
-        alert(e);
         console.log(e)
     });
 }
 
 function negotiate() {
-	
-	/* a = pc.pc.createOffer().then((function(offer){
-		return pc.setLocalDescription(offer);
-	}).then(function(){
-		b = new Pomise(function(resuolve){
-			if (pc.iceGatheringState === 'complete') {
-                resolve();
-            }else{
-            	
-            }
-		})
-		return b;
-	}).then(function(){
-		var offer = pc.localDescription;
-		var codec;
-	}) */
 	
     return pc.createOffer().then((offer) => {
         return pc.setLocalDescription(offer);
@@ -233,8 +204,6 @@ function negotiate() {
     }).then(() => {
         var offer = pc.localDescription;
         var codec;
-        
-        console.log(offer)
 
         codec = document.getElementById('audio-codec').value;
         if (codec !== 'default') {
@@ -246,7 +215,6 @@ function negotiate() {
             offer.sdp = sdpFilterCodec('video', codec, offer.sdp);
         }
 
-        /* document.getElementById('offer-sdp').textContent = offer.sdp; */
         return fetch('http://localhost:8888/offer', {
             body: JSON.stringify({
                 sdp: offer.sdp,
@@ -261,11 +229,8 @@ function negotiate() {
     }).then((response) => {
         return response.json();
     }).then((answer) => {
-    	console.log(answer)
-        /* document.getElementById('answer-sdp').textContent = answer.sdp; */
         return pc.setRemoteDescription(answer);
     }).catch((e) => {
-        alert(e);
         console.log(e)
     });
 }
@@ -292,22 +257,17 @@ function start() {
         dc = pc.createDataChannel('chat', parameters);
         dc.addEventListener('close', () => {
             clearInterval(dcInterval);
-            /* dataChannelLog.textContent += '- close\n';dataChannelLog */
         });
         dc.addEventListener('open', () => {
-            /* dataChannelLog.textContent += '- open\n'; */
             dcInterval = setInterval(() => {
                 var message = 'ping ' + current_stamp();
-                /* dataChannelLog.textContent += '> ' + message + '\n'; */
                 dc.send(message);
             }, 1000);
         });
         dc.addEventListener('message', (evt) => {
-            /* dataChannelLog.textContent += '< ' + evt.data + '\n'; */
 
             if (evt.data.substring(0, 4) === 'pong') {
                 var elapsed_ms = current_stamp() - parseInt(evt.data.substring(5), 10);
-                /* dataChannelLog.textContent += ' RTT ' + elapsed_ms + ' ms\n'; */
             }
         });
     }
@@ -361,7 +321,7 @@ function start() {
             });
             return negotiate();
         }, (err) => {
-            alert('Could not acquire media: ' + err);
+            console.log('Could not acquire media: ' + err);
         });
     } else {
         negotiate();

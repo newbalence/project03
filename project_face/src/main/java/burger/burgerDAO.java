@@ -4,24 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DBManager;
-import side.sideVO;
 
 public class burgerDAO extends DBManager {
 
 	//버거등록
-	public void register(burgerVO vo) {
+	public void insBurger(burgerVO vo) {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into burger(burgerName, burgerPay)";
-		sql += "values('"+vo.getBurgerName()+"', '"+vo.getBurgerPay()+"')";
+		String sql = "insert into burger(burgerName, burgerPay, burgetType)";
+		sql += "values('"+vo.getBurgerName()+"', '"+vo.getBurgerPay()+"', '1')";
 		executeUpdate(sql);
 		
 		DBDisConnect();
 	}
 	
 	//수정
-	public void modification(burgerVO vo) {
+	public void modiBurger(burgerVO vo) {
 		driverLoad();
 		DBConnect();
 		
@@ -34,11 +33,11 @@ public class burgerDAO extends DBManager {
 	}
 	
 	//버거종류 목록
-		public List<burgerVO> getAllburger(){
+		public List<burgerVO> selBurgerAll(){
 			driverLoad();
 			DBConnect();
 			
-			String sql = "select * from burger";
+			String sql = "select * from burger where burgerType = '1'";
 			executeQuery(sql);
 			
 			List<burgerVO> list = new ArrayList<burgerVO>();
@@ -53,4 +52,38 @@ public class burgerDAO extends DBManager {
 			DBDisConnect();
 			return list;
 		}
+		
+		//버거종류 목록
+		public burgerVO selBurgerOne(int no){
+			driverLoad();
+			DBConnect();
+			
+			String sql = "select * from burger where burgerNum = " + no;
+			executeQuery(sql);
+			
+			if(next()) {
+				burgerVO vo = new burgerVO();
+				vo.setBurgerNum(getInt("bugerNum"));
+				vo.setBurgerName(getString("burgerName"));
+				vo.setBurgerPay(getString("burgerPay"));
+				
+				return vo;
+			}
+			DBDisConnect();
+			return null;
+		}
+		
+		//삭제
+		public void delburger(int no){
+			driverLoad();
+			DBConnect();
+			
+			String sql = "update burget set burgerType = '2' where burgerNum = " + no;
+			executeUpdate(sql);
+			
+			DBDisConnect();
+
+		}
+		
+		
 }

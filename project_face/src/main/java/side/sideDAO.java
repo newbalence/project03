@@ -8,20 +8,20 @@ import db.DBManager;
 public class sideDAO extends DBManager {
 	
 	//음료 등록
-	public void register(sideVO vo) {
+	public void insSide(sideVO vo) {
 		driverLoad();
 		DBConnect();
 		
 		String sql = "";
-		sql += "insert into side(sideName, sidePay)";
-		sql += "values('"+vo.getSideName()+"', '"+vo.getSidePay()+"')";
+		sql += "insert into side(sideName, sidePay, sideType)";
+		sql += "values('"+vo.getSideName()+"', '"+vo.getSidePay()+"', '1')";
 		executeUpdate(sql);
 		
 		DBDisConnect();
 	}
 	
 	//수정
-	public void modification(sideVO vo) {
+	public void modiSide(sideVO vo) {
 		driverLoad();
 		DBConnect();
 		
@@ -34,22 +34,56 @@ public class sideDAO extends DBManager {
 	}
 	
 	//사이드종류 목록
-	public List<sideVO> getAllside(){
+	public List<sideVO> selSideAll(){
 		driverLoad();
 		DBConnect();
 		
-		String sql = "";
+		String sql = "select * from side where sideType = 1";
 		executeQuery(sql);
 		
 		List<sideVO> list = new ArrayList<sideVO>();
 		
 		while(next()) {
 			sideVO vo = new sideVO();
+			
+			vo.setSideNum(getInt("sideNum"));
 			vo.setSideName(getString("sideName"));
 			vo.setSidePay(getString("sidePay"));
 			list.add(vo);
 		}
 		DBDisConnect();
 		return list;
+	}
+	
+	//사이드종류 목록
+	public sideVO selSideOne(String no){
+		driverLoad();
+		DBConnect();
+		
+		String sql = "select * from side where sideNum = " + no;
+		executeQuery(sql);
+		
+		if(next()) {
+			sideVO vo = new sideVO();
+			vo.setSideNum(getInt("sideNum"));
+			vo.setSideName(getString("sideName"));
+			vo.setSidePay(getString("sidePay"));
+			
+			DBDisConnect();
+			return vo;
+		}
+		DBDisConnect();
+		return null;
+	}
+	
+	//사이드종류 목록
+	public void delSide(String no){
+		driverLoad();
+		DBConnect();
+		
+		String sql = "update side set sideType = '2' where sideNum = " + no;
+		executeUpdate(sql);
+
+		DBDisConnect();
 	}
 }

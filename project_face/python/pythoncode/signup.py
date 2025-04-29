@@ -1,84 +1,43 @@
-import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-from deepface import DeepFace# 이미지 저장 경로
+from faceCheck import faceCheck 
 import sys
-sys.path.append(r'C:\Users\MYCMO\git\project_face\project_face\python\db')
-from pgvector_use import UseDatabases
+sys.path.append(r'C:\Users\MYCMO\git\project_face\project_face\python')
+from db.pgvector_use import UseDatabases
+from useGPU import tfg
 
-pgv = UseDatabases()
-capture = cv2.VideoCapture(0)
-capture.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+def a(frame, phone):
+    #GPU사용 클래스
+    gpu = tfg()
+    #Face 벡터화
+    faces = faceCheck()
+    #Face VectorData PostgreSQL Query
+    pgv = UseDatabases()
+    #phone 값을 받아오면 그거를 가지고 있다가 insert할때 삽입
+    # phone = input("전화번호를 입력하시오 : ")
+       
+    result = faces.check(frame)
+    #얼굴 인식이 되었는지 확인 하여 배열에 True가 있는지 확인
+    check = np.array(result).any()
 
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_frontalface_alt2.xml")
-eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades+"haarcascade_eye_tree_eyeglasses.xml")
-nose_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_nose.xml")
-mouth_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_mouth.xml")
-phone = input("전화번호를 입력하시오 : ")
-
-flag = False
-while cv2.waitKey(33) < 0:
-    try:
-        ret, frame = capture.read()
-    except Exception as e:
-        print(type(e), e.code)
-
-    if not ret:
-        #카메라가 인식되지 않으면 멈춘다.
-        break
-
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    faces = face_cascade.detectMultiScale(gray, 1.1, 10)
-    for (x, y, w, h) in faces:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-        roi_gray = gray[y : y + h, x : x + w]
-        roi_color = frame[y : y + h, x : x + w]
-
-        eyes = eye_cascade.detectMultiScale(roi_gray, 1.2, 5)
-        for (ex, ey, ew, eh) in eyes:
-            cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+    if check:
+        # embedding 하기전에 잘라낸 얼굴이미지 해상도 조절하기
+        # result를  scaling해서 해상도 올린 후에 embedding 실행한 다음 결과값 확인해보기
+        # captureFace = faces.resize(result)
+        # 이미지 해상도 조절 과정에서 GPU사용해서 사용한 결과 실행시간이 오래결려 제외
         
-            nose = nose_cascade.detectMultiScale(roi_gray, 1.1, 5)
-            for (nx, ny, nw, nh) in nose:
-                cv2.rectangle(roi_color, (nx, ny), (nx + nw, ny + nh), (0, 0, 255), 2)
+        faceing = faces.embeded(result)
+        
+        if len(faceing) != 0:
 
-                mouth = mouth_cascade.detectMultiScale(roi_gray, 1.8, 15)
-                for (mx, my, mw, mh) in mouth:
-                    cv2.rectangle(roi_color, (mx, my), (mx + mw, my + mh), (127, 127, 127), 2)
+            #얼굴값을 암호화 하면 쿼리에서 비교가 불가능하기 때문에 벡터화 된 데이터는 암호화 하지 않음
+            #전화번호를 벡터화 함으로 써 보안을 조금 더 챙김
+            pg_result = pgv.insertUse(phone, faceing)
+            pgv.disconnect()
+            #insert or select 가 되면 return 값으로 확인 후 영상 중지
 
-                    if len(faces) == 1:
-                        print(faces)
-                        print("얼굴인식")
-                        if len(eyes) == 2:
-                            print(eyes)
-                            print("눈 인식")
-                            if len(nose) == 1:
-                                print(nose)
-                                print("코 인식")
-                                if len(mouth) == 1:
-                                    print(mouth)
-                                    print("입 인식")
-
-                                    embedding = DeepFace.represent(img_path=frame, detector_backend='retinaface', model_name='ArcFace')
-                                    face = np.array(embedding[0]["embedding"]).tolist()
-
-                                    if len(face) != 0:
-                                        flag = not flag
-                                        capture.release()
-                                        cv2.destroyAllWindows()
-                                        pgv.insertUse(phone = phone, embedding = str(face))
-                                        print(face)
-                                        break
-                                    else:
-                                        continue
-
-            if flag:
-                print("프로그램 종료")
-                break
-            
-   
-    cv2.imshow('frame', frame)
-capture.release()
-cv2.destroyAllWindows()
+            if pg_result:
+                #PgVector Data Check
+                return True
+                # plt.imshow(captureFace)
+                # plt.savefig("image.png")
+                # plt.show()

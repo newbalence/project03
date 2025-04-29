@@ -14,16 +14,27 @@ public class userVO {
 	/* 회원 생년월일 */ 
 	private String birth;
 	
-	private String updateDate;
-	private String deleteDate;
-
+	private String createDate;
 	
+	private String updateDate;
+	
+	private String deleteDate;
 
 	/* 0: 관리자
 	1: 일반회원
 	2: 탈퇴회원
 	3: 차단회원 */ 
 	private int userType;
+	
+	
+
+	public String getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
 
 	public String getPhone() {
 		return phone;

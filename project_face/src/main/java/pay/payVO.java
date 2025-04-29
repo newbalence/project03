@@ -22,4 +22,56 @@ public class payVO {
 	0: 결제 성공
 	1: 결제 실패 */ 
 	private int payType;
+
+
+	public int getPayNum() {
+		return payNum;
+	}
+
+
+	public void setPayNum(int payNum) {
+		this.payNum = payNum;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public int getReceiptNum() {
+		return receiptNum;
+	}
+
+
+	public void setReceiptNum(int receiptNum) {
+		this.receiptNum = receiptNum;
+	}
+
+
+	public String getMoney() {
+		return money;
+	}
+
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
+
+	public int getPayType() {
+		return payType;
+	}
+
+
+	public void setPayType(int payType) {
+		this.payType = payType;
+	}
+	
+	
 }

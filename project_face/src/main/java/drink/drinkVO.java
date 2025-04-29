@@ -1,17 +1,14 @@
 package drink;
 
 public class drinkVO {
-	
-	/* 음료번호 */ 
+
 	private int drinkNum;
 
-
-	/* 음료이름 */  
 	private String drinkName;
 
-
-	/* 음료 가격 */ 
 	private String drinkPay;
+
+	private String drinkType;
 
 
 	public int getDrinkNum() {
@@ -43,4 +40,15 @@ public class drinkVO {
 		this.drinkPay = drinkPay;
 	}
 
+
+	public String getDrinkType() {
+		return drinkType;
+	}
+
+
+	public void setDrinkType(String drinkType) {
+		this.drinkType = drinkType;
+	}
+
+	
 }

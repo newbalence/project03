@@ -6,8 +6,29 @@ public class middleorderVO {
 	private int middleOrder;
 
 
-	/* 장바구니번호 */ 
-	private int shoppingNum;
+	/* 전화번호 */ 
+	private String phone;
+
+
+	public int getMiddleOrder() {
+		return middleOrder;
+	}
+
+
+	public void setMiddleOrder(int middleOrder) {
+		this.middleOrder = middleOrder;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 
 
 }

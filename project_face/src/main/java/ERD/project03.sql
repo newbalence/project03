@@ -2,33 +2,41 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
-DROP TABLE IF EXISTS pay;
-DROP TABLE IF EXISTS receipt;
-DROP TABLE IF EXISTS middleorder;
 DROP TABLE IF EXISTS shopping;
 DROP TABLE IF EXISTS options;
-DROP TABLE IF EXISTS bugger;
+DROP TABLE IF EXISTS burger;
 DROP TABLE IF EXISTS dessert;
 DROP TABLE IF EXISTS drink;
 DROP TABLE IF EXISTS etc;
 DROP TABLE IF EXISTS faceData;
+DROP TABLE IF EXISTS pay;
+DROP TABLE IF EXISTS receipt;
+DROP TABLE IF EXISTS middleorder;
 DROP TABLE IF EXISTS side;
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS users;
 
 
 
 
 /* Create Tables */
 
-CREATE TABLE bugger
+CREATE TABLE burger
 (
 	-- 버거 번호
-	buggerNum int NOT NULL AUTO_INCREMENT COMMENT '버거 번호',
+	burgerNum int NOT NULL AUTO_INCREMENT COMMENT '버거 번호',
 	-- 버거이름
-	buggerName varchar(255) NOT NULL COMMENT '버거이름',
+	burgerName varchar(255) NOT NULL COMMENT '버거이름',
 	-- 버거 가격
-	buggerPay varchar(255) NOT NULL COMMENT '버거 가격',
-	PRIMARY KEY (buggerNum)
+	burgerPay varchar(255) NOT NULL COMMENT '버거 가격',
+	-- 0 : 판매 예정
+	-- 1 : 판매중
+	-- 2 : 판매중지
+	-- 
+	burgerType varchar(255) NOT NULL COMMENT '0 : 판매 예정
+1 : 판매중
+2 : 판매중지
+',
+	PRIMARY KEY (burgerNum)
 );
 
 
@@ -40,6 +48,14 @@ CREATE TABLE dessert
 	dessertName varchar(255) NOT NULL COMMENT '디저트이름',
 	-- 디저트가격
 	dessertPay varchar(255) NOT NULL COMMENT '디저트가격',
+	-- 0 : 판매 예정
+	-- 1 : 판매중
+	-- 2 : 판매중지
+	-- 
+	dessertType varchar(255) NOT NULL COMMENT '0 : 판매 예정
+1 : 판매중
+2 : 판매중지
+',
 	PRIMARY KEY (dessertNum)
 );
 
@@ -54,6 +70,12 @@ CREATE TABLE drink
 	-- 
 	drinkPay varchar(255) NOT NULL COMMENT '음료 가격
 ',
+	-- 0 : 판매 예정
+	-- 1 : 판매중
+	-- 2 : 판매중지
+	drinkType varchar(255) NOT NULL COMMENT '0 : 판매 예정
+1 : 판매중
+2 : 판매중지',
 	PRIMARY KEY (drinkNum)
 );
 
@@ -66,27 +88,33 @@ CREATE TABLE etc
 	etcName varchar(255) NOT NULL COMMENT '기타이름',
 	-- 기타가격
 	etcPay varchar(255) NOT NULL COMMENT '기타가격',
+	-- 0 : 판매 예정
+	-- 1 : 판매중
+	-- 2 : 판매중지
+	-- 
+	etcType varchar(255) NOT NULL COMMENT '0 : 판매 예정
+1 : 판매중
+2 : 판매중지
+',
 	PRIMARY KEY (etcNum)
 );
 
 
 CREATE TABLE faceData
 (
-	-- 얼굴정보 번호
-	faceNum int NOT NULL AUTO_INCREMENT COMMENT '얼굴정보 번호',
 	-- 회원전화번호
 	phone varchar(255) NOT NULL COMMENT '회원전화번호',
 	-- 얼굴정보
 	faceData varchar(255) NOT NULL COMMENT '얼굴정보',
-	PRIMARY KEY (faceNum)
+	PRIMARY KEY (phone)
 );
 
 
 CREATE TABLE middleorder
 (
 	middleOrder int NOT NULL AUTO_INCREMENT,
-	-- 장바구니번호
-	shoppingNum int NOT NULL COMMENT '장바구니번호',
+	-- 회원전화번호
+	phone varchar(255) NOT NULL COMMENT '회원전화번호',
 	PRIMARY KEY (middleOrder)
 );
 
@@ -96,11 +124,19 @@ CREATE TABLE options
 	-- 옵션번호
 	optionsNum int NOT NULL AUTO_INCREMENT COMMENT '옵션번호',
 	-- 버거 번호
-	buggerNum int COMMENT '버거 번호',
+	burgerNum int COMMENT '버거 번호',
 	-- 사이드번호
 	sideNum int COMMENT '사이드번호',
 	-- 음료번호
 	drinkNum int COMMENT '음료번호',
+	-- 0 : 판매 예정
+	-- 1 : 판매중
+	-- 2 : 판매중지
+	-- 
+	optionType varchar(255) NOT NULL COMMENT '0 : 판매 예정
+1 : 판매중
+2 : 판매중지
+',
 	PRIMARY KEY (optionsNum)
 );
 
@@ -117,10 +153,12 @@ CREATE TABLE pay
 	money varchar(255) NOT NULL COMMENT '결제금액',
 	-- 결제 성공 실패 확인
 	-- 0: 결제 성공
-	-- 1: 결제 실패
-	payType int NOT NULL COMMENT '결제 성공 실패 확인
+	-- 1: 결제 대기
+	-- 2: 결제 실패
+	payType int DEFAULT 1 NOT NULL COMMENT '결제 성공 실패 확인
 0: 결제 성공
-1: 결제 실패',
+1: 결제 대기
+2: 결제 실패',
 	PRIMARY KEY (payNum)
 );
 
@@ -142,10 +180,11 @@ CREATE TABLE shopping
 (
 	-- 장바구니번호
 	shoppingNum int NOT NULL AUTO_INCREMENT COMMENT '장바구니번호',
+	middleOrder int NOT NULL,
 	-- 회원전화번호
 	phone varchar(255) NOT NULL COMMENT '회원전화번호',
 	-- 버거 번호
-	buggerNum int COMMENT '버거 번호',
+	burgerNum int COMMENT '버거 번호',
 	-- 옵션번호
 	optionsNum int COMMENT '옵션번호',
 	-- 음료번호
@@ -156,6 +195,12 @@ CREATE TABLE shopping
 	dessertNum int COMMENT '디저트번호',
 	-- 기타번호
 	etcNum int COMMENT '기타번호',
+	-- 0 : 
+	-- 1 :
+	-- 2 : 삭제 
+	shoppingType varchar(255) COMMENT '0 : 
+1 :
+2 : 삭제 ',
 	-- 수량
 	quantity varchar(255) NOT NULL COMMENT '수량',
 	-- 총가격
@@ -172,11 +217,17 @@ CREATE TABLE side
 	sideName varchar(255) NOT NULL COMMENT '사이드이름',
 	-- 사이드가격
 	sidePay varchar(255) NOT NULL COMMENT '사이드가격',
+	-- 0 : 판매 예정
+	-- 1 : 판매중
+	-- 2 : 판매중지
+	sideType varchar(255) NOT NULL COMMENT '0 : 판매 예정
+1 : 판매중
+2 : 판매중지',
 	PRIMARY KEY (sideNum)
 );
 
 
-CREATE TABLE user
+CREATE TABLE users
 (
 	-- 회원전화번호
 	phone varchar(255) NOT NULL COMMENT '회원전화번호',
@@ -196,6 +247,9 @@ CREATE TABLE user
 1: 일반회원
 2: 탈퇴회원
 3: 차단회원',
+	createDate timestamp DEFAULT NOW(),
+	deleteDate timestamp,
+	updateDate timestamp,
 	PRIMARY KEY (phone)
 );
 
@@ -204,16 +258,16 @@ CREATE TABLE user
 /* Create Foreign Keys */
 
 ALTER TABLE options
-	ADD FOREIGN KEY (buggerNum)
-	REFERENCES bugger (buggerNum)
+	ADD FOREIGN KEY (burgerNum)
+	REFERENCES burger (burgerNum)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
 
 
 ALTER TABLE shopping
-	ADD FOREIGN KEY (buggerNum)
-	REFERENCES bugger (buggerNum)
+	ADD FOREIGN KEY (burgerNum)
+	REFERENCES burger (burgerNum)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -260,6 +314,14 @@ ALTER TABLE receipt
 
 
 ALTER TABLE shopping
+	ADD FOREIGN KEY (middleOrder)
+	REFERENCES middleorder (middleOrder)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE shopping
 	ADD FOREIGN KEY (optionsNum)
 	REFERENCES options (optionsNum)
 	ON UPDATE RESTRICT
@@ -270,14 +332,6 @@ ALTER TABLE shopping
 ALTER TABLE pay
 	ADD FOREIGN KEY (receiptNum)
 	REFERENCES receipt (receiptNum)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE middleorder
-	ADD FOREIGN KEY (shoppingNum)
-	REFERENCES shopping (shoppingNum)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -301,7 +355,15 @@ ALTER TABLE shopping
 
 ALTER TABLE faceData
 	ADD FOREIGN KEY (phone)
-	REFERENCES user (phone)
+	REFERENCES users (phone)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE middleorder
+	ADD FOREIGN KEY (phone)
+	REFERENCES users (phone)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -309,7 +371,7 @@ ALTER TABLE faceData
 
 ALTER TABLE pay
 	ADD FOREIGN KEY (phone)
-	REFERENCES user (phone)
+	REFERENCES users (phone)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -317,7 +379,7 @@ ALTER TABLE pay
 
 ALTER TABLE receipt
 	ADD FOREIGN KEY (phone)
-	REFERENCES user (phone)
+	REFERENCES users (phone)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -325,7 +387,7 @@ ALTER TABLE receipt
 
 ALTER TABLE shopping
 	ADD FOREIGN KEY (phone)
-	REFERENCES user (phone)
+	REFERENCES users (phone)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

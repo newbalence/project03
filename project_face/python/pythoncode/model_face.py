@@ -7,10 +7,10 @@ img = cv2.imread(img_path)# 이미지 확인
 
 #이미지 불러와 얼굴 영역만 잘라서 2 사진 비교하기
 # 첫 번째 이미지 불러오기
-img1_path = './test/u.jpg'
+img1_path = './face/img0.png'
 img1 = cv2.imread(img1_path)
 # 두 번째 이미지 불러오기
-img2_path = './test/uNot.jpg'
+img2_path = './face/img1.png'
 img2 = cv2.imread(img2_path)
 # 얼굴 검증
 result = DeepFace.verify(img1_path=img1_path,
