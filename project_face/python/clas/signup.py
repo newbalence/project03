@@ -1,11 +1,9 @@
 import numpy as np
-from faceCheck import faceCheck 
-import sys
-sys.path.append(r'C:\Users\MYCMO\git\project_face\project_face\python')
-from db.pgvector_use import UseDatabases
-from useGPU import tfg
+from clas.faceCheck import faceCheck 
+from clas.pgvector_use import UseDatabases
+from clas.useGPU import tfg
 
-def a(frame):
+def signup(frame, phone):
     #GPU사용 클래스
     gpu = tfg()
     #Face 벡터화
@@ -31,13 +29,13 @@ def a(frame):
 
             #얼굴값을 암호화 하면 쿼리에서 비교가 불가능하기 때문에 벡터화 된 데이터는 암호화 하지 않음
             #전화번호를 벡터화 함으로 써 보안을 조금 더 챙김
-            pg_result = pgv.loginUse(phone, faceing)
+            pg_result = pgv.insertUse(phone, faceing)
             pgv.disconnect()
             #insert or select 가 되면 return 값으로 확인 후 영상 중지
 
             if pg_result:
                 #PgVector Data Check
-                return pg_result[0][0], pg_result[0][1]
+                return True
                 # plt.imshow(captureFace)
                 # plt.savefig("image.png")
                 # plt.show()

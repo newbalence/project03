@@ -59,7 +59,7 @@
 		}
 		
 		var constraints = { audio: true, video: { width: 1280, height: 720 } };
-	
+		
 		navigator.mediaDevices.getUserMedia(constraints)
 		    .then(function(stream) {
 		        var video = document.querySelector('video');
@@ -77,6 +77,51 @@
 		    .catch(function(err) {
 		        console.log(err.name + ": " + err.message);
 		    });
+	
+		async function start() {
+			const pc = new RTCPeerConnection({
+				iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+			});
+			const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+			
+			$("#video").srcObject = stream;
+			
+			stream.getTracks().forEach(track => pc.addTrack(track, stream));
+			
+			const host = window.location.hostname
+			console.log(host)
+			const ws = new WebSocket("wss://"+host+":8765");
+			
+			ws.onopen = async () => {
+				console.log("WebSocket 연결 완료");
+				
+				const offer = await pc.createOffer();
+				await pc.setLocalDescription(offer);
+				
+				ws.send(JSON.stringify({
+					sdp: pc.localDescription.sdp,
+					type: pc.localDescription.type,
+					phone: '010.1234.5678'
+				}));
+				
+				console.log("Offer 전송 완료");
+			};
+			
+			ws.onmessage = async (event) => {
+				console.log("서버로부터 Answer 수신", event);
+				const answer = JSON.parse(event.data);
+				if(answer.type == "answer"){
+					await pc.setRemoteDescription(answer);
+				}else if(answer.type == "face"){
+					console.log(answer.result)
+				}
+				console.log("Answer 설정 완료");
+			};
+		}
+		
+		start().catch(error => {
+			console.error("오류 발생:", error);
+		});
 		   
 	</script>
 </html>

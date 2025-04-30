@@ -2,7 +2,12 @@ import psycopg2
 
 class Databases():
     def __init__(self):
-        self.db = psycopg2.connect(host='localhost', dbname='postgres',user='postgres',password='ezen',port=5432)
+        self.db = psycopg2.connect(
+            host='localhost',
+            dbname='postgres',
+            user='postgres',
+            password='ezen',port=5432
+        )
         self.cursor = self.db.cursor()
 
     def execute(self,query,args={}):
@@ -13,7 +18,7 @@ class Databases():
     def commit(self):
         self.db.commit()
         
-    def insertDB(self, database, table, colume, query):
+    def insertDB(self, database, table, colume, query=[]):
         t = ", ".join(["%s"]*len(query))
         # sql = "INSERT INTO " + database + "." + table + "(" + colume + ") VALUES (" + query + ") ;"
         sql = f"INSERT INTO {database}.{table}({colume}) values({t})"

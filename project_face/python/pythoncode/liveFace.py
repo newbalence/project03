@@ -83,7 +83,7 @@ while cv2.waitKey(33) < 0:
         break
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
+    print(gray.dtype)
     faces = face_cascade.detectMultiScale(gray, 1.1, 10)
     for (x, y, w, h) in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)

@@ -4,7 +4,6 @@ from deepface import DeepFace# 이미지 저장 경로
 from realesrgan import RealESRGANer
 import torch
 from basicsr.archs.rrdbnet_arch import RRDBNet
-import matplotlib.pyplot as plt
 
 class faceCheck():
 
@@ -16,30 +15,32 @@ class faceCheck():
 
     def check(self, frame):
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
         faces = self.face_cascade.detectMultiScale(gray, 1.1, 10)
-        for (x, y, w, h) in faces:
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            roi_gray = gray[y : y + h, x : x + w]
-            roi_color = frame[y : y + h, x : x + w]
+
         if len(faces) == 1:
-
-            eyes = self.eye_cascade.detectMultiScale(roi_gray, 1.1, 5)
-            for (ex, ey, ew, eh) in eyes:
-                cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
-            if len(eyes) == 2:
-
-                nose = self.nose_cascade.detectMultiScale(roi_gray, 1.3, 5)
-                for (nx, ny, nw, nh) in nose:
-                    cv2.rectangle(roi_color, (nx, ny), (nx + nw, ny + nh), (0, 0, 255), 2)
-                if len(nose) == 1:
-
-                    mouth = self.mouth_cascade.detectMultiScale(roi_gray, 2.0, 18)
-                    for (mx, my, mw, mh) in mouth:
-                        cv2.rectangle(roi_color, (mx, my), (mx + mw, my + mh), (127, 127, 127), 2)
-                    if len(mouth) == 1:
-                        return roi_color
-                    
+            for (x, y, w, h) in faces:
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                roi_gray = gray[y : y + h, x : x + w]
+                roi_color = frame[y : y + h, x : x + w]
+                eyes = self.eye_cascade.detectMultiScale(roi_gray, 1.1, 5)
+                if len(eyes) == 2:
+                    for (ex, ey, ew, eh) in eyes:
+                        cv2.rectangle(roi_color, (ex, ey), (ex + ew, ey + eh), (0, 255, 0), 2)
+                        nose = self.nose_cascade.detectMultiScale(roi_gray, 1.3, 5)
+                        if len(nose) == 1:
+                            for (nx, ny, nw, nh) in nose:
+                                cv2.rectangle(roi_color, (nx, ny), (nx + nw, ny + nh), (0, 0, 255), 2)
+                                mouth_roi = roi_gray[h//2:, :]
+                                mouth = self.mouth_cascade.detectMultiScale(mouth_roi, 1.5, 18)
+                                if len(mouth) == 1:
+                                    for (mx, my, mw, mh) in mouth:
+                                        cv2.rectangle(roi_color, (mx, my), (mx + mw, my + mh), (127, 127, 127), 2)
+                                    
+                                        return roi_color
+        else:
+            print("인식되지 않았습니다.")
+            return None
+                        
     def embeded(self, result):
         try:
             embedding = DeepFace.represent(img_path=result, detector_backend='retinaface', model_name='ArcFace')

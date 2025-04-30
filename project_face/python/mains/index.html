@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebRTC Sender</title>
+</head>
+<body>
+  <h1>WebRTC 송출 테스트</h1>
+  <video id="localVideo" autoplay muted></video>
+
+  <script>
+    async function start() {
+      const pc = new RTCPeerConnection({
+        iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+      });
+    
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+      document.getElementById('localVideo').srcObject = stream;
+    
+      stream.getTracks().forEach(track => pc.addTrack(track, stream));
+    
+      const ws = new WebSocket("ws://localhost:8765");
+    
+      ws.onopen = async () => {
+        console.log("WebSocket 연결 완료");
+    
+        const offer = await pc.createOffer();
+        await pc.setLocalDescription(offer);
+    
+        ws.send(JSON.stringify({
+          sdp: pc.localDescription.sdp,
+          type: pc.localDescription.type,
+          phone: '010.1234.5678'
+        }));
+    
+        console.log("Offer 전송 완료");
+      };
+    
+      ws.onmessage = async (event) => {
+        console.log("서버로부터 Answer 수신", event);
+        const answer = JSON.parse(event.data);
+        await pc.setRemoteDescription(answer);
+        console.log("Answer 설정 완료");
+      };
+    }
+    
+    start().catch(error => {
+      console.error("오류 발생:", error);
+    });
+    </script>
+    
+</body>
+</html>

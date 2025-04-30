@@ -1,4 +1,4 @@
-from db.pgvector_Query import Databases
+from clas.pgvector_Query import Databases
 
 class UseDatabases(Databases):
     
