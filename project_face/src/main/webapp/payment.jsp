@@ -62,9 +62,14 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 			</div>
 			<div class="amount"><a>총 결제 예상 금액 : </a></div>
 		</div>
-			<div class="paydone" onclick="alert('결제하기')">결제하기</div>
+			<div class="paydone" id="kakao_pay">결제하기</div>
 	</body>
 	<script>
 		// 결제 진행시 결제가 완료 되면 alert나 class='howToPay'부분의 박스를 없애고 
+		$("#kakao_pay").click(() => {
+			location.href="payOk.jsp"
+			//상품이름, 상품 개수, 주문번호, 주문자id, 가격 넘겨주고
+			//https://developers.kakaopay.com/docs/payment/online/single-paymentㄴ
+		})
 	</script>
 </html>
