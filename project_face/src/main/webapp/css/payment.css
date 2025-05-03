@@ -69,12 +69,15 @@ tr{
     margin-top: 22px;
     justify-self: anchor-center;
     height: 340px;
+    display: flex;
 }
 .payKind{
 	margin-top: 25px;
+    width: 20%;
+    margin-left: 30px;
 }
-.cacaoPay{
-	width: 15%;
+.kakaoPay{
+	width: 200px;
     background-color: #c4bee2;
     color: white;
     padding: 10px;
@@ -85,11 +88,12 @@ tr{
     margin-bottom: 25px;
 }
 .hum{
-	margin-top: -200px;
+   	width: 60%;
+    align-content: center;
 }
 .amount{
-	margin-top: 120px;
-    margin-left: 345px;
+	display: flex;
+    align-items: end;
 }
 .paydone{
 	width: 15%;
@@ -103,4 +107,25 @@ tr{
     margin-right: 135px;
     float: right;
     cursor: pointer;
+}
+#name{
+	width:460px;
+}
+#mony{
+	width:300px;
+}
+#payPoint{
+	background-color: transparent;
+    border: solid 1px black;
+    border-radius: 5px;
+    width:100%;
+}
+#usePoint{
+	width: 270px;
+}
+#count{
+	width:180px;
+}
+#allMony{
+	width:570px;
 }

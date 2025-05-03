@@ -26,8 +26,7 @@ public class userDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "select * from users where";
-		sql += "phone='"+ phone +"' and user_type != 2 ";
+		String sql = "select * from users where phone='"+ phone +"' and userType != 2 ";
 		executeQuery(sql);
 		
 		

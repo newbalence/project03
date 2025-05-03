@@ -38,10 +38,10 @@ def login(frame):
                 #PgVector Data Check
                 phone = pg_result[0][0]
                 sim = pg_result[0][1]
-                print(phone)
-                result = mysql.readDB(colume = "*", table = "users", where=f"phone = '{phone}'")
-                mysql.closeDB()
-                return result[0]
+                print(f"전화번호 : {phone} 수치 : {sim}")
+                # result = mysql.readDB(colume = "*", table = "users", where=f"phone = '{phone}'")
+                # mysql.closeDB()
+                return phone
                 # plt.imshow(captureFace)
                 # plt.savefig("image.png")
                 # plt.show()

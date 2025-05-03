@@ -1,3 +1,5 @@
+<%@page import="user.userVO"%>
+<%@page import="user.userDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -16,5 +18,13 @@ if(name.isEmpty() || phone.isEmpty() || nick.isEmpty() || birth.isEmpty()){
 	response.sendRedirect("signup.jsp");
 }
 
+userDAO dao = new userDAO();
+userVO vo = new userVO();
+vo.setName(name);
+vo.setPhone(phone);
+vo.setNick(nick);
+vo.setBirth(birth);
 
+dao.join(vo);
+response.sendRedirect("login.jsp");
 %>

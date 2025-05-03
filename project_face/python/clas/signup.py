@@ -5,7 +5,7 @@ from clas.useGPU import tfg
 
 def signup(frame, phone):
     #GPU사용 클래스
-    gpu = tfg()
+    # gpu = tfg()
     #Face 벡터화
     faces = faceCheck()
     #Face VectorData PostgreSQL Query

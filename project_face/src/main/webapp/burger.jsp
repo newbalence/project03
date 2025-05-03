@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,7 +9,7 @@
 		<link rel="stylesheet" href="./css/burger.css"></link>
 	</head>
 	<body>
-		<%@ include file="header.jsp" %>
+
 		<div class="main_content">
 			<div class="burger">burger</div>
 			<!-- <div class="recommend">

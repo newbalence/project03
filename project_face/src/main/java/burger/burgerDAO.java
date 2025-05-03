@@ -12,8 +12,8 @@ public class burgerDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into burger(burgerName, burgerPay, burgetType)";
-		sql += "values('"+vo.getBurgerName()+"', '"+vo.getBurgerPay()+"', '1')";
+		String sql = "insert into burger(burgerName, burgerPay)";
+		sql += "values('"+vo.getBurgerName()+"', '"+vo.getBurgerPay()+"')";
 		executeUpdate(sql);
 		
 		DBDisConnect();

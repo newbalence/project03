@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>로그인</title>
-		<link rel="stylesheet" href="./css/login.css"></link>
-		<script src="./js/jquery-3.7.1.js"></script>
+		<link rel="stylesheet" href="../css/login.css"></link>
+		<script src="../js/jquery-3.7.1.js"></script>
 	</head>
 	<body>
 		<div class="login_container">
@@ -18,7 +19,7 @@
 				</div>
 				<div class="number">
 						<!-- <div class="numCheck">전화번호 입력</div> -->
-						<input type="text" name="phone" class="numCheck" placeholder="전화번호를 입력하세요">
+						<input type="text" name="phone" id="phoneNum"class="numCheck" placeholder="전화번호를 입력하세요 (특수문자 제외)">
 				</div>
 				<div class="log">
 					<button type="button" class="btn cameraon" id="cameraon" name="cameraon"onclick="return changeCam(this)">카메라 켜기</button>
@@ -34,10 +35,14 @@
 		</div>
 	</body>
 	<script>
+		const host = window.location.hostname;
 		
 		function changeCam(e){
 			btnName = e.id
-			if(btnName.trim() == "cameraon"){
+						
+			console.log(host);
+			if(btnName == "cameraon"){
+				
 				$("#videoMent").removeClass("changevideooff");
 				$("#videoMent").addClass("changevideoon");
 				$("#video").removeClass("videooff");
@@ -46,7 +51,13 @@
 				$("#cameraon").addClass("cameraoff");
 				$("#cameraoff").removeClass("cameraoff");
 				$("#cameraoff").addClass("cameraon");
+				
+				start().catch(error => {
+					console.error("오류 발생:", error);
+				});
+				
 			}else if(btnName == "cameraoff"){
+				
 				$("#videoMent").addClass("changevideooff");
 				$("#videoMent").removeClass("changevideoon");
 				$("#video").addClass("videooff");
@@ -55,6 +66,7 @@
 				$("#cameraon").removeClass("cameraoff");
 				$("#cameraoff").addClass("cameraoff");
 				$("#cameraoff").removeClass("cameraon");
+				
 			}
 		}
 		
@@ -88,8 +100,6 @@
 			
 			stream.getTracks().forEach(track => pc.addTrack(track, stream));
 			
-			const host = window.location.hostname
-			console.log(host)
 			const ws = new WebSocket("wss://"+host+":8765");
 			
 			ws.onopen = async () => {
@@ -101,11 +111,16 @@
 				ws.send(JSON.stringify({
 					sdp: pc.localDescription.sdp,
 					type: pc.localDescription.type,
-					phone: '010.1234.5678'
+					phone: $("#phoneNum").val(),
+					page : "login"
 				}));
 				
 				console.log("Offer 전송 완료");
 			};
+			
+			ws.onerror = (event) => {
+				console.log(event)
+			}
 			
 			ws.onmessage = async (event) => {
 				console.log("서버로부터 Answer 수신", event);
@@ -113,15 +128,14 @@
 				if(answer.type == "answer"){
 					await pc.setRemoteDescription(answer);
 				}else if(answer.type == "face"){
-					console.log(answer.result)
+					ws.close()
+					location.href = "loginOk.jsp?phone=" + answer.result_phone;
 				}
 				console.log("Answer 설정 완료");
 			};
 		}
 		
-		start().catch(error => {
-			console.error("오류 발생:", error);
-		});
-		   
+		
+		
 	</script>
 </html>

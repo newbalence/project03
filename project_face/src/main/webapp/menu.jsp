@@ -13,11 +13,6 @@
 			<img src="./img/menu.jpg" style="width:100%">
 			<a class="Menu">M E N U</a>
 		</div>
-		<div class="intro">
-			<p><i><del>내 일 먹 을 걸 생 각 하 는 놈 은</del></i>
-			<br>
-			 <i><del><big>오 늘 만 먹 는 놈 에 게 죽 는 다.<big></big></del></i></p>
-		</div>
 		<div class="">
 			<div class="menuRow">
 				<div class="menu_list">

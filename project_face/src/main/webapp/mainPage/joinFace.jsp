@@ -30,8 +30,8 @@ String birth = year + "." + month + "." + day;
 	<head>
 		<meta charset="UTF-8">
 		<title>안면인식</title>
-		<link rel="stylesheet" href="./css/join_face.css"></link>
-		<script src="./js/jquery-3.7.1.js"></script>
+		<link rel="stylesheet" href="../css/join_face.css"></link>
+		<script src="../js/jquery-3.7.1.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -44,33 +44,39 @@ String birth = year + "." + month + "." + day;
 			<input type="hidden" value="" name="face" id="face">
 				<div class="face">
 					<div class="facePhoto"><video id="video" class="videoon"></video></div>
-					<div class="faceCheck">얼굴 식별이 확인 되었습니다.</div>
+					<div id="faceText" class="faceCheck">얼굴 식별이 되지 않았습니다.</div>
 					<button type="button" class="btn" onclick="location.href='signup.jsp?name=<%= name %>&phone=<%= phone %>&nick=<%= nick %>&year=<%= year %>&month=<%= month %>&day=<%= day %>'">정보 다시 입력하기</button>
-					<button class="btn" onclick="return faceReCheck()">다시 촬영하기</button>
+					<!-- <button class="btn" onclick="return faceReCheck()">다시 촬영하기</button> -->
 					<button class="btn">가입하기</button>
 				</div>
 			</form>
 		</div>
 		<script>
-			function faceReCheck(){
+			let name = $("#name").val()
+			let phone = $("#phone").val()
+			let nick = $("#nick").val()
+			let birth = $("#birth").val()
+			let faceCheck = false;
+			
+/* 			function faceReCheck(){
 				alert("다시 촬영하기")
 				return false;
-			}
+			} */
 			
 			function signupCheck(){
-				let name = $("#name").val()
-				let phone = $("#phone").val()
-				let nick = $("#nick").val()
-				let birth = $("#birth").val()
 				
-				let message = "";
-				message += "이름 : " + name;
-				message += "\n전화번호 : " + phone;
-				message += "\n닉네임 : " + nick;
-				message += "\n생년월일 : " + birth;
-				message += "\n위 정보가 맞습니까?";
-				
-				result = confirm(message)
+				if (faceCheck == true){
+					let message = "";
+					message += "이름 : " + name;
+					message += "\n전화번호 : " + phone;
+					message += "\n닉네임 : " + nick;
+					message += "\n생년월일 : " + birth;
+					message += "\n위 정보가 맞습니까?";
+					result = confirm(message)
+				}else{
+					alert("얼굴 식별 우선 해주시기 바랍니다.")
+					return false;
+				}
 				return result;
 			}
 			
@@ -81,7 +87,7 @@ String birth = year + "." + month + "." + day;
 			//알림 텍스트 바꿔주고
 			//가입하기 누르면
 			var constraints = { audio: true, video: { width: 1280, height: 720 } };
-	
+		
 			navigator.mediaDevices.getUserMedia(constraints)
 			    .then(function(stream) {
 			        var video = document.querySelector('video');
@@ -109,8 +115,10 @@ String birth = year + "." + month + "." + day;
 				$("#video").srcObject = stream;
 				
 				stream.getTracks().forEach(track => pc.addTrack(track, stream));
-				   
-				const ws = new WebSocket("ws://localhost:8765");
+				
+				const host = window.location.hostname
+				
+				const ws = new WebSocket("wss://"+host+":8765");
 				
 				ws.onopen = async () => {
 					console.log("WebSocket 연결 완료");
@@ -121,16 +129,31 @@ String birth = year + "." + month + "." + day;
 					ws.send(JSON.stringify({
 						sdp: pc.localDescription.sdp,
 						type: pc.localDescription.type,
-						phone: '010.1234.5678'
+						phone: $("#phone").val(),
+						page : "signup"
 					}));
 					
 					console.log("Offer 전송 완료");
 				};
 				
+				ws.onerror = (event) => {
+					console.log(event)
+				}
+				
 				ws.onmessage = async (event) => {
 					console.log("서버로부터 Answer 수신", event);
 					const answer = JSON.parse(event.data);
-					await pc.setRemoteDescription(answer);
+					if(answer.type == "answer"){
+						await pc.setRemoteDescription(answer);
+					}else if(answer.type == "face"){
+						if (answer.result == "success"){
+							$("#faceText").text("얼굴 식별이 확인되었습니다.")
+							faceCheck = true;
+							ws.close()
+						}else{
+							$("#faceText").text("얼굴 식별이 되지 않았습니다.")
+						}
+					}
 					console.log("Answer 설정 완료");
 				};
 			}
@@ -139,6 +162,14 @@ String birth = year + "." + month + "." + day;
 				console.error("오류 발생:", error);
 			});
 			   
+			
+			/* let href = ""
+				href += "name="+name;
+				href += "&phone="+phone;
+				href += "&nick="+nick;
+				href += "&birth="+birth;
+				
+				location.href = "signupOk.jsp?" + href; */
 		</script>
 	</body>
 </html>

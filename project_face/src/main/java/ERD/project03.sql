@@ -2,6 +2,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 
 /* Drop Tables */
 
+DROP TABLE IF EXISTS middleorder;
 DROP TABLE IF EXISTS shopping;
 DROP TABLE IF EXISTS options;
 DROP TABLE IF EXISTS burger;
@@ -11,7 +12,6 @@ DROP TABLE IF EXISTS etc;
 DROP TABLE IF EXISTS faceData;
 DROP TABLE IF EXISTS pay;
 DROP TABLE IF EXISTS receipt;
-DROP TABLE IF EXISTS middleorder;
 DROP TABLE IF EXISTS side;
 DROP TABLE IF EXISTS users;
 
@@ -112,10 +112,11 @@ CREATE TABLE faceData
 
 CREATE TABLE middleorder
 (
-	middleOrder int NOT NULL AUTO_INCREMENT,
-	-- 회원전화번호
-	phone varchar(255) NOT NULL COMMENT '회원전화번호',
-	PRIMARY KEY (middleOrder)
+	middleOrder int NOT NULL,
+	-- 장바구니번호
+	shoppingNum int NOT NULL COMMENT '장바구니번호',
+	-- 주문내역번호
+	receiptNum int NOT NULL COMMENT '주문내역번호'
 );
 
 
@@ -167,7 +168,6 @@ CREATE TABLE receipt
 (
 	-- 주문내역번호
 	receiptNum int NOT NULL AUTO_INCREMENT COMMENT '주문내역번호',
-	middleOrder int NOT NULL,
 	-- 회원전화번호
 	phone varchar(255) NOT NULL COMMENT '회원전화번호',
 	-- 주문가격
@@ -180,9 +180,6 @@ CREATE TABLE shopping
 (
 	-- 장바구니번호
 	shoppingNum int NOT NULL AUTO_INCREMENT COMMENT '장바구니번호',
-	middleOrder int NOT NULL,
-	-- 회원전화번호
-	phone varchar(255) NOT NULL COMMENT '회원전화번호',
 	-- 버거 번호
 	burgerNum int COMMENT '버거 번호',
 	-- 옵션번호
@@ -243,7 +240,7 @@ CREATE TABLE users
 	-- 1: 일반회원
 	-- 2: 탈퇴회원
 	-- 3: 차단회원
-	userType int NOT NULL COMMENT '0: 관리자
+	userType int DEFAULT 1 NOT NULL COMMENT '0: 관리자
 1: 일반회원
 2: 탈퇴회원
 3: 차단회원',
@@ -305,22 +302,6 @@ ALTER TABLE shopping
 ;
 
 
-ALTER TABLE receipt
-	ADD FOREIGN KEY (middleOrder)
-	REFERENCES middleorder (middleOrder)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE shopping
-	ADD FOREIGN KEY (middleOrder)
-	REFERENCES middleorder (middleOrder)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE shopping
 	ADD FOREIGN KEY (optionsNum)
 	REFERENCES options (optionsNum)
@@ -329,9 +310,25 @@ ALTER TABLE shopping
 ;
 
 
+ALTER TABLE middleorder
+	ADD FOREIGN KEY (receiptNum)
+	REFERENCES receipt (receiptNum)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
 ALTER TABLE pay
 	ADD FOREIGN KEY (receiptNum)
 	REFERENCES receipt (receiptNum)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE middleorder
+	ADD FOREIGN KEY (shoppingNum)
+	REFERENCES shopping (shoppingNum)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
@@ -361,14 +358,6 @@ ALTER TABLE faceData
 ;
 
 
-ALTER TABLE middleorder
-	ADD FOREIGN KEY (phone)
-	REFERENCES users (phone)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE pay
 	ADD FOREIGN KEY (phone)
 	REFERENCES users (phone)
@@ -378,14 +367,6 @@ ALTER TABLE pay
 
 
 ALTER TABLE receipt
-	ADD FOREIGN KEY (phone)
-	REFERENCES users (phone)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE shopping
 	ADD FOREIGN KEY (phone)
 	REFERENCES users (phone)
 	ON UPDATE RESTRICT

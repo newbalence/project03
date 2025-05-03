@@ -48,8 +48,8 @@ if(day == null || day.isEmpty() || day.equals("일")){
 	<head>
 		<meta charset="UTF-8">
 		<title>회원가입</title>
-		<link rel="stylesheet" href="./css/signup.css"></link>
-		<script src="./js/jquery-3.7.1.js"></script>
+		<link rel="stylesheet" href="../css/signup.css"></link>
+		<script src="../js/jquery-3.7.1.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -59,13 +59,13 @@ if(day == null || day.isEmpty() || day.equals("일")){
 					<input type="text" id="name" name="name" placeholder="이름" <%= name.equals("") ? "" : "value=" + name %>>
 					<div id="name-feedback" class="feedback"></div>
 					      
-					<input type="text" id="phone" name="phone" placeholder="전화번호"<%= phone.equals("") ? "" : "value=" + phone %>>
+					<input type="text" id="phone" name="phone" placeholder="전화번호 (특수문자 제외)" <%= phone.equals("") ? "" : "value=" + phone %>>
 					<div id="number-feedback" class="feedback"></div>
 					
 					<input type="text" id="numberCheck" placeholder="전화번호확인">
 					<div id="numberCheck-feedback" class="feedback"></div>
 					
-					<input type="text" id="nick" name="nick" placeholder="닉네임"<%= nick.equals("") ? "" : "value=" + nick %>>
+					<input type="text" id="nick" name="nick" placeholder="닉네임" <%= nick.equals("") ? "" : "value=" + nick %>>
 					<div id="nick-feedback" class="feedback"></div>
 					
 					<div class="birth">
@@ -83,8 +83,9 @@ if(day == null || day.isEmpty() || day.equals("일")){
 							<option value="" <%= day.equals("") ? "selected" : "" %>>월</option>
 							<% 
 								for (int i = 1; i < 13; i++){
+									String num = (i >= 10) ? i + "" : "0" + i;
 							%>
-									<option value="<%= i %>" <%= month.equals(Integer.toString(i)) ? "selected" : "" %>><%= i %></option>
+									<option value="<%= i >= 10 ? i : "0" + i %>" <%= month.equals(num) ? "selected" : "" %>><%= i >= 10 ? i : "0" + i %></option>
 							<%
 								}
 							%>
@@ -93,8 +94,9 @@ if(day == null || day.isEmpty() || day.equals("일")){
 							<option value="" <%= day.equals("") ? "selected" : "" %>>일</option>
 							<% 
 								for (int i = 1; i < 32; i++){
+									String num = (i >= 10) ? i + "" : "0" + i;
 							%>
-									<option value="<%= i %>" <%= day.equals(Integer.toString(i)) ? "selected" : "" %>><%= i %></option>
+									<option value="<%= i >= 10 ? i : "0" + i %>" <%= day.equals(num) ? "selected" : "" %>><%= i >= 10 ? i : "0" + i %></option>
 							<%
 								}
 							%>

@@ -1,14 +1,22 @@
+<%@page import="point.pointVO"%>
+<%@page import="point.pointDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
+<%
+pointDAO dao = new pointDAO();
+pointVO vo = dao.SelPointOne(user.getPhone());
+
+
+%>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>마이페이지</title>
-		<link rel="stylesheet" href="./css/mypage.css"></link>
+		<link rel="stylesheet" href="../css/mypage.css"></link>
 	</head>
 	<body>
-		<%@ include file="header.jsp" %>
 		<div class="mypage">
 			<div class="photo">
 				<div class="photo_face">
@@ -16,8 +24,8 @@
 						<a>사진</a>
 					</div>
 					<div class="facerow">
-						<a class="Info">회원 이름 : </a><br>
-						<a class="Info">포인트 : </a>
+						<a class="Info">회원 이름 : <%= user.getName() %></a><br>
+						<a class="Info">포인트 : <%= vo.getPoint() %></a>
 					</div>
 				</div>
 			</div>
@@ -27,15 +35,13 @@
 				<a class="Info">회원정보</a>
 			</div>
 			<div class="memberInfo">
-				<a class="Info">고객명 : 이름</a><br>
+				<a class="Info">고객명 : <%= user.getName() %></a><br>
 				<br>
-				<a class="Info">비밀번호 : ********</a><br>
+				<a class="Info">연락처 : <%= user.getPhone() %></a><br>
 				<br>
-				<a class="Info">연락처</a><br>
+				<a class="Info">닉네임 : <%= user.getNick() %></a><br>
 				<br>
-				<a class="Info">닉네임</a><br>
-				<br>
-				<a class="Info">생년월일</a>
+				<a class="Info">생년월일 : <%= user.getBirth() %></a>
 				<br>
 			</div>
 			<div class="infoTwo">

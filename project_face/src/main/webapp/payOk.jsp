@@ -47,24 +47,13 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 				%>
 		</table>
 		</div>
-		<div class="payWay">
-			<a>결제 수단</a>
-		</div>
 		<div class="howToPay">
-			<div class="payKind">
-				<div class="kakaoPay">카카오페이</div>
-				<div class="kakaoPay">네이버페이</div>
-				<div class="kakaoPay">신용카드</div>
-				<div class="kakaoPay">페이코</div>
-			</div>
 			<div class="hum">
-				<a>결제 진행중</a>
+				<a>결제가 완료 되었습니다.</a><br>
+				<!-- <a>사용전이라 어떻게 뜨는걸까나?!</a><br> -->
 			</div>
-			<div class="amount"><a>총 결제 예상 금액 : </a></div>
+			<div class="amount">총 결제 예상 금액 : </div>
 		</div>
-			<div class="paydone" onclick="alert('결제하기')">결제하기</div>
+			<div class="paydone">결제하기</div>
 	</body>
-	<script>
-		// 결제 진행시 결제가 완료 되면 alert나 class='howToPay'부분의 박스를 없애고 
-	</script>
 </html>

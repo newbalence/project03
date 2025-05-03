@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>장바구니</title>
-		<link rel="stylesheet" href="./css/shop.css"></link>
+		<link rel="stylesheet" href="<%=path %>/css/shop.css"></link>
 		</head>
 	<body>
-		<%@ include file="header.jsp" %>
+
 		<div class="shop">
 			<h2 class="cart">SHOPPING CART</h2>
 		</div>
@@ -41,7 +42,7 @@
 		</table>
 		<div class="shopBtn">
 			<a class="btn">장바구니 비우기</a>
-			<a class="btn" onclick="location.href='payment.jsp'">결제하기</a>
+			<a class="btn" onclick="location.href='<%=path %>/payment.jsp'">결제하기</a>
 		</div>
 	</body>
 </html>
