@@ -25,6 +25,8 @@ List<shoppingVO> list = shopDao.selShoppingItems(items);
 pointDAO dao = new pointDAO();
 pointVO vo = dao.SelPointOne(user.getPhone());
 int totalPrice = 0;
+int totalCount = 0;
+String itemName = "";
 %>
 <!DOCTYPE html>
 	<html>
@@ -64,9 +66,12 @@ int totalPrice = 0;
 						name = list.get(i).getEtcName();
 					}
 					
+					if(i == 0){
+						itemName = name;
+					}
 					
 					totalPrice += Integer.parseInt(list.get(i).getAllPay()) * Integer.parseInt(list.get(i).getQuantity());  
-					
+					totalCount += Integer.parseInt(list.get(i).getQuantity());
 				%>
 				<tr>
 					<td id="td<%= list.get(i).getShoppingNum() %>"><%= name %></td>
@@ -93,7 +98,7 @@ int totalPrice = 0;
 		$("#point").text("적립예정 포인트 : <%= totalPrice / 10 %> P")
 		// 결제 진행시 결제가 완료 되면 alert나 class='howToPay'부분의 박스를 없애고 
 		$("#kakao_pay").click(() => {
-			location.href="payOk.jsp"
+			location.href="payOk.jsp?userId=<%= vo.getPhone() %>&name=<%=itemName%>&quantity=<%= totalCount %>&price=<%= totalPrice %>&point=<%= totalPrice / 10 %>"
 			//상품이름, 상품 개수, 주문번호, 주문자id, 가격 넘겨주고
 			//https://developers.kakaopay.com/docs/payment/online/single-paymentㄴ
 		})

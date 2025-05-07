@@ -12,8 +12,15 @@
 <%@page import="com.fasterxml.jackson.databind.ObjectMapper"%>
 <%@page import="pay.KakaoPayReadyRequest"%>
 <%@page import="org.apache.http.client.entity.*"%>
-
+<%-- location.href="payOk.jsp?userId=<%= vo.getPhone() %>&name=<%=itemName%>&quantity=<%= totalCount %>&price=<%= totalPrice %>" --%>
 <%
+
+
+	String name = request.getParameter("name");
+	String userId = request.getParameter("userId");
+	String quantity = request.getParameter("quantity");
+	String price = request.getParameter("price");
+	String point = request.getParameter("point");
 	
 	request.setCharacterEncoding("utf-8");
 
@@ -24,16 +31,16 @@
 	//주문번호
 	requestVO.setPartner_order_id("order1234");
 	//주문자 id
-	requestVO.setPartner_user_id("user5678");
+	requestVO.setPartner_user_id(userId);
 	//상품이름
-	requestVO.setItem_name("초코파이");
+	requestVO.setItem_name(name);
 	//상품개수
-	requestVO.setQuantity(1);
+	requestVO.setQuantity(Integer.parseInt(quantity));
 	//가격
-	requestVO.setTotal_amount(2200);
+	requestVO.setTotal_amount(Integer.parseInt(price));
 	requestVO.setTax_free_amount(0);
 	//주문 성공시 redirect url, 성공한 결과 주문결과에 insert하고, 적립금 처리, 주문 상품 장바구니에서 비우기
-	requestVO.setApproval_url("http://localhost:8080/project_face/approve.jsp");
+	requestVO.setApproval_url("http://localhost:8080/project_face/approve.jsp?point="+point);
 	//주문 취소시 redirect url 취소처리 주문결과에 insert
 	requestVO.setCancel_url("http://localhost:8080/project_face/cancel.jsp");
 	//주문 실패시 redirect url 실패처리 주문결과에 insert
