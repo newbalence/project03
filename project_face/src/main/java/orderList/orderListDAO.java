@@ -37,24 +37,25 @@ public class orderListDAO extends DBManager {
 		return null;
 	}
 	
-	public List<orderListVO> selOrderListAll(String phone) {
+	public orderListVO selOrderListAll(String phone) {
 		driverLoad();
 		DBConnect();
 		
 		String sql = "select * from orderList where phone = '" + phone + "'";
 		executeQuery(sql);
 		
-		List<orderListVO> list = new ArrayList<>();
-		while(next()) {
+		if(next()) {
 			orderListVO vo = new orderListVO();
 			vo.setOrderListNo(getInt("orderListNo"));
 			vo.setPhone(getString("phone"));
 			
-			list.add(vo);
+			DBDisConnect();
+			return vo;
+			
 		}
 		
 		DBDisConnect();
-		return list;
+		return null;
 	}
 	
 }

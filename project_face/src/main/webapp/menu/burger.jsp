@@ -71,10 +71,6 @@ List<burgerVO> list = dao.selBurgerAll();
 					%>
 				</div>
 			</div>
-			<a>&lt;&lt;</a>
-			<a>&lt;</a>
-			<a>&gt;</a>
-			<a>&gt;&gt;</a>
 		</div>
 	</body>
 </html>

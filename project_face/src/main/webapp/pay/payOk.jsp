@@ -1,3 +1,5 @@
+<%@page import="orderList.orderListVO"%>
+<%@page import="orderList.orderListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="pay.KakaoPayReadyResponse"%>
@@ -28,8 +30,12 @@
 	KakaoPayReadyRequest requestVO = new KakaoPayReadyRequest();
 	requestVO.setCid("TC0ONETIME");
 	
+	orderListDAO orderList = new orderListDAO();
+	orderListVO orderVO = orderList.selOrderListAll(userId);
+	int orderId = orderVO.getOrderListNo();
+	
 	//주문번호
-	requestVO.setPartner_order_id("order1234");
+	requestVO.setPartner_order_id(orderId + "");
 	//주문자 id
 	requestVO.setPartner_user_id(userId);
 	//상품이름

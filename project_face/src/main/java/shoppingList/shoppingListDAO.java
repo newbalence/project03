@@ -55,7 +55,7 @@ public class shoppingListDAO extends DBManager {
 		sql += "where s.phone = '"+phone+"';";
 		
 		executeQuery(sql);
-		while(next()) {
+		if(next()) {
 			shoppingVO vo = new shoppingVO();
 			int shopListNo = getInt("shoppingListNo");
 			int shoppingNum = getInt("shoppingNum");
