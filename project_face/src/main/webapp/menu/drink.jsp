@@ -24,7 +24,7 @@ List<drinkVO> list = dao.selDrinkAll();
 					drinkVO vo = list.get(i);
 					%>
 					<div class="drink_list">
-						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp?type=drink&no=<%= vo.getDrinkNum() %>'" class="name">
 							<img src="../img/drink/coca.png" class="drinkPhoto"><br><%= vo.getDrinkName() %></a>
 					</div>
 					<%
