@@ -4,6 +4,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <%
+
+if(user == null){
+	response.sendRedirect("../mainPage/main.jsp");
+	return;
+}
+
 pointDAO dao = new pointDAO();
 pointVO vo = dao.SelPointOne(user.getPhone());
 
@@ -51,12 +57,6 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 			<a>결제 수단</a>
 		</div>
 		<div class="howToPay">
-			<div class="payKind">
-				<div class="kakaoPay">카카오페이</div>
-				<div class="kakaoPay">네이버페이</div>
-				<div class="kakaoPay">신용카드</div>
-				<div class="kakaoPay">페이코</div>
-			</div>
 			<div class="hum">
 				<a>결제 진행중</a>
 			</div>

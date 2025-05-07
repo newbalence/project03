@@ -47,8 +47,11 @@ body {
 	text-align: center;
 }
 .listbox{
-	display: flex;
-    justify-content: space-around;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-self: center;
 }
 .name{
 	font-weight: 500;

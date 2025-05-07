@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 	<html>
 	<head>
@@ -8,8 +9,7 @@
 		<link rel="stylesheet" href="./css/details.css"></link>
 		<script src="./js/jquery-3.7.1.js"></script>
 		</head>
-	<body>
-		<%@ include file="../header.jsp" %>
+	<body>s
 		<div class="detail">
 			<a>제품상세보기</a>
 		</div>
@@ -63,13 +63,18 @@
 				</div>
 			</div>
 		</div>
-	<div class="buy">
-		<a onclick="location.href='<%=path%>/pay/payment.jsp'">구매하기</a>
-	</div>
-	<div class="decide">
-		<div class="decision"><a onclick="location.href='<%=path%>/shop.jsp'">장바구니</a></div>
-		<div class="decision"><a >취 소 </a></div>
-	</div>
+		<% if(user != null){
+			%>
+			<div class="buy">
+				<a onclick="location.href='<%=path%>/pay/payment.jsp'">구매하기</a>
+			</div>
+			<div class="decide">
+				<div class="decision"><a onclick="location.href='<%=path%>/shop.jsp'">장바구니</a></div>
+				<div class="decision"><a >취 소 </a></div>
+			</div>
+			<%
+		}
+		%>
 	<!-- <div>
 		<div class="reviewCell">
 			<a class="review">상품평</a>
@@ -109,12 +114,12 @@
 		</div>
 	</div> -->
 	<script>
-		//별점 주기
+		/* //별점 주기
 		$('.starRev span').click(function(){
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			return false;
-		})		
+		})	 */	
 	</script>
 	</body>
 </html>

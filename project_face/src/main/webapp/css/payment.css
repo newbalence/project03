@@ -70,6 +70,7 @@ tr{
     justify-self: anchor-center;
     height: 300px;
     display: flex;
+    justify-content: flex-end;
 }
 .payKind{
 	margin-top: 25px;
