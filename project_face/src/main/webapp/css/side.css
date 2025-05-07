@@ -26,9 +26,11 @@ body {
 	text-align: center;
 }
 .sideMenu{
-	margin-top: 30px;
-	display: flex;
-    justify-content: space-around;
+   	width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-self: center;
 }
 .sidePhoto{
 	width: 340px;

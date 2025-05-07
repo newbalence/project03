@@ -44,7 +44,7 @@ public class burgerDAO extends DBManager {
 			
 			while(next()) {
 				burgerVO vo = new burgerVO();
-				vo.setBurgerNum(getInt("bugerNum"));
+				vo.setBurgerNum(getInt("burgerNum"));
 				vo.setBurgerName(getString("burgerName"));
 				vo.setBurgerPay(getString("burgerPay"));
 				list.add(vo);

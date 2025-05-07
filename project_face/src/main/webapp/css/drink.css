@@ -23,10 +23,11 @@ body {
     margin-top: 110px;
 }
 .drinkMenu{
-	margin-top: 30px;
-	display: flex;
-    justify-content: space-around;
-    margin-left: 30px;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-self: center;
 }
 .drinkPhoto{
 	width: 300px;

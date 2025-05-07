@@ -4,6 +4,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp" %>
 <%
+
+if(user == null){
+	response.sendRedirect("../mainPage/main.jsp");
+	return;
+}
+
 pointDAO dao = new pointDAO();
 pointVO vo = dao.SelPointOne(user.getPhone());
 
