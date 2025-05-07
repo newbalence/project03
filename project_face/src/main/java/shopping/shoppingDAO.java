@@ -1,5 +1,8 @@
 package shopping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import db.DBManager;
 
 public class shoppingDAO extends DBManager {
@@ -57,14 +60,60 @@ public class shoppingDAO extends DBManager {
 		DBDisConnect();
 	}
 	
-	public void delShopping(int num) {
+	public void delShopping(String[] items) {
+		String item = String.join(",", items);
 		driverLoad();
 		DBConnect();
 		
-		String sql = "delete from shopping where shoppingNum = " + num;
+		String sql = "delete from shopping where shoppingNum in("+item+")";
 		executeUpdate(sql);
 		
 		DBDisConnect();
+	}
+	
+	public List<shoppingVO> selShoppingItems(String[] items) {
+		String item = String.join(",", items);
+		
+		List<shoppingVO> list = new ArrayList<>();
+		driverLoad();
+		DBConnect();
+		
+		String sql = "select s.*, s2.*, b.burgerName, d.drinkName, s3.sideName, d2.dessertName, e.etcName "; 
+		sql += "from shoppinglist s left join shopping s2 on s.shoppingListNo = s2.shoppingListNo ";
+		sql += "left join burger b on s2.burgerNum = b.burgerNum ";
+		sql += "left join drink d on s2.drinkNum = d.drinkNum ";
+		sql += "left join side s3 on s2.sideNum = s3.sideNum ";
+		sql += "left join dessert d2 on s2.dessertNum = d2.dessertNum "; 
+		sql += "left join etc e on s2.etcNum = e.etcNum ";
+		sql += "where s2.shoppingNum in("+item+")";
+		executeQuery(sql);
+		
+		while(next()) {
+			shoppingVO vo = new shoppingVO();
+			int shopListNo = getInt("shoppingListNo");
+			int shoppingNum = getInt("shoppingNum");
+			String burgerName = getString("burgerName");
+			String drinkName = getString("drinkName");
+			String sideName = getString("sideName");
+			String dessertName = getString("dessertName");
+			String etcName = getString("etcName");
+			String quantity = getString("quantity");
+			String allPay = getString("allPay");
+			
+			vo.setShoppingListNo(shopListNo);
+			vo.setShoppingNum(shoppingNum);
+			vo.setBurgerName(burgerName);
+			vo.setDrinkName(drinkName);
+			vo.setSideName(sideName);
+			vo.setDessertName(dessertName);
+			vo.setEtcName(etcName);
+			vo.setQuantity(quantity);
+			vo.setAllPay(allPay);
+			list.add(vo);
+		}
+		
+		DBDisConnect();
+		return list;
 	}
 	
 	public shoppingVO selShopping(int shopNum) {

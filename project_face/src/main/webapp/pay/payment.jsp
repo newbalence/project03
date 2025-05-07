@@ -1,3 +1,6 @@
+<%@page import="shopping.shoppingVO"%>
+<%@page import="java.util.List"%>
+<%@page import="shopping.shoppingDAO"%>
 <%@page import="point.pointVO"%>
 <%@page import="point.pointDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,9 +13,18 @@ if(user == null){
 	return;
 }
 
+String[] items = request.getParameterValues("items");
+System.out.println(items);
+for(String item: items){
+	System.out.println(item);
+}
+
+shoppingDAO shopDao = new shoppingDAO();
+List<shoppingVO> list = shopDao.selShoppingItems(items);
+
 pointDAO dao = new pointDAO();
 pointVO vo = dao.SelPointOne(user.getPhone());
-
+int totalPrice = 0;
 %>
 <!DOCTYPE html>
 	<html>
@@ -28,25 +40,38 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 		<div>
 		<div class="point">
 			<a>보유 포인트 : <%= vo.getPoint() > 0 ? vo.getPoint() : 0  %> P</a>
-			<a class="Point_">적립예정 포인트 : 500 P</a>
+			<a class="Point_" id="point">적립예정 포인트 : 500 P</a>
 		</div>
 		<table>
 			<tr>
 				<td id="name">상품명</td>
 				<td id="mony">금액</td>
-				<td id="usePoint">포인트</td>
 				<td id="count">수량</td>
-				<td id="allMony">결제 예정 금액</td>
 			</tr>
 			<%
-				for (int i = 0; i < 3; i++){
+				
+				for (int i = 0; i < list.size(); i++){
+					String name = "";
+					if(list.get(i).getBurgerName() != null){
+						name = list.get(i).getBurgerName(); 
+					}else if(list.get(i).getDrinkName() != null){
+						name = list.get(i).getDrinkName();
+					}else if(list.get(i).getSideName() != null){
+						name = list.get(i).getSideName();
+					}else if(list.get(i).getDessertName() != null){
+						name = list.get(i).getDessertName();
+					}else if(list.get(i).getEtcName() != null){
+						name = list.get(i).getEtcName();
+					}
+					
+					
+					totalPrice += Integer.parseInt(list.get(i).getAllPay()) * Integer.parseInt(list.get(i).getQuantity());  
+					
 				%>
 				<tr>
-					<td>클래식 버거</td>
-					<td>10,000</td>
-					<td><input id="payPoint" type="text" placeholder="사용할 포인트를 숫자로 입력하시오"></td>
-					<td>1</td>
-					<td>8,000</td>
+					<td id="td<%= list.get(i).getShoppingNum() %>"><%= name %></td>
+					<td><%= list.get(i).getAllPay() %></td>
+					<td><%= list.get(i).getQuantity() %></td>
 				</tr>	
 				<%
 					}
@@ -60,11 +85,12 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 			<div class="hum">
 				<a>결제 진행중</a>
 			</div>
-			<div class="amount"><a>총 결제 예상 금액 : </a></div>
+			<div class="amount"><a>총 결제 예상 금액 : <%= totalPrice %> </a></div>
 		</div>
 			<div class="paydone" id="kakao_pay">결제하기</div>
 	</body>
 	<script>
+		$("#point").text("적립예정 포인트 : <%= totalPrice / 10 %> P")
 		// 결제 진행시 결제가 완료 되면 alert나 class='howToPay'부분의 박스를 없애고 
 		$("#kakao_pay").click(() => {
 			location.href="payOk.jsp"
