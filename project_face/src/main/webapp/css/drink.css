@@ -44,4 +44,6 @@ body {
     display: inline-block;
     cursor: pointer;
     font-family: '행복고흥L';
+    width: 100%;
+    display: block;
 }

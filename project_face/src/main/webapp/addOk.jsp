@@ -105,6 +105,7 @@
 		vo.setDessertImgLocation(savePath);
 		
 		dao.insDessert(vo);
+		response.sendRedirect("menu/dessert.jsp");
 	}else if(type.equals("etc")){
 		etcDAO dao = new etcDAO();
 		

@@ -59,6 +59,8 @@ body {
     text-align: center;
     cursor: pointer;
     font-family: '행복고흥L';
+    width: 100%;
+    display: block;
 }
 .kids{
 	display: flex;
