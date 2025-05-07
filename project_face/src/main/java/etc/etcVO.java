@@ -7,10 +7,30 @@ public class etcVO {
 	private String etcName;
 
 	private String etcPay;
+	
+	private String etcImgName;
+
+	private String etcImgLocation;
 
 	private String etcType;
 
 	
+	public String getEtcImgName() {
+		return etcImgName;
+	}
+
+	public void setEtcImgName(String etcImgName) {
+		this.etcImgName = etcImgName;
+	}
+
+	public String getEtcImgLocation() {
+		return etcImgLocation;
+	}
+
+	public void setEtcImgLocation(String etcImgLocation) {
+		this.etcImgLocation = etcImgLocation;
+	}
+
 	public int getEtcNum() {
 		return etcNum;
 	}

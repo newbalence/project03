@@ -8,7 +8,28 @@ public class dessertVO {
 
 	private String dessertPay;
 
+	private String dessertImgName;
+
+	private String dessertImgLocation;
+
 	private String dessertType;
+
+	
+	public String getDessertImgName() {
+		return dessertImgName;
+	}
+
+	public void setDessertImgName(String dessertImgName) {
+		this.dessertImgName = dessertImgName;
+	}
+
+	public String getDessertImgLocation() {
+		return dessertImgLocation;
+	}
+
+	public void setDessertImgLocation(String dessertImgLocation) {
+		this.dessertImgLocation = dessertImgLocation;
+	}
 
 	public int getDessertNum() {
 		return dessertNum;

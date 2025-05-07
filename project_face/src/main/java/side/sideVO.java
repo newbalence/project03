@@ -8,7 +8,28 @@ public class sideVO {
 
 	private String sidePay;
 
+	private String sideImgName;
+
+	private String sideImgLocation;
+
 	private String sideType;
+
+	
+	public String getSideImgName() {
+		return sideImgName;
+	}
+
+	public void setSideImgName(String sideImgName) {
+		this.sideImgName = sideImgName;
+	}
+
+	public String getSideImgLocation() {
+		return sideImgLocation;
+	}
+
+	public void setSideImgLocation(String sideImgLocation) {
+		this.sideImgLocation = sideImgLocation;
+	}
 
 	public int getSideNum() {
 		return sideNum;

@@ -25,7 +25,7 @@ public class burgerDAO extends DBManager {
 		DBConnect();
 		
 		String sql = "update burger set ";
-		sql += "burgerNmae='"+vo.getBurgerName()+"', '"+vo.getBurgerPay()+"' ";
+		sql += "burgerName='"+vo.getBurgerName()+"', burgerPay = '"+vo.getBurgerPay()+"' ";
 		sql += "where burgerNum = " + vo.getBurgerNum();
 		executeUpdate(sql);
 		

@@ -8,13 +8,32 @@ public class drinkVO {
 
 	private String drinkPay;
 
+	private String drinkImgName;
+
+	private String drinkImgLocation;
+
 	private String drinkType;
 
+
+	public String getDrinkImgName() {
+		return drinkImgName;
+	}
+
+	public void setDrinkImgName(String drinkImgName) {
+		this.drinkImgName = drinkImgName;
+	}
+
+	public String getDrinkImgLocation() {
+		return drinkImgLocation;
+	}
+
+	public void setDrinkImgLocation(String drinkImgLocation) {
+		this.drinkImgLocation = drinkImgLocation;
+	}
 
 	public int getDrinkNum() {
 		return drinkNum;
 	}
-
 
 	public void setDrinkNum(int drinkNum) {
 		this.drinkNum = drinkNum;

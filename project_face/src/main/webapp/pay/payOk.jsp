@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="pay.KakaoPayReadyResponse"%>
 <%@page import="org.apache.http.util.EntityUtils"%>
 <%@page import="org.apache.http.HttpResponse"%>
