@@ -11,6 +11,8 @@
 		return;
 	}
 	
+	phone = phone.replaceAll("[^0-9]", "");
+	
 	userDAO dao = new userDAO();
 	userVO user = dao.login(phone);
 	if(user == null){

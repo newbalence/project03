@@ -7,53 +7,21 @@ import db.DBManager;
 
 public class shoppingListDAO extends DBManager {
 	
-	public void insShopListOne(String phone) {
+	public String insShopListOne(String phone) {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into shoppingList(phone) values('" + phone + "')";
-		
+		String sql = "INSERT INTO shoppinglist (phone) VALUES ('" + phone + "') ";
+		sql += "ON DUPLICATE KEY UPDATE shoppingListNo=LAST_INSERT_ID(shoppingListNo);";
 		executeUpdate(sql);
 		
-		DBDisConnect();
-		
-	}
-	
-	public List<shoppingListVO> selShopListAll(String phone) {
-		driverLoad();
-		DBConnect();
-		
-		String sql ="";
+		sql = "select last_insert_id() as no;";
 		executeQuery(sql);
-		
-		List<shoppingListVO> list = new ArrayList<>();
-		while(next()){
-			shoppingListVO vo = new shoppingListVO();
-			vo.setShoppingListNo(getInt("shoppingListNo"));
-			vo.setPhone(getString("phone"));
-			
-			list.add(vo);
-		}
-		
-		DBDisConnect();
-		return list;
-	}
-	
-	public shoppingListVO selShopListOne(int no) {
-		driverLoad();
-		DBConnect();
-		
-		String sql = "select * from shoppingList where shoppingListNo = " + no;
-		
-		executeQuery(sql);
-		
 		if(next()) {
-			shoppingListVO vo = new shoppingListVO();
-			vo.setShoppingListNo(getInt("shoppingListNo"));
-			vo.setPhone(getString("phone"));
+			String no = getString("no");
 			
 			DBDisConnect();
-			return vo;
+			return no;
 		}
 		
 		DBDisConnect();

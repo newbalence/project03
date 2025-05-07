@@ -18,6 +18,8 @@ if(name.isEmpty() || phone.isEmpty() || nick.isEmpty() || birth.isEmpty()){
 	response.sendRedirect("signup.jsp");
 }
 
+phone = phone.replaceAll("[^0-9]", "");
+
 userDAO dao = new userDAO();
 userVO vo = new userVO();
 vo.setName(name);

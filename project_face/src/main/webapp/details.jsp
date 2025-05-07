@@ -15,6 +15,13 @@
 String type = request.getParameter("type");
 String no = request.getParameter("no");
 
+
+if(no == null || no.isEmpty()){
+	response.sendRedirect("mainpage/main.jsp");
+	return;
+}
+
+
 int num = 0;
 String name = "";
 String pay = "";
@@ -78,6 +85,10 @@ if(type.equals("burger")){
 	return;
 }
 
+
+
+
+
 %>
 <!DOCTYPE html>
 	<html>
@@ -92,7 +103,8 @@ if(type.equals("burger")){
 			<a>제품상세보기</a>
 		</div>
 		<form action="shopOk.jsp" method="post">
-		<input tpye="hidden" value="<%= user.getPhone() %>" name="phone">
+		<input type="hidden" value="<%= user == null ?  0 : user.getPhone() %>" name="phone">
+		<input type="hidden" value="<%= type %>" name="type">
 		<div class="product">
 			<div class="productDetail">
 				<img src="./img/burger/gibon.png" class="photo">
