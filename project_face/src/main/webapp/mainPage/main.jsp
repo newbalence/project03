@@ -13,6 +13,6 @@
 			<div class="hand">HandCrafted</div>
 			<div class="make">Burgers & Fries</div>
 		</div>
-		<a class="Menu" onclick="location.href='<%=path %>/menu.jsp'">메뉴보기</a>
+		<a class="Menu" onclick="location.href='<%=path %>/menu/menu.jsp'">메뉴보기</a>
 	</body>
 </html>
