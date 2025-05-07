@@ -101,6 +101,7 @@ body {
     margin-top: 10px;
     cursor: pointer;
     margin-right: 2px;
+    border: 0px;
 }
 .reviewCell{
 	margin-top: 25px;

@@ -1,5 +1,8 @@
 package shoppingList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import db.DBManager;
 
 public class shoppingListDAO extends DBManager {
@@ -14,6 +17,26 @@ public class shoppingListDAO extends DBManager {
 		
 		DBDisConnect();
 		
+	}
+	
+	public List<shoppingListVO> selShopListAll(String phone) {
+		driverLoad();
+		DBConnect();
+		
+		String sql ="";
+		executeQuery(sql);
+		
+		List<shoppingListVO> list = new ArrayList<>();
+		while(next()){
+			shoppingListVO vo = new shoppingListVO();
+			vo.setShoppingListNo(getInt("shoppingListNo"));
+			vo.setPhone(getString("phone"));
+			
+			list.add(vo);
+		}
+		
+		DBDisConnect();
+		return list;
 	}
 	
 	public shoppingListVO selShopListOne(int no) {

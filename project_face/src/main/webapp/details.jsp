@@ -91,6 +91,8 @@ if(type.equals("burger")){
 		<div class="detail">
 			<a>제품상세보기</a>
 		</div>
+		<form action="shopOk.jsp" method="post">
+		<input tpye="hidden" value="<%= user.getPhone() %>" name="phone">
 		<div class="product">
 			<div class="productDetail">
 				<img src="./img/burger/gibon.png" class="photo">
@@ -149,6 +151,7 @@ if(type.equals("burger")){
 				%>
 				<div id="bottomPay">
 					<div class="totalPay">
+						<input type="hidden" value="<%= pay %>" name="pay">
 						<a>총 가격 : <%= pay %> 원</a>
 					</div>
 				</div>
@@ -160,12 +163,13 @@ if(type.equals("burger")){
 				<a onclick="location.href='<%=path%>/pay/payment.jsp'">구매하기</a>
 			</div>
 			<div class="decide">
-				<div class="decision"><a onclick="location.href='<%=path%>/shop.jsp'">장바구니</a></div>
+				<button type="submit" class="decision"><a>장바구니</a></button>
 				<div class="decision"><a onclick="location.href='<%=path%>/menu/<%= type %>.jsp'">취 소 </a></div>
 			</div>
 			<%
 		}
 		%>
+		</form>
 	<!-- <div>
 		<div class="reviewCell">
 			<a class="review">상품평</a>
