@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+sys.path.append(r'C:\Users\USER\git\project03\project_face\python')
 from clas.faceCheck import faceCheck 
 from clas.pgvector_use import UseDatabases
 # from clas.useGPU import tfg

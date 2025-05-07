@@ -5,17 +5,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>제품상세보기</title>
-		<link rel="stylesheet" href="./css/details.css"></link>
-		<script src="./js/jquery-3.7.1.js"></script>
+		<link rel="stylesheet" href="../css/details.css"></link>
+		<script src="../js/jquery-3.7.1.js"></script>
 		</head>
 	<body>
-		<%@ include file="header.jsp" %>
+		<%@ include file="../header.jsp" %>
 		<div class="detail">
 			<a>제품상세보기</a>
 		</div>
 		<div class="product">
 			<div class="productDetail">
-				<img src="./img/burger/gibon.png" class="photo">
+				<img src="../img/burger/gibon.png" class="photo">
 			</div>
 			<div class="select">
 				<div class="productName">
@@ -82,7 +82,7 @@
 		<div class="review-list">
 			<div class="review-info">
 				<div class="info-profile">
-					<img src="./img/profile.jpg" class="profile-photo">
+					<img src="../img/profile.jpg" class="profile-photo">
 					<div class="user-info">
 						<a class="userName">지브리 대유행</a>
 						<div class="starRev">

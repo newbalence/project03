@@ -2,7 +2,7 @@
 <%@page import="point.pointDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 <%
 pointDAO dao = new pointDAO();
 pointVO vo = dao.SelPointOne(user.getPhone());

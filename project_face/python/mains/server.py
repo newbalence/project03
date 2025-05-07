@@ -7,7 +7,7 @@ from aiortc import RTCPeerConnection, RTCSessionDescription
 import aiohttp_cors
 from aiohttp import web
 import sys
-sys.path.append(r'C:\Users\MYCMO\git\project_face\project_face\python')
+sys.path.append(r'C:\Users\USER\git\project03\project_face\python')
 import clas.login as log
 import clas.signup as sig
 from clas.useGPU import tfg

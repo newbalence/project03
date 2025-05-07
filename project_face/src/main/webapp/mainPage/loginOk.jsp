@@ -17,11 +17,11 @@
 	
 	userDAO dao = new userDAO();
 	userVO user = dao.login(phone);
-	if(user != null){
-		session.setAttribute("user", user);
-		
-		response.sendRedirect("main.jsp");
+	if(user == null){
+		response.sendRedirect("login.jsp");
 		return;
 	}
-	response.sendRedirect("login.jsp");
+	session.setAttribute("user", user);
+	
+	response.sendRedirect("main.jsp");
 %>

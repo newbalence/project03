@@ -1,15 +1,29 @@
 package insertData;
 
-import side.sideDAO;
-import side.sideVO;
+import java.util.List;
+
+import user.userDAO;
+import user.userVO;
 
 public class insertQuery {
 
 	public static void main(String[] args) {
 		
+		userDAO dao = new userDAO();
+
+		List<userVO> list = dao.getAllUser();
 		
-		sideDAO dao = new sideDAO();
-		sideVO vo = new sideVO();
+		for(int i = 0; i < list.size(); i++) {
+			userVO vo = list.get(i);
+			
+			String name = vo.getName();
+			String nick = vo.getNick();
+			String phone = vo.getPhone();
+			String birth = vo.getBirth();
+
+			System.out.println(name + nick + phone + birth); 
+			
+		}
 		
 		
 	}

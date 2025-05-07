@@ -8,15 +8,15 @@ public class shoppingDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		int burger = vo.getBuggerNum();
+		int burger = vo.getBurgerNum();
 		int options = vo.getOptionsNum();
 		int drink = vo.getDrinkNum();
 		int side = vo.getDrinkNum();
 		int dessert = vo.getDessertNum();
 		int etc = vo.getEtcNum();
 		
-		String sql = "insert into options(middleOrder, phone";
-		String value = "values(" + vo.getMiddleOrder() + ", " + vo.getPhone() + "";
+		String sql = "insert into options(";
+		String value = "values(";
 		
 		if(burger != 0) {
 			sql += "burgerNum, ";
@@ -66,4 +66,37 @@ public class shoppingDAO extends DBManager {
 		
 		DBDisConnect();
 	}
+	
+	public shoppingVO selShopping(int shopNum) {
+		driverLoad();
+		DBConnect();
+		
+		String sql = "select * from shopping where shoppingType != '2' shoppingNum = " + shopNum;
+		executeQuery(sql);
+		
+		if(next()) {
+			shoppingVO vo = new shoppingVO();
+			vo.setShoppingNum(getInt("shoppingNum"));
+			vo.setBurgerNum(getInt("burgerNum"));
+			vo.setOptionsNum(getInt("optionNum"));
+			vo.setDrinkNum(getInt("drinkNum"));
+			vo.setSideNum(getInt("sideNum"));
+			vo.setDessertNum(getInt("dessertNum"));
+			vo.setEtcNum(getInt("etcNum"));
+			vo.setShoppoingType(getString("shoppingType"));
+			vo.setQuantity(getString("quantity"));
+			vo.setAllPay(getString("allPay"));
+			
+			DBDisConnect();
+			return vo;
+			
+		}
+		
+		DBDisConnect();
+		return null;
+	}
+	
+	
+	
+	
 }

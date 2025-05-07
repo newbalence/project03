@@ -5,37 +5,37 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>MENU</title>
-		<link rel="stylesheet" href="./css/menu.css"></link>
+		<link rel="stylesheet" href="../css/menu.css"></link>
 	</head>
 	<body>
-		<%@ include file="header.jsp" %>
+		<%@ include file="../header.jsp" %>
 		<div class="menu">
-			<img src="./img/menu.jpg" style="width:100%">
+			<img src="../img/menu.jpg" style="width:100%">
 			<a class="Menu">M E N U</a>
 		</div>
 		<div class="">
 			<div class="menuRow">
 				<div class="menu_list">
 					<a onclick="location.href='burger.jsp'" class="name">
-						<img src="./img/burger.jpg" class="menuPhoto"><br>BURGERS</a>
+						<img src="../img/burger.jpg" class="menuPhoto"><br>BURGERS</a>
 				</div>
 				<div class="menu_list">
 					<a onclick="location.href='side.jsp'" class="name">
-						<img src="./img/side.jpg" class="menuPhoto"><br>SIDE</a>
+						<img src="../img/side.jpg" class="menuPhoto"><br>SIDE</a>
 				</div>
 				<div class="menu_list">
 					<a onclick="location.href='drink.jsp'" class="name">
-						<img src="./img/drink.jpg" class="menuPhoto"><br>DRINK</a>
+						<img src="../img/drink.jpg" class="menuPhoto"><br>DRINK</a>
 				</div>
 			</div>
 			<div class="menuRow">
 				<div class="menu_list">
 					<a onclick="location.href='dessert.jsp'" class="name">
-						<img src="./img/dessert.PNG" class="menuPhoto"><br>DESSERT</a>
+						<img src="../img/dessert.PNG" class="menuPhoto"><br>DESSERT</a>
 				</div>
 				<div class="menu_list">
 					<a onclick="location.href='etc.jsp'" class="name">
-						<img src="./img/etc.jpg" class="menuPhoto"><br>ETC</a>
+						<img src="../img/etc.jpg" class="menuPhoto"><br>ETC</a>
 				</div>
 			</div>
 			<!-- <div class="list"> 로그인 했을 때 나타냈음 하는?!

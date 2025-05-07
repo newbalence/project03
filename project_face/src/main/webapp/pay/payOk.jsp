@@ -12,6 +12,8 @@
 <%@page import="org.apache.http.client.entity.*"%>
 
 <%
+	request.setCharacterEncoding("utf-8");
+
 	String secretKey = "DEV482050CDE50403CCBB1B3983FF3C212D33963";
 	KakaoPayReadyRequest requestVO = new KakaoPayReadyRequest();
 	requestVO.setCid("TC0ONETIME");

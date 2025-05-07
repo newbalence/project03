@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from deepface import DeepFace# 이미지 저장 경로
+from deepface import DeepFace
 from realesrgan import RealESRGANer
 import torch
 from basicsr.archs.rrdbnet_arch import RRDBNet

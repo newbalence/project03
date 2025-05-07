@@ -4,22 +4,12 @@ public class shoppingVO {
 	
 	/* 장바구니번호 */ 
 	private int shoppingNum;
-
-
-	/* 주문번호 */ 
-	private int middleOrder;
-
 	
 	/* 장바구니타입 */ 
 	private String shoppoingType;
 	
-	
-	/* 전화번호 */ 
-	private String phone;
-
-	
 	/* 버거 번호 */ 
-	private int buggerNum;
+	private int burgerNum;
 
 
 	/* 옵션번호 */ 
@@ -48,16 +38,6 @@ public class shoppingVO {
 
 	/* 총가격 */ 
 	private String allPay;
-	
-
-	public String getPhone() {
-		return phone;
-	}
-
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
 
 
 	public String getShoppoingType() {
@@ -79,24 +59,18 @@ public class shoppingVO {
 		this.shoppingNum = shoppingNum;
 	}
 
-
-	public int getMiddleOrder() {
-		return middleOrder;
+	public void setburgerNum(int burgerNum) {
+		this.burgerNum = burgerNum;
 	}
 
 
-	public void setMiddleOrder(int middleOrder) {
-		this.middleOrder = middleOrder;
+	public int getBurgerNum() {
+		return burgerNum;
 	}
 
 
-	public int getBuggerNum() {
-		return buggerNum;
-	}
-
-
-	public void setBuggerNum(int buggerNum) {
-		this.buggerNum = buggerNum;
+	public void setBurgerNum(int burgerNum) {
+		this.burgerNum = burgerNum;
 	}
 
 
