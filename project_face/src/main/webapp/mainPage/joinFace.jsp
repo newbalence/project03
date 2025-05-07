@@ -37,17 +37,17 @@ String birth = year + "." + month + "." + day;
 		<div class="container">
 			<div class="join" id="join">회 원 가 입</div>
 			<form action="signupOk.jsp" method="post" onsubmit="return signupCheck()">
-			<input id="name" type="hidden" value="<%= name %>" name="name">
-			<input id="phone" type="hidden" value="<%= phone %>" name="phone">
-			<input id="nick" type="hidden" value="<%= nick %>" name="nick">
-			<input id="birth" type="hidden" value="<%= birth %>" name="birth">
-			<input type="hidden" value="" name="face" id="face">
+				<input id="name" type="hidden" value="<%= name %>" name="name">
+				<input id="phone" type="hidden" value="<%= phone %>" name="phone">
+				<input id="nick" type="hidden" value="<%= nick %>" name="nick">
+				<input id="birth" type="hidden" value="<%= birth %>" name="birth">
+				<input type="hidden" value="" name="face" id="face">
 				<div class="face">
 					<div class="facePhoto"><video id="video" class="videoon"></video></div>
 					<div id="faceText" class="faceCheck">얼굴 식별이 되지 않았습니다.</div>
 					<button type="button" class="btn" onclick="location.href='signup.jsp?name=<%= name %>&phone=<%= phone %>&nick=<%= nick %>&year=<%= year %>&month=<%= month %>&day=<%= day %>'">정보 다시 입력하기</button>
 					<!-- <button class="btn" onclick="return faceReCheck()">다시 촬영하기</button> -->
-					<button class="btn">가입하기</button>
+					<button id="signup" class="btn">가입하기</button>
 				</div>
 			</form>
 		</div>
@@ -73,11 +73,13 @@ String birth = year + "." + month + "." + day;
 					message += "\n생년월일 : " + birth;
 					message += "\n위 정보가 맞습니까?";
 					result = confirm(message)
+					
+					return result;
 				}else{
 					alert("얼굴 식별 우선 해주시기 바랍니다.")
+					
 					return false;
 				}
-				return result;
 			}
 			
 			//자바스크립트로 영상 띄우기
@@ -150,6 +152,7 @@ String birth = year + "." + month + "." + day;
 							$("#faceText").text("얼굴 식별이 확인되었습니다.")
 							faceCheck = true;
 							ws.close()
+							$("#signup").trigger("");
 						}else{
 							$("#faceText").text("얼굴 식별이 되지 않았습니다.")
 						}

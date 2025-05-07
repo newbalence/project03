@@ -24,6 +24,7 @@ body {
     justify-self: center;
 }
 .select{
+	display: grid;
 	width: 300px;
 }
 .productDetail{
@@ -45,7 +46,6 @@ body {
 }
 .selectCell{
 	display: grid;
-    height: 150px;
     margin-top:30px;
     margin-bottom: 30px;
     text-align-last: center;
@@ -57,8 +57,12 @@ body {
 	background-color: #fff;
     font-size: 17px;
     font-weight: 500;
-    margin-bottom: 5px;
     cursor: pointer;
+    height: 45px;
+}
+#bottomPay{
+   	display: flex;
+    align-items: end;
 }
 .totalPay{
 	width: 100%;
@@ -67,6 +71,7 @@ body {
     border-radius: 25px;
     padding: 10px;
     text-align: center;
+    margin-top: 5px;
 }
 .buy{
 	width: 15%;
@@ -96,6 +101,7 @@ body {
     margin-top: 10px;
     cursor: pointer;
     margin-right: 2px;
+    border: 0px;
 }
 .reviewCell{
 	margin-top: 25px;

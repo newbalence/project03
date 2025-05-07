@@ -6,11 +6,7 @@
 <%
  	String phone = request.getParameter("phone");
 	
-	if(phone == null){
-		response.sendRedirect("login.jsp");
-		return;
-	}
-	if(phone.isEmpty()){
+	if(phone == null || phone.isEmpty()){
 		response.sendRedirect("login.jsp");
 		return;
 	}
