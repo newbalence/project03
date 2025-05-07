@@ -1,6 +1,8 @@
 package options;
 
-public class optionsVO {
+import optionList.optionListVO;
+
+public class optionsVO extends optionListVO {
 
 	private int optionsNum;
 
@@ -11,6 +13,48 @@ public class optionsVO {
 	private int addToppingNo;
 
 	private int optionType;
+	
+	private String addToppingName;
+
+	private int addToppingType;
+	
+	private String delToppingName;
+
+	private int delToppingType;
+	
+	
+
+	public String getAddToppingName() {
+		return addToppingName;
+	}
+
+	public void setAddToppingName(String addToppingName) {
+		this.addToppingName = addToppingName;
+	}
+
+	public int getAddToppingType() {
+		return addToppingType;
+	}
+
+	public void setAddToppingType(int addToppingType) {
+		this.addToppingType = addToppingType;
+	}
+
+	public String getDelToppingName() {
+		return delToppingName;
+	}
+
+	public void setDelToppingName(String delToppingName) {
+		this.delToppingName = delToppingName;
+	}
+
+	public int getDelToppingType() {
+		return delToppingType;
+	}
+
+	public void setDelToppingType(int delToppingType) {
+		this.delToppingType = delToppingType;
+	}
 
 	public int getOptionsNum() {
 		return optionsNum;

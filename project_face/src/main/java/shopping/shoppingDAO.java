@@ -72,14 +72,16 @@ public class shoppingDAO extends DBManager {
 	}
 	
 	public List<shoppingVO> selShoppingItems(String[] items) {
-		String item = String.join(",", items);
-		
-		List<shoppingVO> list = new ArrayList<>();
 		driverLoad();
 		DBConnect();
 		
+		String item = String.join(",", items);
+		
+		List<shoppingVO> list = new ArrayList<>();
+		
 		String sql = "select s.*, s2.*, b.burgerName, d.drinkName, s3.sideName, d2.dessertName, e.etcName "; 
-		sql += "from shoppinglist s left join shopping s2 on s.shoppingListNo = s2.shoppingListNo ";
+		sql += "from shoppinglist s ";
+		sql += "left join shopping s2 on s.shoppingListNo = s2.shoppingListNo ";
 		sql += "left join burger b on s2.burgerNum = b.burgerNum ";
 		sql += "left join drink d on s2.drinkNum = d.drinkNum ";
 		sql += "left join side s3 on s2.sideNum = s3.sideNum ";

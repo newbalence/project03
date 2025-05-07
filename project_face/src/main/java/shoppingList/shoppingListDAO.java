@@ -45,8 +45,7 @@ public class shoppingListDAO extends DBManager {
 		
 		List<shoppingVO> list = new ArrayList<>();
 		
-		String sql = "SELECT s.*, s2.*, b.burgerName, d.drinkName, s3.sideName, d2.dessertName, e.etcName, ";
-		sql += "o.optionlistNo, opt.addToppingNo, at.addToppingName, opt.delToppingNo, dt.delToppingName ";
+		String sql = "SELECT s.*, s2.*, b.burgerName, d.drinkName, s3.sideName, d2.dessertName, e.etcName ";
 		sql += "FROM shoppinglist s ";
 		sql += "LEFT JOIN shopping s2 ON s.shoppingListNo = s2.shoppingListNo ";
 		sql += "LEFT JOIN burger b ON s2.burgerNum = b.burgerNum ";
@@ -54,10 +53,6 @@ public class shoppingListDAO extends DBManager {
 		sql += "LEFT JOIN side s3 ON s2.sideNum = s3.sideNum ";
 		sql += "LEFT JOIN dessert d2 ON s2.dessertNum = d2.dessertNum ";
 		sql += "LEFT JOIN etc e ON s2.etcNum = e.etcNum ";
-		sql += "LEFT JOIN optionlist o ON s2.optionlistNo = o.optionlistNo ";
-		sql += "LEFT JOIN options opt ON o.optionlistNo = opt.optionlistNo ";
-		sql += "LEFT JOIN addTopping at ON opt.addToppingNo = at.addToppingNo ";
-		sql += "LEFT JOIN delTopping dt ON opt.delToppingNo = dt.delToppingNo ";
 		sql += "WHERE s.phone = '" + phone + "';";
 
 		
@@ -73,8 +68,6 @@ public class shoppingListDAO extends DBManager {
 			String etcName = getString("etcName");
 			String quantity = getString("quantity");
 			String allPay = getString("allPay");
-			String addToppingName = getString("addToppingName");
-			String delToppingName = getString("delToppingName");
 			
 			vo.setShoppingListNo(shopListNo);
 			vo.setShoppingNum(shoppingNum);
