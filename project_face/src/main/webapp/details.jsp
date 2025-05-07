@@ -1,3 +1,8 @@
+<%@page import="delTopping.delToppingVO"%>
+<%@page import="delTopping.delToppingDAO"%>
+<%@page import="addTopping.addToppingVO"%>
+<%@page import="java.util.List"%>
+<%@page import="addTopping.addToppingDAO"%>
 <%@page import="side.sideVO"%>
 <%@page import="etc.etcVO"%>
 <%@page import="drink.drinkVO"%>
@@ -86,9 +91,15 @@ if(type.equals("burger")){
 }
 
 
+addToppingDAO add = new addToppingDAO();
+List<addToppingVO> addTopping = add.selToppingAll();
+List<addToppingVO> addSauce = add.selSauceAll();
 
 
-
+delToppingDAO del = new delToppingDAO();
+List<delToppingVO> delTopping= del.selToppingAll();
+List<delToppingVO> delSauce= del.selSauceAll();
+List<delToppingVO> drink = del.selDrinkAll();
 %>
 <!DOCTYPE html>
 	<html>
@@ -120,30 +131,47 @@ if(type.equals("burger")){
 						<div class="selectCell">
 							<select class="selectBar">
 								<option>토핑추가</option>
-								<option>패티 추가 +5,000</option>
-								<option>치즈추가 +3,000</option>
-								<option>베이컨 +3,000</option>
-								<option>치킨추가 +5,000</option>
-								<option>새우추가 5,000</option>
-								<option>해시브라운 +3,000</option>
-								<option>통모짜추가 +3,000</option>
+								<%
+								for(int i = 0; i < addTopping.size(); i++){
+									addToppingVO vo = addTopping.get(i);
+									%>
+									<option value="<%= vo.getAddToppingPay() %>"><%= vo.getAddToppingName() %> 추가 +<%= vo.getAddToppingPay() %></option>
+									<%
+								}
+								%>
 							</select>
 							<select class="selectBar">
 								<option>소스추가</option>
-								<option>BBQ 소스+500</option>
-								<option>치폴레 소스 +500</option>
-								<option>스리라차 +500</option>
-								<option>랜치소스 +500</option>
-								<option>머스타드 +500</option>
-								<option>타바스코 +3,000</option>
+								<%
+								for(int i = 0; i < addSauce.size(); i++){
+									addToppingVO vo = addSauce.get(i);
+									%>
+									<option value="<%= vo.getAddToppingPay() %>"><%= vo.getAddToppingName() %> 추가 +<%= vo.getAddToppingPay() %></option>
+									<%
+								}
+								%>
 							</select>
 							<select class="selectBar">
 								<option>토핑빼기</option>
-								<option>토마토</option>
-								<option>양파</option>
-								<option>베이컨</option>
-								<option>치즈</option>
-								<option>피클</option>
+								<%
+								for (int i = 0; i < delTopping.size(); i++){
+									delToppingVO vo = delTopping.get(i);
+									%>
+									<option value="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %> 제외 </option>
+									<%
+								}
+								%>
+							</select>
+							<select class="selectBar">
+								<option>소스빼기</option>
+								<%
+								for (int i = 0; i < delSauce.size(); i++){
+									delToppingVO vo = delSauce.get(i);
+									%>
+									<option value="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %> 제외 </option>
+									<%
+								}
+								%>
 							</select>
 						</div>
 						<%
@@ -152,10 +180,14 @@ if(type.equals("burger")){
 						<div class="selectCell">
 							<select class="selectBar">
 								<option>음료옵션</option>
-								<option>ICE</option>
-								<option>HOT</option>
-								<option>얼음많이</option>
-								<option>얼음조금</option>
+								<%
+								for(int i = 0; i < drink.size(); i++){
+									delToppingVO vo = drink.get(i);
+									%>
+									<option value="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %></option>
+									<%
+								}
+								%>
 							</select>
 						</div>
 						<%
@@ -171,9 +203,6 @@ if(type.equals("burger")){
 		</div>
 		<% if(user != null){
 			%>
-			<div class="buy">
-				<a onclick="location.href='<%=path%>/pay/payment.jsp'">구매하기</a>
-			</div>
 			<div class="decide">
 				<button type="submit" class="decision"><a>장바구니</a></button>
 				<div class="decision"><a onclick="location.href='<%=path%>/menu/<%= type %>.jsp'">취 소 </a></div>

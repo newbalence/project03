@@ -12,7 +12,7 @@
 	<body>
 		<div class="login_container">
 			<div class="login" id="login">로그인</div>
-			<form action="loginOk.jsp" method="post">
+			<form action="loginOk.jsp" method="post" onsubmit="return formSubmit()">
 				<div class="face_Photo">
 					<div id="videoMent"class="changevideooff">얼굴인식으로 로그인하려면 정면을 바라봐 주세요 <br> (카메라를 켜주세요)</div>
 					<video id="video" class="videooff"></video>
@@ -35,6 +35,21 @@
 		</div>
 	</body>
 	<script>
+		var numRegex = /[^0-9]/g;
+		
+		function formSubmit(){
+			let phone = $("#phoneNum");
+			rephone = phone.val().replace(numRegex, "")
+			
+			if (rephone.length > 11) {
+				phone.val("").focus();
+		        alert('글자수는 11자까지 입력 가능합니다.');
+		        return false;
+		    };
+		    phone.val(rephone)
+			return true;
+		}
+		
 		const host = window.location.hostname;
 		
 		function changeCam(e){

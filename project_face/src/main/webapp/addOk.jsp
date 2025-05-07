@@ -1,3 +1,7 @@
+<%@page import="delTopping.delToppingVO"%>
+<%@page import="addTopping.addToppingVO"%>
+<%@page import="addTopping.addToppingDAO"%>
+<%@page import="delTopping.delToppingDAO"%>
 <%@page import="etc.etcDAO"%>
 <%@page import="dessert.dessertDAO"%>
 <%@page import="drink.drinkDAO"%>
@@ -39,6 +43,7 @@
 	String type = multi.getParameter("add");
 	String food = multi.getParameter("food");
 	String pay = multi.getParameter("pay");
+	String topping = multi.getParameter("topping");
 	
 	if(type == null || food == null || pay == null){
 		response.sendRedirect("management.jsp");
@@ -117,6 +122,25 @@
 		
 		dao.insEtc(vo);
 		response.sendRedirect("menu/etc.jsp");
+	}else if(type.equals("addTopping")){
+		addToppingDAO dao = new addToppingDAO();
+		
+		addToppingVO vo = new addToppingVO();
+		vo.setAddToppingName(food);
+		vo.setAddToppingPay(pay);
+		vo.setAddToppingType(Integer.parseInt(topping));
+		
+		dao.insAdd(vo);
+		response.sendRedirect("menu/menu.jsp");
+	}else if(type.equals("delTopping")){
+		delToppingDAO dao = new delToppingDAO();
+		
+		delToppingVO vo = new delToppingVO();
+		vo.setDelToppingName(food);
+		vo.setDelToppingType(Integer.parseInt(topping));
+		
+		dao.insDel(vo);
+		response.sendRedirect("menu/menu.jsp");
 	}
 	
 	

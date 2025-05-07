@@ -4,57 +4,53 @@ import db.DBManager;
 
 public class optionsDAO extends DBManager {
 	
-	public void insOption(optionsVO vo){
+	public void insOption(optionsVO vo) {
 		driverLoad();
 		DBConnect();
 		
-		int burger = vo.getBurgerNum();
-		int side = vo.getSideNum();
-		int drink = vo.getDrinkNum();
+		int add = vo.getAddToppingNo();
+		int del = vo.getDelToppingNo();
 		
-		String sql = "insert into options(";
-		String value = "values(";
+		String sql ="insert into options(optionListNo";
+		String val = "values(" + vo.getOptionListNo();
 		
-		if(burger != 0) {
-			sql += "burgerNum, ";
-			value += burger + ", ";
+		if(add != 0) {
+			sql += ", addToppingNo";
+			val += ", " + add;
 		}
 		
-		if(side != 0) {
-			sql += "sideNum, ";
-			value += side + ", ";
+		if(del != 0) {
+			sql += ", delToppingNO";
+			val += ", " + del;
 		}
 		
-		if(drink != 0) {
-			sql += "drinkNum, ";
-			value += drink + ", ";
-		}
+		sql += ") ";
+		val += ")";
 		
-		sql +="optionType) ";
-		value +="'1')";
-		
-		sql = sql + value;
+		sql = sql + val;
 		executeUpdate(sql);
 		
 		DBDisConnect();
+		
 	}
 	
-	public optionsVO selOptionOne(int num) {
+	public optionsVO selOptionOne(String no) {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "select * from option where optionsNum = " + num;
+		String sql = "select * from optioins where optionsNum = " + no;
 		executeQuery(sql);
 		
 		if(next()) {
 			optionsVO vo = new optionsVO();
-			vo.setBurgerNum(getInt("burgetNum"));
-			vo.setSideNum(getInt("sideNum"));
-			vo.setDrinkNum(getInt("drinkNum"));
-			vo.setOptionType(getString("optionType"));
+			vo.setAddToppingNo(getInt("addToppingNo"));
+			vo.setDelToppingNo(getInt("delToppingNo"));
+			vo.setOptionListNo(getInt("optionListNo"));
+			vo.setOptionsNum(getInt("optionsNum"));
 			
 			DBDisConnect();
 			return vo;
+			
 		}
 		
 		DBDisConnect();
@@ -62,16 +58,39 @@ public class optionsDAO extends DBManager {
 		
 	}
 	
-	public void deloption(int num) {
+	public optionsVO selOptionAll(String no) {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "update options set optionType = '2' where optionsNum = " + num;
+		String sql = "select * from optioins where optionListNo = " + no;
+		executeQuery(sql);
+		
+		if(next()) {
+			optionsVO vo = new optionsVO();
+			vo.setAddToppingNo(getInt("addToppingNo"));
+			vo.setDelToppingNo(getInt("delToppingNo"));
+			vo.setOptionListNo(getInt("optionListNo"));
+			vo.setOptionsNum(getInt("optionsNum"));
+			
+			DBDisConnect();
+			return vo;
+			
+		}
+		
+		DBDisConnect();
+		return null;
+		
+	}
+	
+	public void delOptoin(String no) {
+		driverLoad();
+		DBConnect();
+		
+		String sql = "update options set optionType = 2 where optionsNum = " + no;
 		executeUpdate(sql);
 		
 		DBDisConnect();
+		
 	}
-	
-	
 	
 }

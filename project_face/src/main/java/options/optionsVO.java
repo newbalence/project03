@@ -1,72 +1,56 @@
 package options;
 
 public class optionsVO {
-	
-	/* 옵션번호 */ 
+
 	private int optionsNum;
 
+	private int optionListNo;
 
-	/* 버거 번호 */ 
-	private int burgerNum;
+	private int delToppingNo;
 
+	private int addToppingNo;
 
-	/* 사이드번호 */ 
-	private int sideNum;
-
-
-	/* 음료번호 */ 
-	private int drinkNum;
-
-	private String optionType;
-
-	public String getOptionType() {
-		return optionType;
-	}
-
-
-	public void setOptionType(String optionType) {
-		this.optionType = optionType;
-	}
-
+	private int optionType;
 
 	public int getOptionsNum() {
 		return optionsNum;
 	}
 
-
 	public void setOptionsNum(int optionsNum) {
 		this.optionsNum = optionsNum;
 	}
 
-
-	public int getBurgerNum() {
-		return burgerNum;
+	public int getOptionListNo() {
+		return optionListNo;
 	}
 
-
-	public void setBurgerNum(int burgerNum) {
-		this.burgerNum = burgerNum;
+	public void setOptionListNo(int optionListNo) {
+		this.optionListNo = optionListNo;
 	}
 
-
-	public int getSideNum() {
-		return sideNum;
+	public int getDelToppingNo() {
+		return delToppingNo;
 	}
 
-
-	public void setSideNum(int sideNum) {
-		this.sideNum = sideNum;
+	public void setDelToppingNo(int delToppingNo) {
+		this.delToppingNo = delToppingNo;
 	}
 
-
-	public int getDrinkNum() {
-		return drinkNum;
+	public int getAddToppingNo() {
+		return addToppingNo;
 	}
 
-
-	public void setDrinkNum(int drinkNum) {
-		this.drinkNum = drinkNum;
+	public void setAddToppingNo(int addToppingNo) {
+		this.addToppingNo = addToppingNo;
 	}
 
+	public int getOptionType() {
+		return optionType;
+	}
 
+	public void setOptionType(int optionType) {
+		this.optionType = optionType;
+	}
+
+	
 }

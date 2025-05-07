@@ -30,15 +30,16 @@ if(user == null || user.getUserType() != 0){
 				</div>
 				<div class="select">
 					<div class="selectCell">
-						<select class="selectBar" name="add">
+						<select id="menu"class="selectBar" name="add">
 							<option value="burger">햄버거 추가</option>
-							<!-- <option value="option">옵션 추가</option> -->
-							<option value="side">사이드 추가</option>
-							<option value="drink">음료 추가</option>
-							<option value="dessert">디저트 추가</option>
-							<option value="etc">etc 추가</option>
+							<option id="side" value="side">사이드 추가</option>
+							<option id="drink" value="drink">음료 추가</option>
+							<option id="dessert" value="dessert">디저트 추가</option>
+							<option id="etc" value="etc">etc 추가</option>
+							<option id="addTopping" value="addTopping">토핑 추가</option>
+							<option id="delTopping" value="delTopping">토핑 빼기</option>
 						</select>
-						<img src="<%=path %>/img/smilePlus.png" class="smilephoto">
+						<%-- <img src="<%=path %>/img/smilePlus.png" class="smilephoto"> --%>
 						<div class="add_food"><a class="food">음식명 : </a> <input type="text" class="option" name="food" placeholder="음식명 : "></div>
 						<div class="add_pay"><a class="food">가 격 : </a><input type="text" class="option" name="pay" placeholder="가격 : "></div>
 					</div>
@@ -51,6 +52,11 @@ if(user == null || user.getUserType() != 0){
 	</div>
 	</body>
 	<script>
+		$("#menu").change(function(this){
+			console.log(this.value)
+		});
+		
+		
 		$("#file").change(function(e) {
 		    console.log($("#file")[0].files)
 		    const files = $("#file")[0].files;

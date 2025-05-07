@@ -19,7 +19,7 @@ List<burgerVO> list = dao.selBurgerAll();
 
 		<div class="main_content">
 			<div class="burger">burger</div>
-			<div class="listrow">
+			<%-- <div class="listrow">
 				<h2 class="goods">추천상품</h2>
 			</div>
 			<div class="listrow">
@@ -51,7 +51,7 @@ List<burgerVO> list = dao.selBurgerAll();
 							<img src="../img/burger/shrimp.png" class="photo"><br>새우버거</a>
 					</div>
 				</div>
-			</div>
+			</div> --%>
 			<div class="listrow">
 				<h2 class="goods">일반상품</h2>
 			</div>
