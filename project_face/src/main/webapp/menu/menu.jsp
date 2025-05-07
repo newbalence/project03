@@ -16,25 +16,25 @@
 		<div class="">
 			<div class="menuRow">
 				<div class="menu_list">
-					<a onclick="location.href='burger.jsp'" class="name">
+					<a onclick="location.href='<%=path%>/menu/burger.jsp'" class="name">
 						<img src="../img/burger.jpg" class="menuPhoto"><br>BURGERS</a>
 				</div>
 				<div class="menu_list">
-					<a onclick="location.href='side.jsp'" class="name">
+					<a onclick="location.href='<%=path%>/menuside.jsp'" class="name">
 						<img src="../img/side.jpg" class="menuPhoto"><br>SIDE</a>
 				</div>
 				<div class="menu_list">
-					<a onclick="location.href='drink.jsp'" class="name">
+					<a onclick="location.href='<%=path%>/menudrink.jsp'" class="name">
 						<img src="../img/drink.jpg" class="menuPhoto"><br>DRINK</a>
 				</div>
 			</div>
 			<div class="menuRow">
 				<div class="menu_list">
-					<a onclick="location.href='dessert.jsp'" class="name">
+					<a onclick="location.href='<%=path%>/menudessert.jsp'" class="name">
 						<img src="../img/dessert.PNG" class="menuPhoto"><br>DESSERT</a>
 				</div>
 				<div class="menu_list">
-					<a onclick="location.href='etc.jsp'" class="name">
+					<a onclick="location.href='<%=path%>/menuetc.jsp'" class="name">
 						<img src="../img/etc.jpg" class="menuPhoto"><br>ETC</a>
 				</div>
 			</div>

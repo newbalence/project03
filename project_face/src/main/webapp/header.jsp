@@ -25,11 +25,11 @@
 				</div>
 			</div>
 		<div class="kind">
-			<a onclick="location.href='<%=path %>/burger.jsp'">burger</a>
-			<a onclick="location.href='<%=path %>/side.jsp'">side</a>
-			<a onclick="location.href='<%=path %>/drink.jsp'">drink</a>
-			<a onclick="location.href='<%=path %>/dessert.jsp'">dessert</a>
-			<a onclick="location.href='<%=path %>/etc.jsp'">etc</a>				
+			<a onclick="location.href='<%=path %>/menu/burger.jsp'">burger</a>
+			<a onclick="location.href='<%=path %>/menu/side.jsp'">side</a>
+			<a onclick="location.href='<%=path %>/menu/drink.jsp'">drink</a>
+			<a onclick="location.href='<%=path %>/menu/dessert.jsp'">dessert</a>
+			<a onclick="location.href='<%=path %>/menu/etc.jsp'">etc</a>				
 		</div>
 		<div class="Btn">
 			<%

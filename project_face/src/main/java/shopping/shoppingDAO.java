@@ -15,7 +15,7 @@ public class shoppingDAO extends DBManager {
 		int dessert = vo.getDessertNum();
 		int etc = vo.getEtcNum();
 		
-		String sql = "insert into options(";
+		String sql = "insert into shopping(";
 		String value = "values(";
 		
 		if(burger != 0) {
@@ -48,8 +48,8 @@ public class shoppingDAO extends DBManager {
 			value += etc + ", ";
 		}
 		
-		sql +="shoppingType, quantity, allpay) ";
-		value += "'1', '"  + vo.getQuantity() + "', '" + vo.getAllPay() + "')";
+		sql +="quantity, allpay) ";
+		value += "'"  + vo.getQuantity() + "', '" + vo.getAllPay() + "')";
 		
 		sql = sql + value;
 		executeUpdate(sql);
@@ -61,7 +61,7 @@ public class shoppingDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "update shopping set shoppingType = '2' where shoppingNum = " + num;
+		String sql = "delete from shopping where shoppingNum = " + num;
 		executeUpdate(sql);
 		
 		DBDisConnect();
@@ -71,19 +71,19 @@ public class shoppingDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "select * from shopping where shoppingType != '2' shoppingNum = " + shopNum;
+		String sql = "select * from shopping where shoppingNum = " + shopNum;
 		executeQuery(sql);
 		
 		if(next()) {
 			shoppingVO vo = new shoppingVO();
 			vo.setShoppingNum(getInt("shoppingNum"));
+			vo.setShoppingListNo(getInt("shoppingListNo"));
 			vo.setBurgerNum(getInt("burgerNum"));
 			vo.setOptionsNum(getInt("optionNum"));
 			vo.setDrinkNum(getInt("drinkNum"));
 			vo.setSideNum(getInt("sideNum"));
 			vo.setDessertNum(getInt("dessertNum"));
 			vo.setEtcNum(getInt("etcNum"));
-			vo.setShoppoingType(getString("shoppingType"));
 			vo.setQuantity(getString("quantity"));
 			vo.setAllPay(getString("allPay"));
 			

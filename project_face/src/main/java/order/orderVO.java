@@ -1,10 +1,10 @@
-package shopping;
+package order;
 
-public class shoppingVO {
+public class orderVO {
 
-	private int shoppingNum;
+	private int orderNum;
 
-	private int shoppingListNo;
+	private int orderListNo;
 
 	private int burgerNum;
 
@@ -18,24 +18,34 @@ public class shoppingVO {
 
 	private int etcNum;
 
+	private int orderType;
+	
 	private String quantity;
 
 	private String allPay;
 
-	public int getShoppingNum() {
-		return shoppingNum;
+	public int getOrderType() {
+		return orderType;
 	}
 
-	public void setShoppingNum(int shoppingNum) {
-		this.shoppingNum = shoppingNum;
+	public void setOrderType(int orderType) {
+		this.orderType = orderType;
 	}
 
-	public int getShoppingListNo() {
-		return shoppingListNo;
+	public int getOrderNum() {
+		return orderNum;
 	}
 
-	public void setShoppingListNo(int shoppingListNo) {
-		this.shoppingListNo = shoppingListNo;
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
+	}
+
+	public int getOrderListNo() {
+		return orderListNo;
+	}
+
+	public void setOrderListNo(int orderListNo) {
+		this.orderListNo = orderListNo;
 	}
 
 	public int getBurgerNum() {
@@ -101,8 +111,8 @@ public class shoppingVO {
 	public void setAllPay(String allPay) {
 		this.allPay = allPay;
 	}
-
-
+	
+	
 
 
 }

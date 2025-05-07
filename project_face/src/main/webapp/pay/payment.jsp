@@ -13,7 +13,7 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 	<head>
 		<meta charset="UTF-8">
 		<title>결재하기</title>
-		<link rel="stylesheet" href="./css/payment.css"></link>
+		<link rel="stylesheet" href="../css/payment.css"></link>
 	</head>
 	<body>
 		<div class="payment">
@@ -21,7 +21,7 @@ pointVO vo = dao.SelPointOne(user.getPhone());
 		</div>
 		<div>
 		<div class="point">
-			<a>보유 포인트 : <%= vo.getPoint() %> P</a>
+			<a>보유 포인트 : <%= vo.getPoint() > 0 ? vo.getPoint() : 0  %> P</a>
 			<a class="Point_">적립예정 포인트 : 500 P</a>
 		</div>
 		<table>

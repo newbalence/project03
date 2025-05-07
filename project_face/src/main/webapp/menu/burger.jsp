@@ -21,29 +21,29 @@
 			<div class="listrow">
 				<div class="listbox">
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/gibon.png" class="photo"><br>클래식 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/bulgogi.png" class="photo"><br>불고기 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/cheese.png" class="photo"><br>치즈 버거</a>
 					</div>
 				</div>
 				<div class="listbox">
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/chiken.png" class="photo"><br>치킨 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/bacon.png" class="photo"><br>베이컨 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/shrimp.png" class="photo"><br>새우버거</a>
 					</div>
 				</div>
@@ -54,25 +54,25 @@
 			<div class="listrow">
 				<div class="listbox">
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/gibon.png" class="photo"><br>클래식 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/bulgogi.png" class="photo"><br>불고기 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/cheese.png" class="photo"><br>치즈 버거</a>
 					</div>
 				</div>
 				<div class="listbox">
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/chiken.png" class="photo"><br>치킨 버거</a>
 					</div>
 					<div class="list">
-						<a onclick="location.href='details.jsp'" class="name">
+						<a onclick="location.href='<%=path%>/details.jsp'" class="name">
 							<img src="../img/burger/bacon.png" class="photo"><br>베이컨 버거</a>
 					</div>
 					<div class="list">
