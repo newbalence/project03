@@ -25,7 +25,7 @@ List<sideVO> list = dao.selSideAll();
 					%>
 					<div class="side_list">
 						<a onclick="location.href='<%=path%>/details.jsp?type=side&no=<%= vo.getSideNum() %>'" class="name">
-							<img src="../img/side/french.png" class="sidePhoto"><br><%= vo.getSideName() %></a>
+							<img src="<%=request.getContextPath()%>/menu/<%= vo.getSideImgName() %>" class="sidePhoto"><br><%= vo.getSideName() %></a>
 					</div>
 					<%
 				}

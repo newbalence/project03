@@ -63,7 +63,7 @@ List<burgerVO> list = dao.selBurgerAll();
 							%>
 							<div class="list">
 								<a onclick="location.href='<%=path%>/details.jsp?type=burger&no=<%=vo.getBurgerNum() %>'" class="name">
-									<img src="../img/burger/bulgogi.png" class="photo"><br><%= vo.getBurgerName() %></a>
+									<img src="<%=request.getContextPath()%>/menu/<%= vo.getBurgerImgName() %>" class="photo"><br><%= vo.getBurgerName() %></a>
 							</div>
 							
 							<%

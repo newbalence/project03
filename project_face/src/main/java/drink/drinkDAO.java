@@ -47,6 +47,7 @@ public class drinkDAO extends DBManager {
 			vo.setDrinkNum(getInt("drinkNum"));
 			vo.setDrinkName(getString("drinkName"));
 			vo.setDrinkPay(getString("drinkPay"));
+			vo.setDrinkImgName(getString("drink_img_name"));
 			
 			list.add(vo);
 		}
@@ -67,6 +68,7 @@ public class drinkDAO extends DBManager {
 			vo.setDrinkNum(getInt("drinkNum"));
 			vo.setDrinkName(getString("drinkName"));
 			vo.setDrinkPay(getString("drinkPay"));
+			vo.setDrinkImgName(getString("drink_img_name"));
 			
 			return vo;
 		}

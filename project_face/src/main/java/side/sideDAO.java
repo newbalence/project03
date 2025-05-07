@@ -49,6 +49,7 @@ public class sideDAO extends DBManager {
 			vo.setSideNum(getInt("sideNum"));
 			vo.setSideName(getString("sideName"));
 			vo.setSidePay(getString("sidePay"));
+			vo.setSideImgName(getString("side_img_name"));
 			list.add(vo);
 		}
 		DBDisConnect();
@@ -68,6 +69,7 @@ public class sideDAO extends DBManager {
 			vo.setSideNum(getInt("sideNum"));
 			vo.setSideName(getString("sideName"));
 			vo.setSidePay(getString("sidePay"));
+			vo.setSideImgName(getString("side_img_name"));
 			
 			DBDisConnect();
 			return vo;

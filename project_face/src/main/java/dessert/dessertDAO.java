@@ -47,6 +47,7 @@ public class dessertDAO extends DBManager {
 			vo.setDessertNum(getInt("dessertNum"));
 			vo.setDessertName(getString("dessertName"));
 			vo.setDessertPay(getString("dessertPay"));
+			vo.setDessertImgName(getString("dessert_img_name"));
 			list.add(vo);
 		}
 		DBDisConnect();
@@ -66,6 +67,7 @@ public class dessertDAO extends DBManager {
 			vo.setDessertNum(getInt("dessertNum"));
 			vo.setDessertName(getString("dessertName"));
 			vo.setDessertPay(getString("dessertPay"));
+			vo.setDessertImgName(getString("dessert_img_name"));
 			
 			return vo;
 		}

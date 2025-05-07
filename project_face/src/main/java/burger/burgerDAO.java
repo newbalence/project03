@@ -47,6 +47,7 @@ public class burgerDAO extends DBManager {
 				vo.setBurgerNum(getInt("burgerNum"));
 				vo.setBurgerName(getString("burgerName"));
 				vo.setBurgerPay(getString("burgerPay"));
+				vo.setBurgerImgName(getString("burger_img_name"));
 				list.add(vo);
 			}
 			DBDisConnect();
@@ -63,9 +64,10 @@ public class burgerDAO extends DBManager {
 			
 			if(next()) {
 				burgerVO vo = new burgerVO();
-				vo.setBurgerNum(getInt("bugerNum"));
+				vo.setBurgerNum(getInt("burgerNum"));
 				vo.setBurgerName(getString("burgerName"));
 				vo.setBurgerPay(getString("burgerPay"));
+				vo.setBurgerImgName(getString("burger_img_name"));
 				
 				return vo;
 			}

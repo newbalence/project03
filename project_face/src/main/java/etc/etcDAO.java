@@ -47,6 +47,7 @@ public class etcDAO extends DBManager {
 			vo.setEtcNum(getInt("etcNum"));
 			vo.setEtcName(getString("etcName"));
 			vo.setEtcPay(getString("etcPay"));
+			vo.setEtcImgName(getString("etc_img_name"));
 			
 			list.add(vo);
 		}
@@ -67,6 +68,7 @@ public class etcDAO extends DBManager {
 			vo.setEtcNum(getInt("etcNum"));
 			vo.setEtcName(getString("etcName"));
 			vo.setEtcPay(getString("etcPay"));
+			vo.setEtcImgName(getString("etc_img_name"));
 			
 			return vo;
 		}

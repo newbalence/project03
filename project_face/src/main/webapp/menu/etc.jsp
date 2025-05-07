@@ -25,7 +25,7 @@ List<etcVO> list = dao.selEtcAll();
 						%>
 						<div class="etc_list">
 							<a onclick="location.href='<%=path%>/details.jsp?type=etc&no=<%= vo.getEtcNum() %>'" class="name">
-								<img src="../img/etc/berryshake.png" class="etcPhoto"><br><%= vo.getEtcName() %></a>
+								<img src="<%=request.getContextPath()%>/menu/<%= vo.getEtcImgName() %>" class="etcPhoto"><br><%= vo.getEtcName() %></a>
 						</div>		
 						<%
 					}
