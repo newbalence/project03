@@ -116,6 +116,7 @@ List<delToppingVO> drink = del.selDrinkAll();
 		<form action="shopOk.jsp" method="post" onsubmit="return order()">
 		<input type="hidden" value="<%= user == null ?  0 : user.getPhone() %>" name="phone">
 		<input type="hidden" value="<%= type %>" name="type">
+		<input type="hidden" value="<%= no %>" name="no">
 		<div class="product">
 			<div class="productDetail">
 				<img src="<%=request.getContextPath()%>/menu/<%= imgName %>" class="photo">
@@ -130,65 +131,70 @@ List<delToppingVO> drink = del.selDrinkAll();
 						%>
 						<div class="selectCell">
 							<select class="selectBar" id="addTopping" name="addTopping">
-								<option value = "0">토핑추가</option>
+								<option value = "0" data-no="">토핑추가</option>
 								<%
 								for(int i = 0; i < addTopping.size(); i++){
 									addToppingVO vo = addTopping.get(i);
 									%>
-									<option value="<%= vo.getAddToppingPay() %>"><%= vo.getAddToppingName() %> 추가 +<%= vo.getAddToppingPay() %></option>
+									<option value="<%= vo.getAddToppingPay() %>" data-no="<%= vo.getAddToppingNo() %>"><%= vo.getAddToppingName() %> 추가 +<%= vo.getAddToppingPay() %></option>
 									<%
 								}
 								%>
 							</select>
+							<input type="hidden" name="addToppingNo" id="addToppingNo">
 							<select class="selectBar" id="addSauce" name="addSauce">
-								<option value = "0">소스추가</option>
+								<option value = "0" data-no="">소스추가</option>
 								<%
 								for(int i = 0; i < addSauce.size(); i++){
 									addToppingVO vo = addSauce.get(i);
 									%>
-									<option value="<%= vo.getAddToppingPay() %>"><%= vo.getAddToppingName() %> 추가 +<%= vo.getAddToppingPay() %></option>
+									<option value="<%= vo.getAddToppingPay() %>" data-no="<%= vo.getAddToppingNo() %>"><%= vo.getAddToppingName() %> 추가 +<%= vo.getAddToppingPay() %></option>
 									<%
 								}
 								%>
 							</select>
+							<input type="hidden" name="addSauceNo" id="addSauceNo">
 							<select class="selectBar" id="delTopping" name="delTopping">
-								<option value = "0">토핑빼기</option>
+								<option value = "0" data-no="">토핑빼기</option>
 								<%
 								for(int i = 0; i < delTopping.size(); i++){
 									delToppingVO vo = delTopping.get(i);
 									%>
-									<option value="<%= 0 %>"><%= vo.getDelToppingName() %> 제외 </option>
+									<option value="<%= 0 %>" data-no="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %> 제외 </option>
 									<%
 								}
 								%>
 							</select>
+							<input type="hidden" name="delToppingNo" id="delToppingNo">
 							<select class="selectBar" id="delSauce" name="delSauce">
-								<option value = "0">소스빼기</option>
+								<option value = "0" data-no="">소스빼기</option>
 								<%
 								for (int i = 0; i < delSauce.size(); i++){
 									delToppingVO vo = delSauce.get(i);
 									%>
-									<option value="<%= 0 %>"><%= vo.getDelToppingName() %> 제외 </option>
+									<option value="<%= 0 %>" data-no="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %> 제외 </option>
 									<%
 								}
 								%>
 							</select>
+							<input type="hidden" name="delSauceNo" id="delSauceNo">
 						</div>
 						<%
 					}else if(type.equals("drink")){
 						%>
 						<div class="selectCell">
 							<select class="selectBar" id="drink" name="drink">
-								<option>음료옵션</option>
+								<option value = "0" data-no="">음료옵션</option>
 								<%
 								for(int i = 0; i < drink.size(); i++){
 									delToppingVO vo = drink.get(i);
 									%>
-									<option value="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %></option>
+									<option value="<%= 0 %>" data-no="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %></option>
 									<%
 								}
 								%>
 							</select>
+							<input type="hidden" name="drinkNo" id="drinkNo">
 						</div>
 						<%
 					}
@@ -261,7 +267,13 @@ List<delToppingVO> drink = del.selDrinkAll();
 			let totalPrice = price;
 			$("select").each(function(index, element){
 				totalPrice += parseInt($(element).val());
+				
+				let selectedNo = $(this).find("option:selected").data("no") || "";
+			    let id = $(this).attr("id"); // ex: addTopping
+			    $("#" + id + "No").val(selectedNo);
 			});
+			
+			
 			$("#pay").val(totalPrice )
 			$("#pay").next().text("총 가격 : " + (totalPrice) +  " 원")
 		})

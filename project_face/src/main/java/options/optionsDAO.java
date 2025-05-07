@@ -1,5 +1,8 @@
 package options;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import db.DBManager;
 
 public class optionsDAO extends DBManager {
@@ -58,27 +61,27 @@ public class optionsDAO extends DBManager {
 		
 	}
 	
-	public optionsVO selOptionAll(String no) {
+	public List<optionsVO> selOptionAll(String no) {
 		driverLoad();
 		DBConnect();
 		
 		String sql = "select * from optioins where optionListNo = " + no;
 		executeQuery(sql);
 		
-		if(next()) {
+		List<optionsVO> list = new ArrayList<>();
+		while(next()) {
 			optionsVO vo = new optionsVO();
 			vo.setAddToppingNo(getInt("addToppingNo"));
 			vo.setDelToppingNo(getInt("delToppingNo"));
 			vo.setOptionListNo(getInt("optionListNo"));
 			vo.setOptionsNum(getInt("optionsNum"));
 			
-			DBDisConnect();
-			return vo;
+			list.add(vo);
 			
 		}
 		
 		DBDisConnect();
-		return null;
+		return list;
 		
 	}
 	
