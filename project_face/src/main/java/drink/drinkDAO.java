@@ -12,8 +12,8 @@ public class drinkDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into drink(drinkName, drinkPay, drinkType)";
-		sql += "values('"+vo.getDrinkName()+"', '"+vo.getDrinkPay()+"', '1')";
+		String sql = "insert into drink(drinkName, drinkPay, drink_img_name, drink_img_location)";
+		sql += "values('"+vo.getDrinkName()+"', '"+vo.getDrinkPay()+"', '"+vo.getDrinkImgName()+"', '"+vo.getDrinkImgLocation()+"')";
 		executeUpdate(sql);
 		
 		DBDisConnect();

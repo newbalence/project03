@@ -12,8 +12,8 @@ public class dessertDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into dessert(dessertName, dessertPay, dessertType)";
-		sql += "values('"+vo.getDessertName()+"', '"+vo.getDessertPay()+"', '1')";
+		String sql = "insert into dessert(dessertName, dessertPay, dessert_img_name, dessert_img_location)";
+		sql += "values('"+vo.getDessertName()+"', '"+vo.getDessertPay()+"', '"+vo.getDessertImgName()+"', '"+vo.getDessertImgLocation()+"')";
 		executeUpdate(sql);
 		
 		DBDisConnect();

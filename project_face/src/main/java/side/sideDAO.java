@@ -13,8 +13,8 @@ public class sideDAO extends DBManager {
 		DBConnect();
 		
 		String sql = "";
-		sql += "insert into side(sideName, sidePay, sideType)";
-		sql += "values('"+vo.getSideName()+"', '"+vo.getSidePay()+"', '1')";
+		sql += "insert into side(sideName, sidePay, side_img_name, side_img_location)";
+		sql += "values('"+vo.getSideName()+"', '"+vo.getSidePay()+"', '"+vo.getSideImgName()+"', '"+vo.getSideImgLocation()+"')";
 		executeUpdate(sql);
 		
 		DBDisConnect();

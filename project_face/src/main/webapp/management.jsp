@@ -17,7 +17,7 @@ if(user == null || user.getUserType() != 0){
 	<body>
 		<div class="product">
 		<div class="manage">관리자 메뉴</div>
-		<form active="addOk.jsp" method="post" enctype="multipart/form-data">
+		<form action="addOk.jsp" method="post" enctype="multipart/form-data">
 			<div class="productDetail">
 				<div id="">
 					<div id="img-container">

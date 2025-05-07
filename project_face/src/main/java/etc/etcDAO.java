@@ -12,8 +12,8 @@ public class etcDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into etc(etcName, etcPay, etcType)";
-		sql += "values('"+vo.getEtcName()+"', '"+vo.getEtcPay()+"', '1')";
+		String sql = "insert into etc(etcName, etcPay, etc_img_name, etc_img_location)";
+		sql += "values('"+vo.getEtcName()+"', '"+vo.getEtcPay()+"', '"+vo.getEtcImgName()+"', '"+vo.getEtcImgLocation()+"')";
 		executeUpdate(sql);
 		
 		DBDisConnect();

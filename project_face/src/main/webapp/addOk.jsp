@@ -18,7 +18,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	
-	String savePath = application.getRealPath("/menu");
+	String savePath = request.getServletContext().getRealPath("/menu");
+	savePath = savePath.replace("\\", "\\\\");
 	
 	int maxFileSize = 1024 * 1024 * 10;
 	
@@ -61,51 +62,60 @@
 		//업로드된 파일 이름
 	}
 
-	if(type == "burger"){
+	if(type.equals("burger")){
 		burgerDAO dao = new burgerDAO();
 		
 		burgerVO vo = new burgerVO();
 		vo.setBurgerName(food);
-		vo.setBurgerImgName(name);
+		vo.setBurgerPay(pay);
+		vo.setBurgerImgName(fileName);
 		vo.setBurgerImgLocation(savePath);
 		
 		dao.insBurger(vo);
-	}else if(type == "side"){
+		response.sendRedirect("menu/burger.jsp");
+	}else if(type.equals("side")){
 		sideDAO dao = new sideDAO();
 		
 		sideVO vo = new sideVO();
 		vo.setSideName(food);
-		vo.setSideImgName(name);
+		vo.setSidePay(pay);
+		vo.setSideImgName(fileName);
 		vo.setSideImgLocation(savePath);
 		
 		dao.insSide(vo);
-	}else if(type == "drink"){
+		response.sendRedirect("menu/side.jsp");
+	}else if(type.equals("drink")){
 		drinkDAO dao = new drinkDAO();
 		
 		drinkVO vo = new drinkVO();
 		vo.setDrinkName(food);
-		vo.setDrinkImgName(name);
+		vo.setDrinkPay(pay);
+		vo.setDrinkImgName(fileName);
 		vo.setDrinkImgLocation(savePath);
 		
 		dao.insDrink(vo);
-	}else if(type == "dessert"){
+		response.sendRedirect("menu/drink.jsp");
+	}else if(type.equals("dessert")){
 		dessertDAO dao = new dessertDAO();
 		
 		dessertVO vo = new dessertVO();
 		vo.setDessertName(food);
-		vo.setDessertImgName(name);
+		vo.setDessertPay(pay);
+		vo.setDessertImgName(fileName);
 		vo.setDessertImgLocation(savePath);
 		
 		dao.insDessert(vo);
-	}else if(type == "etc"){
+	}else if(type.equals("etc")){
 		etcDAO dao = new etcDAO();
 		
 		etcVO vo = new etcVO();
 		vo.setEtcName(food);
-		vo.setEtcImgName(name);
+		vo.setEtcPay(pay);
+		vo.setEtcImgName(fileName);
 		vo.setEtcImgLocation(savePath);
 		
 		dao.insEtc(vo);
+		response.sendRedirect("menu/etc.jsp");
 	}
 	
 	
