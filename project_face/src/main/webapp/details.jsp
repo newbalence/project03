@@ -5,8 +5,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>제품상세보기</title>
-		<link rel="stylesheet" href="../css/details.css"></link>
-		<script src="../js/jquery-3.7.1.js"></script>
+		<link rel="stylesheet" href="./css/details.css"></link>
+		<script src="./js/jquery-3.7.1.js"></script>
 		</head>
 	<body>
 		<%@ include file="../header.jsp" %>
@@ -15,7 +15,7 @@
 		</div>
 		<div class="product">
 			<div class="productDetail">
-				<img src="../img/burger/gibon.png" class="photo">
+				<img src="./img/burger/gibon.png" class="photo">
 			</div>
 			<div class="select">
 				<div class="productName">
@@ -64,13 +64,13 @@
 			</div>
 		</div>
 	<div class="buy">
-		<a onclick="location.href='payment.jsp'">구매하기</a>
+		<a onclick="location.href='<%=path%>/pay/payment.jsp'">구매하기</a>
 	</div>
 	<div class="decide">
-		<div class="decision"><a onclick="location.href='shop.jsp'">장바구니</a></div>
+		<div class="decision"><a onclick="location.href='<%=path%>/shop.jsp'">장바구니</a></div>
 		<div class="decision"><a >취 소 </a></div>
 	</div>
-	<div>
+	<!-- <div>
 		<div class="reviewCell">
 			<a class="review">상품평</a>
 		</div>
@@ -92,13 +92,13 @@
 							<span class="starR">★</span>
 							<span class="starR">★</span>	
 						</div>
-					<!-- <div class="star-container">
+					<div class="star-container">
 						<div class="star-gray">
 							<div class="star-yellow" style="width: 30%;"></div>
 						</div>
 						<div class="starCheck"><img src="./img/five-star.png" class="star-photo"></div>
 						<div class="product-data">2025.04.16</div>
-					</div> -->
+					</div>
 					</div>
 				</div>
 				<div class="review-writeCell">
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<script>
 		//별점 주기
 		$('.starRev span').click(function(){

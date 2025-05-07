@@ -42,7 +42,7 @@
 		</table>
 		<div class="shopBtn">
 			<a class="btn">장바구니 비우기</a>
-			<a class="btn" onclick="location.href='<%=path %>/payment.jsp'">결제하기</a>
+			<a class="btn" onclick="location.href='<%=path %>/pay/payment.jsp'">결제하기</a>
 		</div>
 	</body>
 </html>
