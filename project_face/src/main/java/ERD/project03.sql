@@ -28,6 +28,10 @@ CREATE TABLE burger
 	burgerName varchar(255) NOT NULL COMMENT '버거이름',
 	-- 버거 가격
 	burgerPay varchar(255) NOT NULL COMMENT '버거 가격',
+	-- 버거 이미지 이름
+	burger_img_name varchar(255) COMMENT '버거 이미지 이름',
+	-- 버거 이미지 저장장소
+	burger_img_location varchar(255) COMMENT '버거 이미지 저장장소',
 	-- 0 : 판매 예정
 	-- 1 : 판매중
 	-- 2 : 판매중지
@@ -48,6 +52,10 @@ CREATE TABLE dessert
 	dessertName varchar(255) NOT NULL COMMENT '디저트이름',
 	-- 디저트가격
 	dessertPay varchar(255) NOT NULL COMMENT '디저트가격',
+	-- 디저트 이미지 이름
+	dessert_img_name varchar(255) COMMENT '디저트 이미지 이름',
+	-- 디저트 이미지 저장장소
+	dessert_img_location varchar(255) COMMENT '디저트 이미지 저장장소',
 	-- 0 : 판매 예정
 	-- 1 : 판매중
 	-- 2 : 판매중지
@@ -70,6 +78,10 @@ CREATE TABLE drink
 	-- 
 	drinkPay varchar(255) NOT NULL COMMENT '음료 가격
 ',
+	-- 음료 이미지 이름
+	drink_img_name varchar(255) COMMENT '음료 이미지 이름',
+	-- 음료 이미지 저장장소
+	drink_img_location varchar(255) COMMENT '음료 이미지 저장장소',
 	-- 0 : 판매 예정
 	-- 1 : 판매중
 	-- 2 : 판매중지
@@ -88,6 +100,10 @@ CREATE TABLE etc
 	etcName varchar(255) NOT NULL COMMENT '기타이름',
 	-- 기타가격
 	etcPay varchar(255) NOT NULL COMMENT '기타가격',
+	-- 기타 이미지 이름
+	etc_img_name varchar(255) COMMENT '기타 이미지 이름',
+	-- 기타 이미지 저장장소
+	etc_img_location varchar(255) COMMENT '기타 이미지 저장장소',
 	-- 0 : 판매 예정
 	-- 1 : 판매중
 	-- 2 : 판매중지
@@ -214,6 +230,10 @@ CREATE TABLE side
 	sideName varchar(255) NOT NULL COMMENT '사이드이름',
 	-- 사이드가격
 	sidePay varchar(255) NOT NULL COMMENT '사이드가격',
+	-- 사이드 이미지 이름
+	side_img_name varchar(255) COMMENT '사이드 이미지 이름',
+	-- 사이드 이미지 저장장소
+	side_img_location varchar(255) COMMENT '사이드 이미지 저장장소',
 	-- 0 : 판매 예정
 	-- 1 : 판매중
 	-- 2 : 판매중지

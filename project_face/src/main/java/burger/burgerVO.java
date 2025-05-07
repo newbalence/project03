@@ -1,14 +1,36 @@
 package burger;
 
 public class burgerVO {
-	
+
 	private int burgerNum;
 
 	private String burgerName;
 
 	private String burgerPay;
 
+	private String burgerImgName;
+
+	private String burgerImgLocation;
+
 	private String burgerType;
+
+
+
+	public String getBurgerImgName() {
+		return burgerImgName;
+	}
+
+	public void setBurgerImgName(String burgerImgName) {
+		this.burgerImgName = burgerImgName;
+	}
+
+	public String getBurgerImgLocation() {
+		return burgerImgLocation;
+	}
+
+	public void setBurgerImgLocation(String burgerImgLocation) {
+		this.burgerImgLocation = burgerImgLocation;
+	}
 
 	public int getBurgerNum() {
 		return burgerNum;

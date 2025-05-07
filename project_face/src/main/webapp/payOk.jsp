@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="pay.KakaoPayReadyResponse"%>
 <%@page import="org.apache.http.util.EntityUtils"%>
 <%@page import="org.apache.http.HttpResponse"%>
@@ -12,26 +14,28 @@
 <%@page import="org.apache.http.client.entity.*"%>
 
 <%
+	request.setCharacterEncoding("utf-8");
+
 	String secretKey = "DEV482050CDE50403CCBB1B3983FF3C212D33963";
 	KakaoPayReadyRequest requestVO = new KakaoPayReadyRequest();
 	requestVO.setCid("TC0ONETIME");
 	
-	//주문번호
+	//ì£¼ë¬¸ë²í¸
 	requestVO.setPartner_order_id("order1234");
-	//주문자 id
+	//ì£¼ë¬¸ì id
 	requestVO.setPartner_user_id("user5678");
-	//상품이름
-	requestVO.setItem_name("초코파이");
-	//상품개수
+	//ìíì´ë¦
+	requestVO.setItem_name("ì´ì½íì´");
+	//ìíê°ì
 	requestVO.setQuantity(1);
-	//가격
+	//ê°ê²©
 	requestVO.setTotal_amount(2200);
 	requestVO.setTax_free_amount(0);
-	//주문 성공시 redirect url, 성공한 결과 주문결과에 insert하고, 적립금 처리, 주문 상품 장바구니에서 비우기
+	//ì£¼ë¬¸ ì±ê³µì redirect url, ì±ê³µí ê²°ê³¼ ì£¼ë¬¸ê²°ê³¼ì insertíê³ , ì ë¦½ê¸ ì²ë¦¬, ì£¼ë¬¸ ìí ì¥ë°êµ¬ëìì ë¹ì°ê¸°
 	requestVO.setApproval_url("http://localhost:8080/project_face/approve.jsp");
-	//주문 취소시 redirect url 취소처리 주문결과에 insert
+	//ì£¼ë¬¸ ì·¨ìì redirect url ì·¨ìì²ë¦¬ ì£¼ë¬¸ê²°ê³¼ì insert
 	requestVO.setCancel_url("http://localhost:8080/project_face/cancel.jsp");
-	//주문 실패시 redirect url 실패처리 주문결과에 insert
+	//ì£¼ë¬¸ ì¤í¨ì redirect url ì¤í¨ì²ë¦¬ ì£¼ë¬¸ê²°ê³¼ì insert
 	requestVO.setFail_url("http://localhost:8080/project_face/fail.jsp");
 	
 	ObjectMapper mapper = new ObjectMapper();
@@ -53,6 +57,6 @@
 	 KakaoPayReadyResponse kakaoResponse = mapper.readValue(responseBody, KakaoPayReadyResponse.class);
 	 System.out.println(kakaoResponse);
 	 
-	 //결제 페이지로 리다이렉션
+	 //ê²°ì  íì´ì§ë¡ ë¦¬ë¤ì´ë ì
 	 response.sendRedirect(kakaoResponse.getNext_redirect_pc_url());
 %>

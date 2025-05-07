@@ -11,9 +11,9 @@
 	<body>
 		<div class="product">
 		<div class="manage">관리자 메뉴</div>
-			<form active="addOk.jsp" method="post">
+		<form active="addOk.jsp" method="post" enctype="multipart/form-data">
 			<div class="productDetail">
-				<div>
+				<div id="">
 					<div id="img-container">
 						<%-- <img src="<%=path %>/img/burger/gibon.png" class="photo"> --%>
 					</div>
@@ -25,25 +25,13 @@
 				<div class="select">
 					<div class="selectCell">
 						<select class="selectBar" name="add">
-							<option>햄버거 추가</option>
-							<option>옵션 추가</option>
-							<option>사이드 추가</option>
-							<option>음료 추가</option>
-							<option>디저트 추가</option>
-							<option>etc 추가</option>
+							<option value="burger">햄버거 추가</option>
+							<!-- <option value="option">옵션 추가</option> -->
+							<option value="side">사이드 추가</option>
+							<option value="drink">음료 추가</option>
+							<option value="dessert">디저트 추가</option>
+							<option value="etc">etc 추가</option>
 						</select>
-						<!-- <select class="selectBar">
-							<option>소스추가</option>
-							<option>BBQ 소스+500</option>
-						</select>
-						<select class="selectBar">
-							<option>토핑빼기</option>
-							<option>토마토</option>
-						</select>
-						<select class="selectBar">
-							<option>음료옵션</option>
-							<option>ICE</option>
-						</select> -->
 						<img src="<%=path %>/img/smilePlus.png" class="smilephoto">
 						<div class="add_food"><a class="food">음식명 : </a> <input type="text" class="option" name="food" placeholder="음식명 : "></div>
 						<div class="add_pay"><a class="food">가 격 : </a><input type="text" class="option" name="pay" placeholder="가격 : "></div>
@@ -51,9 +39,9 @@
 				</div>
 			</div>
 			<div class="add">
-				<button class="add_">추가하기</button>
+				<button type="submit" class="add_">추가하기</button>
 			</div>
-			</form>
+		</form>
 	</div>
 	</body>
 	<script>
@@ -68,16 +56,14 @@
 		    	reader.onload = function(e){
 		        	console.log(e.target.result)
 		        	if(file.type.includes("image")){
-		        		
 		        		let html = "<img src='"+e.target.result+"' class='photo'>"
-		        		$("#img-container").append(html);
+		        		$("#img-container").html(html);
 		        	}
 		        }
 		        
 		        reader.readAsDataURL(file);
 		    }
-		    
-		    
+		    		    
 		});
 	</script>
 </html>
