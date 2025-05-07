@@ -97,7 +97,7 @@ List<addToppingVO> addSauce = add.selSauceAll();
 
 
 delToppingDAO del = new delToppingDAO();
-List<delToppingVO> delTopping= del.selToppingAll();
+List<delToppingVO> delTopping = del.selToppingAll();
 List<delToppingVO> delSauce= del.selSauceAll();
 List<delToppingVO> drink = del.selDrinkAll();
 %>
@@ -113,7 +113,7 @@ List<delToppingVO> drink = del.selDrinkAll();
 		<div class="detail">
 			<a>제품상세보기</a>
 		</div>
-		<form action="shopOk.jsp" method="post">
+		<form action="shopOk.jsp" method="post" onsubmit="return order()">
 		<input type="hidden" value="<%= user == null ?  0 : user.getPhone() %>" name="phone">
 		<input type="hidden" value="<%= type %>" name="type">
 		<div class="product">
@@ -129,8 +129,8 @@ List<delToppingVO> drink = del.selDrinkAll();
 					if(type.equals("burger")){
 						%>
 						<div class="selectCell">
-							<select class="selectBar">
-								<option>토핑추가</option>
+							<select class="selectBar" id="addTopping" name="addTopping">
+								<option value = "0">토핑추가</option>
 								<%
 								for(int i = 0; i < addTopping.size(); i++){
 									addToppingVO vo = addTopping.get(i);
@@ -140,8 +140,8 @@ List<delToppingVO> drink = del.selDrinkAll();
 								}
 								%>
 							</select>
-							<select class="selectBar">
-								<option>소스추가</option>
+							<select class="selectBar" id="addSauce" name="addSauce">
+								<option value = "0">소스추가</option>
 								<%
 								for(int i = 0; i < addSauce.size(); i++){
 									addToppingVO vo = addSauce.get(i);
@@ -151,24 +151,24 @@ List<delToppingVO> drink = del.selDrinkAll();
 								}
 								%>
 							</select>
-							<select class="selectBar">
-								<option>토핑빼기</option>
+							<select class="selectBar" id="delTopping" name="delTopping">
+								<option value = "0">토핑빼기</option>
 								<%
-								for (int i = 0; i < delTopping.size(); i++){
+								for(int i = 0; i < delTopping.size(); i++){
 									delToppingVO vo = delTopping.get(i);
 									%>
-									<option value="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %> 제외 </option>
+									<option value="<%= 0 %>"><%= vo.getDelToppingName() %> 제외 </option>
 									<%
 								}
 								%>
 							</select>
-							<select class="selectBar">
-								<option>소스빼기</option>
+							<select class="selectBar" id="delSauce" name="delSauce">
+								<option value = "0">소스빼기</option>
 								<%
 								for (int i = 0; i < delSauce.size(); i++){
 									delToppingVO vo = delSauce.get(i);
 									%>
-									<option value="<%= vo.getDelToppingNo() %>"><%= vo.getDelToppingName() %> 제외 </option>
+									<option value="<%= 0 %>"><%= vo.getDelToppingName() %> 제외 </option>
 									<%
 								}
 								%>
@@ -178,7 +178,7 @@ List<delToppingVO> drink = del.selDrinkAll();
 					}else if(type.equals("drink")){
 						%>
 						<div class="selectCell">
-							<select class="selectBar">
+							<select class="selectBar" id="drink" name="drink">
 								<option>음료옵션</option>
 								<%
 								for(int i = 0; i < drink.size(); i++){
@@ -195,7 +195,7 @@ List<delToppingVO> drink = del.selDrinkAll();
 				%>
 				<div id="bottomPay">
 					<div class="totalPay">
-						<input type="hidden" value="<%= pay %>" name="pay">
+						<input type="hidden" value="<%= pay %>" name="pay" id="pay">
 						<a>총 가격 : <%= pay %> 원</a>
 					</div>
 				</div>
@@ -250,12 +250,21 @@ List<delToppingVO> drink = del.selDrinkAll();
 		</div>
 	</div> -->
 	<script>
+		let price = <%= pay %>;
 		/* //별점 주기
 		$('.starRev span').click(function(){
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
 			return false;
 		})	 */	
+		$("select").change(function() {
+			let totalPrice = price;
+			$("select").each(function(index, element){
+				totalPrice += parseInt($(element).val());
+			});
+			$("#pay").val(totalPrice )
+			$("#pay").next().text("총 가격 : " + (totalPrice) +  " 원")
+		})
 	</script>
 	</body>
 </html>
