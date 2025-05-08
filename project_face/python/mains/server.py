@@ -7,7 +7,7 @@ from aiortc import RTCPeerConnection, RTCSessionDescription
 import aiohttp_cors
 from aiohttp import web
 import sys
-sys.path.append(r'C:\Users\USER\git\project03\project_face\python')
+sys.path.append(r'C:\Users\MYCMO\git\project_face\project_face\python')
 import clas.login as log
 import clas.signup as sig
 from clas.useGPU import tfg
@@ -79,7 +79,7 @@ async def offer_handler(websocket):  # ← path 삭제
         offer_type = offer['type']
         offer_phone = offer['phone']
         offer_page = offer['page']
-        print(offer_phone)
+        
         # offer_phone = None
 
         await pc.setRemoteDescription(RTCSessionDescription(sdp=offer_sdp, type=offer_type))

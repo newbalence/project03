@@ -6,7 +6,7 @@ class Databases():
             host='localhost',
             dbname='postgres',
             user='postgres',
-            password='p59370895!',port=5432
+            password='ezen',port=5432
         )
         self.cursor = self.db.cursor()
 

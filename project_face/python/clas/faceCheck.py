@@ -1,4 +1,5 @@
 import cv2
+import cv2.data
 import numpy as np
 from deepface import DeepFace
 from realesrgan import RealESRGANer
@@ -14,14 +15,16 @@ class faceCheck():
         self.mouth_cascade = cv2.CascadeClassifier("./project_face/python/data/haarcascade_mcs_mouth.xml")
 
     def check(self, frame):
+        #print("check")
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = self.face_cascade.detectMultiScale(gray, 1.1, 10)
-
+        #print("얼굴 인식중")
         if len(faces) == 1:
             for (x, y, w, h) in faces:
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
                 roi_gray = gray[y : y + h, x : x + w]
                 roi_color = frame[y : y + h, x : x + w]
+                
                 eyes = self.eye_cascade.detectMultiScale(roi_gray, 1.1, 5)
                 if len(eyes) == 2:
                     for (ex, ey, ew, eh) in eyes:

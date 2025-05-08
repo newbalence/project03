@@ -1,3 +1,5 @@
+<%@page import="options.optionsVO"%>
+<%@page import="optionList.optionListDAO"%>
 <%@page import="shopping.shoppingVO"%>
 <%@page import="java.util.List"%>
 <%@page import="shoppingList.shoppingListDAO"%>
@@ -36,16 +38,48 @@ List<shoppingVO> list = dao.selectShopList(user.getPhone());
 				<%
 				for (int i = 0; i < list.size(); i++){
 					String name = "";
-					if(list.get(i).getBurgerName() != null){
-						name = list.get(i).getBurgerName(); 
-					}else if(list.get(i).getDrinkName() != null){
-						name = list.get(i).getDrinkName();
-					}else if(list.get(i).getSideName() != null){
-						name = list.get(i).getSideName();
-					}else if(list.get(i).getDessertName() != null){
-						name = list.get(i).getDessertName();
-					}else if(list.get(i).getEtcName() != null){
-						name = list.get(i).getEtcName();
+					String option = "";
+					System.out.println(list.get(i).getBurgerName());
+					if(list.get(i).getBurgerName() != null && !list.get(i).getBurgerName().equals("null")){
+						name = list.get(i).getBurgerName();
+						
+						if(list.get(i).getOptionsNum() != 0){
+							optionListDAO optionDAO = new optionListDAO();
+							List<optionsVO> optionList = optionDAO.selOptionList(list.get(i).getOptionsNum());
+							for(int j = 0; j < optionList.size(); j ++){
+								if(optionList.get(j).getOptionType() == 1){
+									option += optionList.get(j).getAddToppingName() + " 추가 "; 
+								}else if(optionList.get(j).getOptionType() == 2){
+									option += optionList.get(j).getDelToppingName() + " 제외 "; 
+								}
+							}
+						}
+					}
+					else if(list.get(i).getDrinkName() != null){
+						name += list.get(i).getDrinkName();
+						
+						if(list.get(i).getOptionsNum() != 0){
+							optionListDAO optionDAO = new optionListDAO();
+							List<optionsVO> optionList = optionDAO.selOptionList(list.get(i).getOptionsNum());
+							for(int j = 0; j < optionList.size(); j ++){
+								if(optionList.get(j).getOptionType() == 3){
+									option += optionList.get(j).getDelToppingName(); 
+								}
+							}
+						}
+					}
+					else if(list.get(i).getSideName() != null){
+						name += list.get(i).getSideName();
+					}
+					else if(list.get(i).getDessertName() != null){
+						name += list.get(i).getDessertName();
+					}
+					else if(list.get(i).getEtcName() != null){
+						name += list.get(i).getEtcName();
+					}
+					
+					if(!option.isEmpty()){
+						name = name += "(" + option + ")";
 					}
 					
 				%>
@@ -56,6 +90,7 @@ List<shoppingVO> list = dao.selectShopList(user.getPhone());
 					<td><%= list.get(i).getAllPay() %></td>
 				</tr>	
 				<%
+					name = "";
 					}
 				%>
 		</table>

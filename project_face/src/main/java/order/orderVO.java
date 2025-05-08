@@ -1,6 +1,8 @@
 package order;
 
-public class orderVO {
+import orderList.orderListVO;
+
+public class orderVO extends orderListVO{
 
 	private int orderNum;
 
@@ -23,6 +25,56 @@ public class orderVO {
 	private String quantity;
 
 	private String allPay;
+	
+	private String burgerName;
+	
+	private String drinkName;
+	
+	private String sideName;
+	
+	private String dessertName;
+	
+	private String etcName;
+
+	public String getBurgerName() {
+		return burgerName;
+	}
+
+	public void setBurgerName(String burgerName) {
+		this.burgerName = burgerName;
+	}
+
+	public String getDrinkName() {
+		return drinkName;
+	}
+
+	public void setDrinkName(String drinkName) {
+		this.drinkName = drinkName;
+	}
+
+	public String getSideName() {
+		return sideName;
+	}
+
+	public void setSideName(String sideName) {
+		this.sideName = sideName;
+	}
+
+	public String getDessertName() {
+		return dessertName;
+	}
+
+	public void setDessertName(String dessertName) {
+		this.dessertName = dessertName;
+	}
+
+	public String getEtcName() {
+		return etcName;
+	}
+
+	public void setEtcName(String etcName) {
+		this.etcName = etcName;
+	}
 
 	public int getOrderType() {
 		return orderType;

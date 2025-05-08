@@ -7,14 +7,25 @@ import db.DBManager;
 
 public class orderListDAO extends DBManager {
 	
-	public void insOrderList(String phone) {
+	public int insOrderList(String phone) {
 		driverLoad();
 		DBConnect();
 		
 		String sql = "insert into orderList(phone) values('" + phone + "')";
 		
 		executeUpdate(sql);
+		
+		sql = "select last_insert_id() as no;";
+		executeQuery(sql);
+		if(next()) {
+			int no = getInt("no");
+			
+			DBDisConnect();
+			return no;
+		}
+		
 		DBDisConnect();
+		return 0;
 		
 	}
 	

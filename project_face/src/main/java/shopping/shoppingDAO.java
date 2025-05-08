@@ -18,6 +18,8 @@ public class shoppingDAO extends DBManager {
 		int dessert = vo.getDessertNum();
 		int etc = vo.getEtcNum();
 		
+		System.out.println(vo);
+		
 		String sql = "insert into shopping(";
 		String value = "values(";
 		
@@ -27,7 +29,7 @@ public class shoppingDAO extends DBManager {
 		}
 		
 		if(options != 0) {
-			sql += "optionsNum, ";
+			sql += "optionListNo, ";
 			value += options + ", ";
 		}
 		
@@ -51,10 +53,11 @@ public class shoppingDAO extends DBManager {
 			value += etc + ", ";
 		}
 		
-		sql +="quantity, allpay) ";
-		value += "'"  + vo.getQuantity() + "', '" + vo.getAllPay() + "')";
+		sql +="quantity, allpay, shoppingListNo) ";
+		value += "'"  + 1 + "', '" + vo.getAllPay() + "', "+vo.getShoppingListNo()+")";
 		
 		sql = sql + value;
+		System.out.println(sql);
 		executeUpdate(sql);
 		
 		DBDisConnect();

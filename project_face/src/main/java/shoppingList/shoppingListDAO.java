@@ -47,7 +47,7 @@ public class shoppingListDAO extends DBManager {
 		
 		String sql = "SELECT s.*, s2.*, b.burgerName, d.drinkName, s3.sideName, d2.dessertName, e.etcName ";
 		sql += "FROM shoppinglist s ";
-		sql += "LEFT JOIN shopping s2 ON s.shoppingListNo = s2.shoppingListNo ";
+		sql += "inner JOIN shopping s2 ON s.shoppingListNo = s2.shoppingListNo ";
 		sql += "LEFT JOIN burger b ON s2.burgerNum = b.burgerNum ";
 		sql += "LEFT JOIN drink d ON s2.drinkNum = d.drinkNum ";
 		sql += "LEFT JOIN side s3 ON s2.sideNum = s3.sideNum ";
@@ -57,7 +57,7 @@ public class shoppingListDAO extends DBManager {
 
 		
 		executeQuery(sql);
-		if(next()) {
+		while(next()) {
 			shoppingVO vo = new shoppingVO();
 			int shopListNo = getInt("shoppingListNo");
 			int shoppingNum = getInt("shoppingNum");
@@ -68,6 +68,7 @@ public class shoppingListDAO extends DBManager {
 			String etcName = getString("etcName");
 			String quantity = getString("quantity");
 			String allPay = getString("allPay");
+			int optionListNo = getInt("optionListNo");
 			
 			vo.setShoppingListNo(shopListNo);
 			vo.setShoppingNum(shoppingNum);
@@ -78,6 +79,7 @@ public class shoppingListDAO extends DBManager {
 			vo.setEtcName(etcName);
 			vo.setQuantity(quantity);
 			vo.setAllPay(allPay);
+			vo.setOptionsNum(optionListNo);
 			list.add(vo);
 		}
 		

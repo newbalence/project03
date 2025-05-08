@@ -1,7 +1,10 @@
-<%@page import="orderList.orderListVO"%>
-<%@page import="orderList.orderListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@page import="point.pointDAO"%>
+<%@page import="point.pointVO"%>
+<%@page import="orderList.orderListVO"%>
+<%@page import="orderList.orderListDAO"%>
 <%@page import="pay.KakaoPayReadyResponse"%>
 <%@page import="org.apache.http.util.EntityUtils"%>
 <%@page import="org.apache.http.HttpResponse"%>
@@ -16,13 +19,19 @@
 <%@page import="org.apache.http.client.entity.*"%>
 <%-- location.href="payOk.jsp?userId=<%= vo.getPhone() %>&name=<%=itemName%>&quantity=<%= totalCount %>&price=<%= totalPrice %>" --%>
 <%
+	request.setCharacterEncoding("utf-8");
 
-
+	String[] items = request.getParameterValues("items");
+	for(String item: items){
+		System.out.println(item);
+	}
+	
 	String name = request.getParameter("name");
 	String userId = request.getParameter("userId");
 	String quantity = request.getParameter("quantity");
 	String price = request.getParameter("price");
 	String point = request.getParameter("point");
+	String usePoint = request.getParameter("usePoint");
 	
 	request.setCharacterEncoding("utf-8");
 
@@ -30,12 +39,8 @@
 	KakaoPayReadyRequest requestVO = new KakaoPayReadyRequest();
 	requestVO.setCid("TC0ONETIME");
 	
-	orderListDAO orderList = new orderListDAO();
-	orderListVO orderVO = orderList.selOrderListAll(userId);
-	int orderId = orderVO.getOrderListNo();
-	
 	//주문번호
-	requestVO.setPartner_order_id(orderId + "");
+	requestVO.setPartner_order_id("1");
 	//주문자 id
 	requestVO.setPartner_user_id(userId);
 	//상품이름
@@ -46,7 +51,7 @@
 	requestVO.setTotal_amount(Integer.parseInt(price));
 	requestVO.setTax_free_amount(0);
 	//주문 성공시 redirect url, 성공한 결과 주문결과에 insert하고, 적립금 처리, 주문 상품 장바구니에서 비우기
-	requestVO.setApproval_url("http://localhost:8080/project_face/approve.jsp?point="+point);
+	requestVO.setApproval_url("http://localhost:8080/project_face/approve.jsp?point="+point+"&usePoint="+usePoint);
 	//주문 취소시 redirect url 취소처리 주문결과에 insert
 	requestVO.setCancel_url("http://localhost:8080/project_face/cancel.jsp");
 	//주문 실패시 redirect url 실패처리 주문결과에 insert
@@ -71,6 +76,7 @@
 	 KakaoPayReadyResponse kakaoResponse = mapper.readValue(responseBody, KakaoPayReadyResponse.class);
 	 System.out.println(kakaoResponse);
 	 
+	 session.setAttribute("order", items);
 	 //결제 페이지로 리다이렉션
 	 response.sendRedirect(kakaoResponse.getNext_redirect_pc_url());
 %>

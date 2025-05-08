@@ -11,8 +11,14 @@ public class orderDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		String sql = "insert into orders(orderListNo, burgerNum, optionsNum, drinkNum, sideNum, dessertNum, etcNum, quantity, allPay) ";
-		sql	+= "values((select " + listNo + ", burgerNum, optionsNum, drinkNum, sideNum, dessertNum, etcNum, quantity, allPay from shopping where shoppingNum = " + shopNo + "))";
+		String sql = "insert into orders(orderListNo, burgerNum, optionListNo, drinkNum, sideNum, dessertNum, etcNum, quantity, allPay) ";
+		sql	+= "select " + listNo + ", burgerNum, optionListNo, drinkNum, sideNum, dessertNum, etcNum, quantity, allPay from shopping where shoppingNum = " + shopNo;
+		
+		System.out.println(sql);
+		
+		executeUpdate(sql);
+		
+		sql = "delete from shopping where shoppingNum = "+shopNo;
 		executeUpdate(sql);
 		
 		DBDisConnect();
@@ -26,6 +32,40 @@ public class orderDAO extends DBManager {
 		executeUpdate(sql);
 		
 		DBDisConnect();
+	}
+	
+	public List<orderVO> selectAllOrders(String phone){
+		
+		List<orderVO> list = new ArrayList<>();
+		driverLoad();
+		DBConnect();
+		
+		String sql = "SELECT s.*, s2.*, b.burgerName, d.drinkName, s3.sideName, d2.dessertName, e.etcName ";
+		sql += "FROM orderlist s ";
+		sql += "inner JOIN orders s2 ON s.orderListNo = s2.orderListNo ";
+		sql += "LEFT JOIN burger b ON s2.burgerNum = b.burgerNum ";
+		sql += "LEFT JOIN drink d ON s2.drinkNum = d.drinkNum ";
+		sql += "LEFT JOIN side s3 ON s2.sideNum = s3.sideNum ";
+		sql += "LEFT JOIN dessert d2 ON s2.dessertNum = d2.dessertNum ";
+		sql += "LEFT JOIN etc e ON s2.etcNum = e.etcNum WHERE s.phone = '"+phone+"';";
+		
+		executeQuery(sql);
+		
+		while(next()) {
+			orderVO vo = new orderVO();
+			vo.setOrderListNo(getInt("orderListNo"));
+			vo.setBurgerName(getString("burgerName"));
+			vo.setDrinkName(getString("drinkName"));
+			vo.setSideName(getString("sideName"));
+			vo.setDessertName(getString("dessertName"));
+			vo.setEtcName(getString("etcName"));
+			vo.setAllPay(getString("allPay"));
+			vo.setQuantity(getString("quantity"));
+			
+			list.add(vo);
+		}
+		DBDisConnect();
+		return list;
 	}
 	
 	public orderVO selOrderOne(int orderNum) {

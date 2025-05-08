@@ -14,7 +14,6 @@ if(user == null){
 }
 
 String[] items = request.getParameterValues("items");
-System.out.println(items);
 for(String item: items){
 	System.out.println(item);
 }
@@ -66,6 +65,8 @@ String itemName = "";
 						name = list.get(i).getEtcName();
 					}
 					
+					System.out.println(name);
+					
 					if(i == 0){
 						itemName = name;
 					}
@@ -90,15 +91,74 @@ String itemName = "";
 			<div class="hum">
 				<a>결제 진행중</a>
 			</div>
-			<div class="amount"><a>총 결제 예상 금액 : <%= totalPrice %> </a></div>
+			<form id="payForm"></form>
+			<div class="amount">
+				<div>포인트 사용하기 : <input type="number" name="usePoint" id="usePonit" oninput="chageTotalPrice(this)"></div>
+				<div><a id="totalPriceA">총 결제 예상 금액 : <%= totalPrice %> </a></div>
+			</div>
 		</div>
+		
 			<div class="paydone" id="kakao_pay">결제하기</div>
 	</body>
 	<script>
+	
+		let totalPrice = <%= totalPrice %>
+		let totalPoint = <%= vo.getPoint() %>
+		let usePoint = 0
+	
+		function chageTotalPrice(e){
+			
+			if(e.value > totalPoint){
+				e.value = null
+				$("#totalPriceA").text("총 결제 예상 금액 : " +(totalPrice));
+				return alert("보유 포인트보다 높은 포인트는 사용할 수 없습니다.");
+			}else if(e.value > totalPrice){
+				e.value = null
+				$("#totalPriceA").text("총 결제 예상 금액 : " +(totalPrice));
+				return alert("총 결제 금액보다 높은 포인트는 사용할 수 없습니다.");
+			}
+			usePoint = e.value;
+			$("#totalPriceA").text("총 결제 예상 금액 : " +(totalPrice - e.value));
+		}
+		let items = new Array();
+		<%
+			for(int i = 0; i < items.length; i ++){
+				%>
+					items[<%= i %>] = '<%= items[i] %>'
+				<%
+			}
+		%>
+		console.log(items)
 		$("#point").text("적립예정 포인트 : <%= totalPrice / 10 %> P")
 		// 결제 진행시 결제가 완료 되면 alert나 class='howToPay'부분의 박스를 없애고 
 		$("#kakao_pay").click(() => {
-			location.href="payOk.jsp?userId=<%= vo.getPhone() %>&name=<%=itemName%>&quantity=<%= totalCount %>&price=<%= totalPrice %>&point=<%= totalPrice / 10 %>"
+			$("#payForm").attr("action", "payOk.jsp");
+			$("#payForm").attr("method", "POST");
+			 
+			for(let i = 0; i < items.length; i ++){
+				const payParam = $("<input type='hidden' value=" + items[i] + " name='items' readonly>");
+				$("#payForm").append(payParam);				
+			}
+			const phoneParam = $("<input type='hidden' value=" + `<%= user.getPhone() %>` + " name='userId' readonly>")
+			$("#payForm").append(phoneParam);
+			
+			const nameParam = $("<input type='hidden' value=" + `<%=itemName%>` + " name='name' readonly>")
+			$("#payForm").append(nameParam);
+			
+			const quantityParam = $("<input type='hidden' value=" + <%= totalCount %> + " name='quantity' readonly>")
+			$("#payForm").append(quantityParam);
+			
+			const priceParam = $("<input type='hidden' value=" + (totalPrice - usePoint) + " name='price' readonly>")
+			$("#payForm").append(priceParam);
+			
+			const pointParam = $("<input type='hidden' value=" + (totalPrice / 10) + " name='point' readonly>")
+			$("#payForm").append(pointParam);
+			
+			const usePointParam = $("<input type='hidden' value=" + usePoint + " name='usePoint' readonly>")
+			$("#payForm").append(usePointParam);
+			
+			$("#payForm").submit();
+			//location.href="payOk.jsp?userId=<%= vo.getPhone() %>&name=<%=itemName%>&quantity=<%= totalCount %>&price=<%= totalPrice %>&point=<%= totalPrice / 10 %>"
 			//상품이름, 상품 개수, 주문번호, 주문자id, 가격 넘겨주고
 			//https://developers.kakaopay.com/docs/payment/online/single-paymentㄴ
 		})

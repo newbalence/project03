@@ -156,7 +156,16 @@ public class shoppingVO extends shoppingListVO {
 		this.allPay = allPay;
 	}
 
+	@Override
+	public String toString() {
+		return "shoppingVO [shoppingNum=" + shoppingNum + ", shoppingListNo=" + shoppingListNo + ", burgerNum="
+				+ burgerNum + ", optionsNum=" + optionsNum + ", drinkNum=" + drinkNum + ", sideNum=" + sideNum
+				+ ", dessertNum=" + dessertNum + ", etcNum=" + etcNum + ", quantity=" + quantity + ", allPay=" + allPay
+				+ ", burgerName=" + burgerName + ", drinkName=" + drinkName + ", sideName=" + sideName
+				+ ", dessertName=" + dessertName + ", etcName=" + etcName + "]";
+	}
 
 
+	
 
 }

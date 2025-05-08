@@ -35,9 +35,10 @@
 		</div>
 	</body>
 	<script>
-		var numRegex = /[^0-9]/g;
+		
 		
 		function formSubmit(){
+			var numRegex = /[^0-9]/g;
 			let phone = $("#phoneNum");
 			rephone = phone.val().replace(numRegex, "")
 			
@@ -67,9 +68,7 @@
 				$("#cameraoff").removeClass("cameraoff");
 				$("#cameraoff").addClass("cameraon");
 				
-				start().catch(error => {
-					console.error("오류 발생:", error);
-				});
+				start()
 				
 			}else if(btnName == "cameraoff"){
 				
@@ -114,40 +113,45 @@
 			$("#video").srcObject = stream;
 			
 			stream.getTracks().forEach(track => pc.addTrack(track, stream));
-			
-			const ws = new WebSocket("wss://"+host+":8765");
-			
-			ws.onopen = async () => {
-				console.log("WebSocket 연결 완료");
+			try{
+				const ws = new WebSocket("wss://"+host+":8765");	
 				
-				const offer = await pc.createOffer();
-				await pc.setLocalDescription(offer);
+				ws.onopen = async () => {
+					console.log("WebSocket 연결 완료");
+					
+					const offer = await pc.createOffer();
+					await pc.setLocalDescription(offer);
+					
+					ws.send(JSON.stringify({
+						sdp: pc.localDescription.sdp,
+						type: pc.localDescription.type,
+						phone: $("#phoneNum").val(),
+						page : "login"
+					}));
+					
+					console.log("Offer 전송 완료");
+				};
 				
-				ws.send(JSON.stringify({
-					sdp: pc.localDescription.sdp,
-					type: pc.localDescription.type,
-					phone: $("#phoneNum").val(),
-					page : "login"
-				}));
-				
-				console.log("Offer 전송 완료");
-			};
-			
-			ws.onerror = (event) => {
-				console.log(event)
-			}
-			
-			ws.onmessage = async (event) => {
-				console.log("서버로부터 Answer 수신", event);
-				const answer = JSON.parse(event.data);
-				if(answer.type == "answer"){
-					await pc.setRemoteDescription(answer);
-				}else if(answer.type == "face"){
-					ws.close()
-					location.href = "loginOk.jsp?phone=" + answer.result_phone;
+				ws.onerror = (event) => {
+					console.log(event)
 				}
-				console.log("Answer 설정 완료");
-			};
+				
+				ws.onmessage = async (event) => {
+					console.log("서버로부터 Answer 수신", event);
+					const answer = JSON.parse(event.data);
+					if(answer.type == "answer"){
+						await pc.setRemoteDescription(answer);
+					}else if(answer.type == "face"){
+						ws.close()
+						location.href = "loginOk.jsp?phone=" + answer.result_phone;
+					}
+					console.log("Answer 설정 완료");
+				};
+			}catch(e){
+				console.log("에러")
+				console.log(e);
+			}	
+				
 		}
 		
 		

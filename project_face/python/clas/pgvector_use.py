@@ -1,5 +1,3 @@
-import sys
-sys.path.append(r'C:\Users\USER\git\project03\project_face\python')
 from clas.pgvector_Query import Databases
 
 class UseDatabases(Databases):

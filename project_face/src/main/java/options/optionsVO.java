@@ -8,9 +8,9 @@ public class optionsVO extends optionListVO {
 
 	private int optionListNo;
 
-	private int delToppingNo;
+	private String delToppingNo;
 
-	private int addToppingNo;
+	private String addToppingNo;
 
 	private int optionType;
 	
@@ -72,19 +72,19 @@ public class optionsVO extends optionListVO {
 		this.optionListNo = optionListNo;
 	}
 
-	public int getDelToppingNo() {
+	public String getDelToppingNo() {
 		return delToppingNo;
 	}
 
-	public void setDelToppingNo(int delToppingNo) {
+	public void setDelToppingNo(String delToppingNo) {
 		this.delToppingNo = delToppingNo;
 	}
 
-	public int getAddToppingNo() {
+	public String getAddToppingNo() {
 		return addToppingNo;
 	}
 
-	public void setAddToppingNo(int addToppingNo) {
+	public void setAddToppingNo(String addToppingNo) {
 		this.addToppingNo = addToppingNo;
 	}
 
@@ -95,6 +95,16 @@ public class optionsVO extends optionListVO {
 	public void setOptionType(int optionType) {
 		this.optionType = optionType;
 	}
+
+	@Override
+	public String toString() {
+		return "optionsVO [optionsNum=" + optionsNum + ", optionListNo=" + optionListNo + ", delToppingNo="
+				+ delToppingNo + ", addToppingNo=" + addToppingNo + ", optionType=" + optionType + ", addToppingName="
+				+ addToppingName + ", addToppingType=" + addToppingType + ", delToppingName=" + delToppingName
+				+ ", delToppingType=" + delToppingType + "]";
+	}
+	
+	
 
 	
 }

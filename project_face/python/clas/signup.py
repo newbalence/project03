@@ -1,16 +1,16 @@
 import numpy as np
-import sys
-sys.path.append(r'C:\Users\USER\git\project03\project_face\python')
 from clas.faceCheck import faceCheck 
 from clas.pgvector_use import UseDatabases
-from clas.useGPU import tfg
+# from clas.useGPU import tfg
 
 def signup(frame, phone):
     #GPU사용 클래스
     # gpu = tfg()
     #Face 벡터화
+    
     faces = faceCheck()
     #Face VectorData PostgreSQL Query
+    
     pgv = UseDatabases()
     #phone 값을 받아오면 그거를 가지고 있다가 insert할때 삽입
     # phone = input("전화번호를 입력하시오 : ")

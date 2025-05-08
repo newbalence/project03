@@ -13,7 +13,6 @@ public class optionListDAO extends DBManager {
 		DBConnect();
 		
 		String sql = "INSERT INTO optionlist (phone) VALUES ('" + phone + "') ";
-		sql += "ON DUPLICATE KEY UPDATE optionListNo=LAST_INSERT_ID(optionListNo);";
 		executeUpdate(sql);
 		
 		sql = "select last_insert_id() as no;";
@@ -39,18 +38,18 @@ public class optionListDAO extends DBManager {
 		
 	}
 	
-	public List<optionsVO> selOptionList(String phone){
+	public List<optionsVO> selOptionList(int optionListNoParam){
 		driverLoad();
 		DBConnect();
 		
 		List<optionsVO> list = new ArrayList<>();
 		
-		String sql = "select o2.*, at.addToppingName, at.addToppingType, dt.delToppingName, dt.delToppingType ";
+		String sql = "select o2.*, at.addToppingName, dt.delToppingName, o2.optionType ";
 		sql += "FROM optionlist o ";
 		sql += "LEFT JOIN options o2 ON o.optionlistNo = o2.optionlistNo ";
 		sql += "LEFT JOIN addTopping at ON o2.addToppingNo = at.addToppingNo ";
 		sql += "LEFT JOIN delTopping dt ON o2.delToppingNo = dt.delToppingNo ";
-		sql += "WHERE o.phone = '" + phone + "';";
+		sql += "WHERE o.optionListNo = '" + optionListNoParam + "';";
 		
 		executeQuery(sql);
 		
@@ -60,10 +59,10 @@ public class optionListDAO extends DBManager {
 			int optionListNo = getInt("optionListNo");
 			String addToppingName = getString("addToppingName");
 			String delToppingName = getString("delToppingName");
-			int addToppingNo = getInt("addToppingNo");
-			int delToppingNo = getInt("delToppingNo");
-			int addToppingType = getInt("addToppingType");
-			int delToppingType = getInt("delToppingType");
+			String addToppingNo = getString("addToppingNo");
+			String delToppingNo = getString("delToppingNo");
+			int optionType = getInt("optionType");
+			
 			
 			vo.setOptionsNum(optionsNum);
 			vo.setOptionListNo(optionListNo);
@@ -71,8 +70,7 @@ public class optionListDAO extends DBManager {
 			vo.setDelToppingName(delToppingName);
 			vo.setAddToppingNo(addToppingNo);
 			vo.setDelToppingNo(delToppingNo);
-			vo.setAddToppingType(addToppingType);
-			vo.setDelToppingType(delToppingType);
+			vo.setOptionType(optionType);
 			
 			list.add(vo);
 		}

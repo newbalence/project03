@@ -11,26 +11,9 @@ public class optionsDAO extends DBManager {
 		driverLoad();
 		DBConnect();
 		
-		int add = vo.getAddToppingNo();
-		int del = vo.getDelToppingNo();
-		
-		String sql ="insert into options(optionListNo";
-		String val = "values(" + vo.getOptionListNo();
-		
-		if(add != 0) {
-			sql += ", addToppingNo";
-			val += ", " + add;
-		}
-		
-		if(del != 0) {
-			sql += ", delToppingNO";
-			val += ", " + del;
-		}
-		
-		sql += ") ";
-		val += ")";
-		
-		sql = sql + val;
+		String sql = "";
+		sql += "insert into options(optionListNo, addToppingNo, delToppingNO, optionType)";
+		sql += "values("+vo.getOptionListNo()+", "+vo.getAddToppingNo()+", "+vo.getDelToppingNo()+", "+vo.getOptionType()+")";
 		executeUpdate(sql);
 		
 		DBDisConnect();
@@ -46,8 +29,8 @@ public class optionsDAO extends DBManager {
 		
 		if(next()) {
 			optionsVO vo = new optionsVO();
-			vo.setAddToppingNo(getInt("addToppingNo"));
-			vo.setDelToppingNo(getInt("delToppingNo"));
+			vo.setAddToppingNo(getString("addToppingNo"));
+			vo.setDelToppingNo(getString("delToppingNo"));
 			vo.setOptionListNo(getInt("optionListNo"));
 			vo.setOptionsNum(getInt("optionsNum"));
 			
@@ -71,8 +54,8 @@ public class optionsDAO extends DBManager {
 		List<optionsVO> list = new ArrayList<>();
 		while(next()) {
 			optionsVO vo = new optionsVO();
-			vo.setAddToppingNo(getInt("addToppingNo"));
-			vo.setDelToppingNo(getInt("delToppingNo"));
+			vo.setAddToppingNo(getString("addToppingNo"));
+			vo.setDelToppingNo(getString("delToppingNo"));
 			vo.setOptionListNo(getInt("optionListNo"));
 			vo.setOptionsNum(getInt("optionsNum"));
 			

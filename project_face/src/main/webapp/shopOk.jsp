@@ -16,6 +16,7 @@ String addToppingNo = request.getParameter("addToppingNo");
 String addSauceNo = request.getParameter("addSauceNo");
 String delToppingNo = request.getParameter("delToppingNo");
 String delSauceNo = request.getParameter("delSauceNo");
+String drinkNo = request.getParameter("drinkNo");
 String pay = request.getParameter("pay");
 
 /* phone: 01098653247
@@ -65,20 +66,47 @@ if(type.equals("burger")){
 
 optionListDAO optionListDAO = new optionListDAO();
 String opLiNum = optionListDAO.insOptionListOne(phone);
+
 optionsVO optionsVo = new optionsVO();
 int optionListNo = Integer.parseInt(opLiNum);
-if(addToppingNo != null || addSauceNo != null || delToppingNo != null || delSauceNo != null){
-	optionsDAO dao = new optionsDAO();
-	optionsVo.setOptionListNo(optionListNo);
-	optionsVo.setAddToppingNo(Integer.parseInt(addToppingNo));
-	optionsVo.setDelToppingNo(Integer.parseInt(delToppingNo));
-	dao.insOption(optionsVo);
 
-	optionsVo.setAddToppingNo(Integer.parseInt(addSauceNo));
-	optionsVo.setDelToppingNo(Integer.parseInt(delSauceNo));
-	dao.insOption(optionsVo);
-	
-	
+optionsVO addToppingVo = new optionsVO();
+optionsVO addSauceVo = new optionsVO();
+optionsVO delToppingVo = new optionsVO();
+optionsVO delSauceVo = new optionsVO();
+optionsVO drinkVo = new optionsVO();
+
+
+optionsDAO optionDao = new optionsDAO();
+
+if(addToppingNo != null){
+	addToppingVo.setOptionListNo(optionListNo);
+	addToppingVo.setAddToppingNo(addToppingNo);
+	addToppingVo.setOptionType(1);
+	optionDao.insOption(addToppingVo);
+}
+if(addSauceNo != null){
+	addSauceVo.setOptionListNo(optionListNo);
+	addSauceVo.setAddToppingNo(addSauceNo);
+	addSauceVo.setOptionType(1);
+	optionDao.insOption(addSauceVo);
+}
+if(delToppingNo != null){
+	delToppingVo.setOptionListNo(optionListNo);
+	delToppingVo.setDelToppingNo(delToppingNo);
+	delToppingVo.setOptionType(2);
+	optionDao.insOption(delToppingVo);
+}
+if(delSauceNo != null){
+	delSauceVo.setOptionListNo(optionListNo);
+	delSauceVo.setDelToppingNo(delSauceNo);
+	delSauceVo.setOptionType(2);
+	optionDao.insOption(delSauceVo);
+}if(drinkNo != null){
+	drinkVo.setOptionListNo(optionListNo);
+	drinkVo.setDelToppingNo(drinkNo);
+	drinkVo.setOptionType(3);
+	optionDao.insOption(drinkVo);
 }
 
 shoppingListDAO dao = new shoppingListDAO();
@@ -87,10 +115,11 @@ String num = dao.insShopListOne(phone);
 shoppingDAO shopDao = new shoppingDAO();
 
 shopVO.setShoppingListNo(Integer.parseInt(num));
-
+shopVO.setOptionsNum(optionListNo);
+shopVO.setAllPay(pay);
 
 shopDao.insShopping(shopVO);
 
-
+response.sendRedirect("shop.jsp");
 
 %>
